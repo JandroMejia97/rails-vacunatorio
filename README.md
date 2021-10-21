@@ -20,7 +20,7 @@ A continuación se detallan algunas de las cosas que tendrás que tener en cuent
     * Sí en cambio, no estás usando GitHub, deberás clonar el repositorio vació que creaste, para ello, sigue las instrucciones de tu proveedor.
 3. Ahora, ingresa al directorio raíz del proyecto.
 4. Por default, en tu repositorio local `origin` apuntará a tu fork como repositorio remoto y tendrá como rama local `main`. Como trabajamos con Forking flow, deberás agregar un repositorio remoto secundario (`upstream`) al cual apuntará el repositorio local `origin`, para ello, usa el comando `git remote add upstream git@github.com:JandroMejia97/rails-vacunatorio.git`.
-    > Si usas otro proveedor deberás bajarte lo que está en el repositorio remoto secundario (`upstream`), para ello, basta con ejecutar el comando `git pull upstream main`.
+    > Si usas otro proveedor deberás bajarte lo que está en el repositorio remoto secundario (`upstream`), para ello, basta con ejecutar el comando `git pull upstream main` y luego subir todo al repositorio alojado en tu proveedor con el comando `git push origin main`.
 5. Listo, ahora tienes tu repositorio en tu ordenador, que apunta a tu repositorio remoto (`origin`) y al repositorio remoto principal (`upstream`).
 6. Ahora, debes crear una rama local (`develop`) en tu repositorio local `origin` para que puedas trabajar en ella. Para ello, ejecuta el comando `git checkout -b develop`.
 7. Siguiendo Git flow, debes crear una rama local con el prefijo `feature/` más el nombre del feature que vas a trabajar en tu repositorio local `origin` para que puedas trabajar en ella. Para ello, ejecuta el comando `git checkout -b feature/<feature_name>`.
