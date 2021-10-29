@@ -1,0 +1,19 @@
+<div class="card">
+    <div clas="card-header">
+        Tus datos personales
+    </div>
+
+    <% age = ((Time.zone.now - @User.birthdate.to_time) / 1.year.seconds).floor %>
+
+    <div class="card-body">
+        <h5 class="card-title"> <%= @User.first_name %> (<%= age %> Anios) </h5>
+        <p class="card-text"> <%= @User.email %> </p>
+        <p class="card-text"> DNI <%= @User.document_number %> - <%=  %> </p>
+        <% if @User.comorbidity %>
+            <p class="card-text"> Padeces alguna comorbilidad </p>
+        <% else %>
+            <p class="card-text"> No padeces ninguna comorbilidad </p>
+        <% end %>
+        <a href="#" class="btn btn-primary">Modifica tus Datos</a>
+    </div>
+</div>
