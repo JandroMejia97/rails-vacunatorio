@@ -1,0 +1,9 @@
+// Import Bootstrap v5  
+
+$primary: #00b887;
+
+$theme-colors: (
+    "primary": $primary
+);
+
+@import "bootstrap/scss/bootstrap" ;  
