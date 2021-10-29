@@ -9,11 +9,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'auth', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <div class="container">
+    <div class="auth-container">
         <div class="left-content">
             <div class="title">
                 <h1>Sistema de turnos</h1>
@@ -25,7 +26,7 @@
             <div class="circle"></div>
         </div>
         <div class="right-content">
-            <% yield %>
+            <%= yield %>
         </div>
     </div>
   </body>
