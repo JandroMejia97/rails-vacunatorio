@@ -1,11 +1,8 @@
 class UsersController < ApplicationController
-    skip_before_action :require_login, only: [:new, :create]
+    layout 'auth/base'
     
     def show
-      @user = User.find(id:1)
-    end
-  
-    def index
+      @user = User.find(params[:id])
     end
   
     def new
@@ -13,13 +10,12 @@ class UsersController < ApplicationController
     end
   
     def create
-      @user = User.create(user_params)
-      if @user.valid?
+      @user = User.new(user_params)
+      if @user.save
         session[:user_id] = @user.id
-        redirect_to @user
+        redirect_to root_path
       else
-        flash[:error] = "Error- please try to create an account again."
-        redirect_to new_user_path
+        render :new
       end
     end
   
