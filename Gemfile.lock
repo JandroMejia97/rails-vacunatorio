@@ -79,9 +79,6 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
-    date_validator (0.12.0)
-      activemodel (>= 3)
-      activesupport (>= 3)
     erubi (1.10.0)
     ffi (1.15.4)
     globalid (0.5.2)
@@ -137,6 +134,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
+    rails-i18n (6.0.0)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 7)
     railties (6.1.4.1)
       actionpack (= 6.1.4.1)
       activesupport (= 6.1.4.1)
@@ -210,12 +210,12 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
-  date_validator
   jbuilder (~> 2.7)
   listen (~> 3.3)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
+  rails-i18n (~> 6.0.0)
   sass-rails (>= 6)
   selenium-webdriver
   spring
