@@ -48,6 +48,8 @@ es:
       before: "Debe ser antes del %{date}"
     document_number:
       uniqueness: "El número de documento ingresado ya se encuentra registrado. Por favor, ingrese un númere diferente."
+    email:
+      uniqueness: "El email ingresado ya se encuentra registrado. Por favor, ingrese un email distinto."
   base_text:
     'yes': 'Sí'
     no: 'No'
