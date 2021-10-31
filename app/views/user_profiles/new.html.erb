@@ -71,9 +71,7 @@
     <div class="mb-3 mt-3 text-center invite-container">
         <p class="invite">
             <%= t 'auth.sign_in.account' %>
-            <span>
-                <%= t 'auth.sign_in.login_invite' %>
-            </span>
+            <%= link_to t('auth.sign_in.login_invite'), auth_login_path%>
         </p>
     </div>
 <% end %>
