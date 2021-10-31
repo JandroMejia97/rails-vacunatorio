@@ -29,7 +29,7 @@ class UserProfilesController < ApplicationController
                 'birthdate' => @user_profile.birthdate,
                 'comorbidity' => @user_profile.comorbidity
             }
-  
+
             redirect_to new_user_account_path
         else
             render :new
