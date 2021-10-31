@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    include UsersHelper
+    include ActiveModel::Validations
     has_secure_password
 
     validates :email, :presence => true, uniqueness: { case_sensitive: false }
@@ -7,9 +9,13 @@ class User < ApplicationRecord
     validates :first_name, :presence => true, length: { minimum: 2 }
     validates :last_name, :presence => true, length: { minimum: 2 }
     validates :birthdate, :presence => true
+<<<<<<< HEAD
     validate :validate_birthdate?
+=======
+>>>>>>> develop
     validates :comorbidity, :inclusion => { :in => [true, false] }
     validates_presence_of :password, :on => [:create, :update]
+    validate :validate_birthdate?, :document_number_uniqueness?, :email_uniqueness?
 
     def validate_birthdate?
         return unless birthdate.present?

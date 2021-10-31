@@ -1,14 +1,9 @@
 module ApplicationHelper
-
-    def logged_in?
-        !!session[:user_id]
-    end
-
-    def require_login
-        redirect_to new_session_path unless session.include? :user_id
-    end
-
-    def current_user
-        @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    end
+    def show_errors(object, field_name)
+        if object.errors.any?
+            if !object.errors.messages[field_name].blank?
+                object.errors.messages[field_name].first
+            end
+        end
+    end 
 end
