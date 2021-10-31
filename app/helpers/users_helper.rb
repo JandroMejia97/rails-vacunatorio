@@ -1,7 +1,7 @@
 module UsersHelper
     def validate_birthdate?
         return unless birthdate.to_time.present?
-        puts self.inspect
+        
         begin
             if self.birthdate.instance_of? String
                 self.birthdate = Date.strptime(birthdate, "%Y-%m-%d") rescue nil 
