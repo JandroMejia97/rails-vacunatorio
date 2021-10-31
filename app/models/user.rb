@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-    has_secure_password
     include UsersHelper
+    include ActiveModel::Validations
+    has_secure_password
 
     validates :email, :presence => true, uniqueness: { case_sensitive: false }
     validates :document_number, :presence => true, uniqueness: true, numericality: { only_integer: true, greater_than_or_equal_to: 10000 }
@@ -8,9 +9,9 @@ class User < ApplicationRecord
     validates :first_name, :presence => true, length: { minimum: 2 }
     validates :last_name, :presence => true, length: { minimum: 2 }
     validates :birthdate, :presence => true
-    validate :validate_birthdate?
-    validates_presence_of :comorbidity, :in => [true, false]
+    validates :comorbidity, inclusion: { in: [true, false] }
     validates_presence_of :password, :on => [:create, :update]
+    validate :validate_birthdate?, :document_number_uniqueness?, :email_uniqueness?
 
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

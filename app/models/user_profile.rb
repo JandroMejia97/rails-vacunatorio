@@ -8,14 +8,7 @@ class UserProfile
     validates :last_name, :presence => true, length: { minimum: 2 }
     validates :document_number, :presence => true, numericality: { only_integer: true, greater_than_or_equal_to: 10000 }
     validates :birthdate, :presence => true
-    validate :validate_birthdate?, :document_number_uniqueness
+    validate :validate_birthdate?, :document_number_uniqueness?
     validates_presence_of :comorbidity, :in => [true, false]
-
-    def document_number_uniqueness
-        if User.where(document_number: document_number).exists?
-            errors.add(:document_number, I18n.t('validations.document_number.uniqueness'))
-            return false
-        end
-    end
 
 end
