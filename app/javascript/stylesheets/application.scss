@@ -1,10 +1,14 @@
-// Import Bootstrap v5  
-@import "bootstrap";  
+// Import Bootstrap v5
+@import "bootstrap";
 
 $primary: #00b887;
 
 $theme-colors: (
-    "primary": $primary
+  "primary": $primary,
 );
 
 @import "node_modules/bootstrap/scss/bootstrap";
+
+.form-group .invalid-feedback::first-letter {
+    text-transform: uppercase;
+}
