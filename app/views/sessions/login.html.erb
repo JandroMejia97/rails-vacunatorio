@@ -1,12 +1,9 @@
 <%= stylesheet_link_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= form_tag '/auth/login' do %>
+<%= form_tag '/auth/login', {class: "auth-form row needs-validation"} do %>
 
    <div class="text-center">
-    <h4 class="card-title">Inicia sesión para continuar</h4>
+    <h2 class="card-title">Inicia sesión para continuar</h2>
    </div>
-   <p>
-   </p>
-   
    <div class="mb-3">
    <%= label_tag :email,nil,class:"form-label" %>
    <%= text_field_tag :email,nil, placeholder: 'Ingrese su email',class: "form-control" %>
@@ -15,20 +12,18 @@
    <div class="mb-3">
    <%= label_tag :contraseña,nil,class:"form-label"  %>
    <%= password_field_tag :password,nil, placeholder: 'Ingrese su contraseña',class: "form-control" %>
-   </p>
    </div>
 
    <div class="text-center">
     <div class="mb-3">
    <h6 class="card-subtitle mb-2 text-muted">¿Olvidaste tu contraseña? <%= link_to 'Recuperar mi contraseña'%></h6>
    </div>
-   <div class="actions">
-   <%= submit_tag "Iniciar sesión", :class => "btn btn-primary" %>
+   <div class="text-center" "mb-3">
+   <button type="submit" class="btn btn-primary mb-3">Iniciar sesión</button>
+   <% #redirecciona a views/users/show%>
    </div>
    <div class="mb-3">
-   <p>
-   <h6 class="card-subtitle mb-2 text-muted">¿No tienes cuenta? <%= link_to 'Registrarme',new_user_path%></h6>
-   </p>
+   <h6 class="card-subtitle mb-2 text-muted">¿No tienes cuenta? <%= link_to 'Registrarme', new_user_account_path%></h6>
    </div>
    </div>
     <% end %>
