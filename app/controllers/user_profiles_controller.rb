@@ -1,7 +1,7 @@
 class UserProfilesController < ApplicationController
     include SessionsHelper
     skip_before_action :require_login, only: [:new, :create]
-    layout 'auth/base'
+    layout 'auth'
 
     def new
         # An instance of UserProfile is created just the
