@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    include UsersHelper
+    include ActiveModel::Validations
     has_secure_password
 
     validates :email, :presence => true, uniqueness: { case_sensitive: false }
@@ -7,19 +9,9 @@ class User < ApplicationRecord
     validates :first_name, :presence => true, length: { minimum: 2 }
     validates :last_name, :presence => true, length: { minimum: 2 }
     validates :birthdate, :presence => true
-    validate :validate_birthdate?
     validates :comorbidity, :inclusion => { :in => [true, false] }
     validates_presence_of :password, :on => [:create, :update]
-
-    def validate_birthdate?
-        return unless birthdate.present?
-        
-        if birthdate.before?(Date.new(1900, 1, 1))
-            errors.add(:birthdate, "must be after #{Date.new(1900, 1, 1)}")
-        elsif  birthdate.after?(Date.today - 6.years)
-            errors.add(:birthdate, "must be before #{Date.today - 6.years}")
-        end
-    end
+    validate :validate_birthdate?, :document_number_uniqueness?, :email_uniqueness?
 
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
