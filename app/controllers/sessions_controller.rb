@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:create, :new]
   layout 'auth/base'
-  
 
-def login
-  @user= User.new
-end
+  def login
+    @user= User.new
+  end
 
   def create
     session_params = params.permit(:email, :password)
