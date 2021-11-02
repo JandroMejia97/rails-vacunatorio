@@ -1,34 +1,42 @@
 <%= stylesheet_link_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= form_tag '/auth/login' do %>
+<% flash.each do |notice, msj| %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= msj%>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <%end%>
+<%= form_tag '/auth/login', {class: "auth-form row needs-validation"} do %>
+    <div>
+    <h1>
+        <%= t 'auth.login.login' %>
+    </h1>
+  </div>
 
-   <div class="text-center">
-    <h4 class="card-title">Inicia sesión para continuar</h4>
+   <div class="mb-3">
+   <%= label_tag t(:email),nil,class:"form-label" %>
+   <%= text_field_tag :email,nil, placeholder: t(:email_placeholder),class: "form-control" %>
    </div>
-   <p>
-   </p>
    
    <div class="mb-3">
-   <%= label_tag :email,nil,class:"form-label" %>
-   <%= text_field_tag :email,nil, placeholder: 'Ingrese su email',class: "form-control" %>
-   </div>
-   
-   <div class="mb-3">
-   <%= label_tag :contraseña,nil,class:"form-label"  %>
-   <%= password_field_tag :password,nil, placeholder: 'Ingrese su contraseña',class: "form-control" %>
-   </p>
+   <%= label_tag t(:password),nil,class:"form-label"  %>
+   <%= password_field_tag :password,nil, placeholder: t(:password_placeholder),class: "form-control" %>
    </div>
 
-   <div class="text-center">
-    <div class="mb-3">
-   <h6 class="card-subtitle mb-2 text-muted">¿Olvidaste tu contraseña? <%= link_to 'Recuperar mi contraseña'%></h6>
-   </div>
-   <div class="actions">
-   <%= submit_tag "Iniciar sesión", :class => "btn btn-primary" %>
-   </div>
-   <div class="mb-3">
-   <p>
-   <h6 class="card-subtitle mb-2 text-muted">¿No tienes cuenta? <%= link_to 'Registrarme',new_user_path%></h6>
+   <div class="mb-3 mt-3 text-center invite-container">
+   <p class="invite">
+       <%= t 'auth.login.forgot_password' %>
+       <%= link_to t('auth.login.recover_password')%>
    </p>
-   </div>
-   </div>
+ </div>
+
+ <%= submit_tag t('auth.login.login'), class: "btn btn-primary", formvalidate: true %>
+
+ 
+    <div class="mb-3 mt-3 text-center invite-container">
+        <p class="invite">
+            <%= t 'auth.login.account' %>
+            <%= link_to t('auth.login.sign_in_invite'), new_user_profile_path%>
+        </p>
+    </div>
     <% end %>
+    
