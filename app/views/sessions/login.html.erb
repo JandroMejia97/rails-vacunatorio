@@ -1,16 +1,14 @@
 <%= stylesheet_link_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
-<% flash.each do |notice, msj| %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <%= msj%>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<% flash.each do |name, message| %>
+    <div class="alert alert-<%= name %> alert-dismissible fade show" role="alert">
+        <%= message %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <%end%>
 <%= form_tag '/auth/login', {class: "auth-form row needs-validation"} do %>
-    <div>
     <h1>
         <%= t 'auth.login.login' %>
     </h1>
-  </div>
 
    <div class="mb-3">
    <%= label_tag t(:email),nil,class:"form-label" %>
