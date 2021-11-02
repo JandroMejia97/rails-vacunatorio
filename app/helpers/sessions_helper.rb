@@ -12,7 +12,7 @@ module SessionsHelper
     end
     def session_expires
         if logged_in? && session[:expires_at] < Time.now
-            flash[:notice]= "Su sesión ha expirado. Por favor ingrese nuevamente"
+            flash[:warning] = I18n.t('auth.session_expired')
             session[:user_id] = nil
             redirect_to auth_login_path
         else
