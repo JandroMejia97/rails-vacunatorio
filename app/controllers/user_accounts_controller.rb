@@ -1,7 +1,7 @@
 class UserAccountsController < ApplicationController
     include SessionsHelper
     skip_before_action :require_login, only: [:new, :create]
-    layout 'auth/base'
+    layout 'auth'
 
     def new
         @user_account = UserAccount.new

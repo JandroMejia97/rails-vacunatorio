@@ -1,8 +1,34 @@
-<div>
-<h2> Log In </h2>
-<%= form_tag 'login' do %>
-   Email: <%= text_field_tag :email %><br>
-    Password: <%= password_field_tag :password %><br>
-   <%= submit_tag "Log In" %>
+<%= stylesheet_link_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= form_tag '/auth/login' do %>
+
+   <div class="text-center">
+    <h4 class="card-title">Inicia sesión para continuar</h4>
+   </div>
+   <p>
+   </p>
+   
+   <div class="mb-3">
+   <%= label_tag :email,nil,class:"form-label" %>
+   <%= text_field_tag :email,nil, placeholder: 'Ingrese su email',class: "form-control" %>
+   </div>
+   
+   <div class="mb-3">
+   <%= label_tag :contraseña,nil,class:"form-label"  %>
+   <%= password_field_tag :password,nil, placeholder: 'Ingrese su contraseña',class: "form-control" %>
+   </p>
+   </div>
+
+   <div class="text-center">
+    <div class="mb-3">
+   <h6 class="card-subtitle mb-2 text-muted">¿Olvidaste tu contraseña? <%= link_to 'Recuperar mi contraseña'%></h6>
+   </div>
+   <div class="actions">
+   <%= submit_tag "Iniciar sesión", :class => "btn btn-primary" %>
+   </div>
+   <div class="mb-3">
+   <p>
+   <h6 class="card-subtitle mb-2 text-muted">¿No tienes cuenta? <%= link_to 'Registrarme',new_user_path%></h6>
+   </p>
+   </div>
+   </div>
     <% end %>
-    </div>

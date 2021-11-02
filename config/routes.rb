@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users#show'
+  root 'sessions#home'
 
   # Sessions routes
   get '/auth/login', to: 'sessions#login'
