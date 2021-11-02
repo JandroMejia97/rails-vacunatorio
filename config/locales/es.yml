@@ -58,6 +58,8 @@ es:
     title: "Sistema de turnos"
     description: "Anotáte a las distintas campañas de vacunación desde un solo lugar."
     btn_read_more: "Lee más..."
+    logout:
+      logout: "Cerrar sesión"
     login:
       login: "Iniciar sesión"
       account: "¿No tienes cuenta?"
