@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'sessions#home'
+  root 'user_profiles#me'
 
   # Sessions routes
   get '/auth/login', to: 'sessions#login'
@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/auth/logout', to: 'sessions#destroy'
   get '/auth/logout', to: 'sessions#destroy'
   # Profiles routes
+  get '/profile/me', to: 'user_profiles#me', as: 'me'
   get '/auth/signin/profile', to: 'user_profiles#new', as: 'new_user_profile'
   post '/auth/signin/profile', to: 'user_profiles#create', as: 'create_user_profile'
   # Accounts routes

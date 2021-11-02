@@ -3,6 +3,12 @@ class UserProfilesController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
     layout 'auth'
 
+    def me
+        puts "UserProfile: #{current_user.inspect}"
+        @user = @current_user
+        render layout: 'application'
+    end
+
     def new
         # An instance of UserProfile is created just the
         # same as you would for any Active Record object.
@@ -32,7 +38,7 @@ class UserProfilesController < ApplicationController
 
             redirect_to new_user_account_path
         else
-            render :new
+            redirect_to new_user_profile_path
         end
     end
   

@@ -23,12 +23,14 @@ class UserAccountsController < ApplicationController
     
             # Here we finally carry out the ultimate objective:
             # creating a User record in the database.
-            User.create!(full_params)
+            @user = User.create!(full_params)
+            session[:user_id] = @user.id
+            session[:expires_at] = Time.now + 3.hours
     
             # Upon successful completion of the form we need to
             # clean up the session.
             session.delete('user_profile')
-    
+            flash[:success] = I18n.t('auth.sign_in.success')
             redirect_to root_path
         else
             render :new

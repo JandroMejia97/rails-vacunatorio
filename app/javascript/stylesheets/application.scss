@@ -4,7 +4,7 @@ $theme-colors: (
     "primary": $primary
 );
 
-@import "bootstrap/scss/bootstrap" ;
+@import "bootstrap" ;
 
 .form-group .invalid-feedback::first-letter {
     text-transform: uppercase;
