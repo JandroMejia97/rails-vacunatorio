@@ -1,11 +1,15 @@
 $primary: #00b887;
 
 $theme-colors: (
-    "primary": $primary
+  "primary": $primary,
 );
 
-@import "bootstrap" ;
-
 .form-group .invalid-feedback::first-letter {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
+
+.btn .btn-primary {
+  color: white !important;
+}
+
+@import "bootstrap";

@@ -59,3 +59,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'ruby-debug-ide', '0.7.3'
 gem 'debase', '0.2.4.1'
+gem 'bootstrap', '5.1.0'
