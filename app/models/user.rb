@@ -13,16 +13,6 @@ class User < ApplicationRecord
     validates_presence_of :password, :on => [:create, :update]
     validate :validate_birthdate?, :document_number_uniqueness?, :email_uniqueness?
 
-    def validate_birthdate?
-        return unless birthdate.present?
-        
-        if birthdate.before?(Date.new(1900, 1, 1))
-            errors.add(:birthdate, "must be after #{Date.new(1900, 1, 1)}")
-        elsif  birthdate.after?(Date.today - 6.years)
-            errors.add(:birthdate, "must be before #{Date.today - 6.years}")
-        end
-    end
-
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                       BCrypt::Engine.cost

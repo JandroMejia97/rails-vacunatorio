@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login, only: [:create, :login]
-  layout 'auth/base'
+  include SessionsHelper
+  skip_before_action :require_login, only: [:create, :new]
+  layout 'auth'
 
   def login
     @user= User.new
