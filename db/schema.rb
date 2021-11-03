@@ -1,5 +1,3 @@
-
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_013336) do
+ActiveRecord::Schema.define(version: 2021_11_03_034313) do
+
+  create_table "rols", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
@@ -25,6 +30,15 @@ ActiveRecord::Schema.define(version: 2021_11_02_013336) do
     t.boolean "comorbidity", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users_rols", primary_key: ["user_id", "rol_id"], force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "rol_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rol_id"], name: "index_users_rols_on_rol_id"
+    t.index ["user_id"], name: "index_users_rols_on_user_id"
   end
 
 end
