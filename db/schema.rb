@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_11_03_034313) do
 
-  create_table "rols", force: :cascade do |t|
+  create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -32,13 +32,13 @@ ActiveRecord::Schema.define(version: 2021_11_03_034313) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users_rols", primary_key: ["user_id", "rol_id"], force: :cascade do |t|
+  create_table "users_roles", primary_key: ["user_id", "role_id"], force: :cascade do |t|
     t.integer "user_id"
-    t.integer "rol_id"
+    t.integer "role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["rol_id"], name: "index_users_rols_on_rol_id"
-    t.index ["user_id"], name: "index_users_rols_on_user_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
 end

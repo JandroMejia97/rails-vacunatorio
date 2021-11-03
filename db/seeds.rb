@@ -15,24 +15,24 @@ admin_user = User.find_or_create_by!(email: 'admin@admin.com') do |user|
     user.comorbidity = false
 end
 
-admin_rol = Rol.find_or_create_by!(name: 'ADMINISTRADOR') do |rol|
+admin_rol = Role.find_or_create_by!(name: 'ADMINISTRADOR') do |rol|
     rol.name = 'ADMINISTRADOR'
     rol.description = 'Administrador del sistema'
 end
 
-UserRol.find_or_create_by!(user: admin_user, rol: admin_rol)
+UserRole.find_or_create_by!(user: admin_user, role: admin_rol)
 
-Rol.find_or_create_by!(name: 'VACUNADOR') do |rol|
+Role.find_or_create_by!(name: 'VACUNADOR') do |rol|
     rol.name = 'VACUNADOR'
     rol.description = 'Vacunador'
 end
 
-Rol.find_or_create_by!(name: 'CIUDADANO') do |rol|
+Role.find_or_create_by!(name: 'CIUDADANO') do |rol|
     rol.name = 'CIUDADANO'
     rol.description = 'Ciudadano'
 end
 
-Rol.find_or_create_by!(name: 'DIRECTIVO') do |rol|
+Role.find_or_create_by!(name: 'DIRECTIVO') do |rol|
     rol.name = 'DIRECTIVO'
     rol.description = 'Médico'
 end

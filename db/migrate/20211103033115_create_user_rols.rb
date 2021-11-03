@@ -1,8 +1,8 @@
 class CreateUserRols < ActiveRecord::Migration[6.1]
   def change
-    create_table :users_rols, primary_key: [:user_id, :rol_id] do |t|
+    create_table :users_roles, primary_key: [:user_id, :role_id] do |t|
       t.belongs_to :user
-      t.belongs_to :rol
+      t.belongs_to :role
 
       t.timestamps
     end
