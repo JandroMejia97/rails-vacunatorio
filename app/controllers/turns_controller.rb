@@ -30,7 +30,8 @@ class TurnsController < ApplicationController
 
     respond_to do |format|
       if @turn.save
-        format.html { redirect_to @turn, notice: "Turn was successfully created." }
+        flash[:success] = I18n.t('base_text.success_saved')
+        format.html { redirect_to turns_url }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -41,7 +42,7 @@ class TurnsController < ApplicationController
   def update
     respond_to do |format|
       if @turn.update(turn_params)
-        format.html { redirect_to @turn, notice: "Turn was successfully updated." }
+        format.html { redirect_to @turn }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -52,7 +53,7 @@ class TurnsController < ApplicationController
   def destroy
     @turn.destroy
     respond_to do |format|
-      format.html { redirect_to turns_url, notice: "Turn was successfully destroyed." }
+      format.html { redirect_to turns_url }
     end
   end
 

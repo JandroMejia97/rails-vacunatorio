@@ -61,6 +61,7 @@ es:
     save: "Guardar"
     back: "ATRÁS"
     success: "¡Los cambios se guardaron exitosamente!"
+    success_saved: "¡El registro se guardó exitosamente!"
     error: "¡Ocurrió un error! Vuelve a intentarlo."
   auth:
     title: "Sistema de turnos"
@@ -101,7 +102,7 @@ es:
     campaign: "Campaña"
     vaccination_center: "Vacunatorio"
     request_a_turn: "Solicitá un turno"
-    request_button: "SOLCITAR"
+    request_button: "SOLICITAR"
     assigned: "Proximos turnos"
     no_assigned: "Aún no tienes turnos asignados."
     pendding: "Turnos en espera"
