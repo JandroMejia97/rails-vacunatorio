@@ -59,6 +59,7 @@ es:
     years: "Años"
     dni: "DNI"
     save: "Guardar"
+    back: "ATRÁS"
     success: "¡Los cambios se guardaron exitosamente!"
     error: "¡Ocurrió un error! Vuelve a intentarlo."
   auth:
@@ -98,7 +99,9 @@ es:
     edit_title: "Modificá tus datos"
   turn:
     campaign: "Campaña"
+    vaccination_center: "Vacunatorio"
     request_a_turn: "Solicitá un turno"
+    request_button: "SOLCITAR"
     assigned: "Proximos turnos"
     no_assigned: "Aún no tienes turnos asignados."
     pendding: "Turnos en espera"

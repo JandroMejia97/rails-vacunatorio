@@ -1,7 +1,7 @@
 <%= form_with(model: turn, html: {class: "auth-form row needs-validation", validate: "validate"}) do |form| %>
   <% if turn.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(turn.errors.count, "error") %> prohibited this turn from being saved:</h2>
+      <h2>Se encontraron <%= pluralize(turn.errors.count, "error") %> </h2>
 
       <ul>
         <% turn.errors.each do |error| %>
@@ -13,8 +13,8 @@
 
   <% invalid = turn.errors.include?(:campaign_id) %>
   <div class="form-group col-12 mb-3">
-    <%= form.label :campaign, class: "form-label" %>
-    <%= form.collection_select :campaign_id, Campaign.all, :id, :name, prompt: true, html: {class: "form-select #{'is-invalid' if invalid}" } %>
+    <%= form.label :campaign, t('turn.campaign'), class: "form-label" %>
+    <%= form.collection_select :campaign_id, Campaign.all, :id, :name, prompt: true, html_options: { class: "form-select #{'is-invalid' if invalid}" } %>
     <% if invalid %>
       <div class="invalid-feedback">
         <%= show_errors turn, :campaign %>
@@ -24,15 +24,18 @@
 
   <% invalid = turn.errors.include?(:vaccination_center) %>
   <div class="form-group col-12 mb-3">
-    <%= form.label :vaccination_center, class: "form-label" %>
-    <%= form.collection_select :vaccination_center_id, VaccinationCenter.all, :id, :name, prompt: true, html: {class: "form-select #{'is-invalid' if invalid}" } %>
+    <%= form.label :vaccination_center, t('turn.vaccination_center'), class: "form-label" %>
+    <%= form.collection_select :vaccination_center_id, VaccinationCenter.all, :id, :name, prompt: true, html_options: { class: "form-select #{'is-invalid' if invalid}" } %>
     <% if invalid %>
       <div class="invalid-feedback">
         <%= show_errors turn, :vaccination_center %>
       </div>
     <% end %>
   </div>
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions row">
+    <div class="col-12 d-flex justify-content-lef">
+      <%= link_to t('base_text.back'), turns_path, class: "btn btn-outline-primary" %>
+      <%= form.submit button_text, class: "btn btn-primary mx-3", formvalidate: true %>
+    </div>
   </div>
 <% end %>
