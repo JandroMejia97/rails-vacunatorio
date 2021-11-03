@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/auth/logout', to: 'sessions#destroy'
   # Profiles routes
   get '/profile/me', to: 'user_profiles#me', as: 'me'
+  get '/profile/me/edit', to: 'user_profiles#edit', as: 'edit_profile'
+  patch '/profile/me/edit', to: 'user_profiles#update', as: 'update_profile'
   get '/auth/signin/profile', to: 'user_profiles#new', as: 'new_user_profile'
   post '/auth/signin/profile', to: 'user_profiles#create', as: 'create_user_profile'
   # Accounts routes

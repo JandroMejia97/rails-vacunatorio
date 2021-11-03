@@ -1,4 +1,4 @@
-<%= form_for @user_profile, url: create_user_profile_path, html: {class: "auth-form row needs-validation", validate: "validate"} do |f| %>
+<%= form_for @user_profile, url: path, html: {class: "auth-form row needs-validation", validate: "validate"} do |f| %>
     <h1>
         <%= title %>
     </h1>
@@ -57,11 +57,11 @@
         <div class="d-flex justify-content-around">
             <div class="form-check form-check-inline">
                 <%= f.label :comorbidity, t('base_text.yes'), :value => "true", class: "form-check-label" %>
-                <%= f.radio_button :comorbidity, true, class: "form-check-input" %>
+                <%= f.radio_button :comorbidity, true, checked: @user_profile.comorbidity, class: "form-check-input" %>
             </div>
             <div class="form-check form-check-inline">
                 <%= f.label :comorbidity, t('base_text.no'), :value => "false", class: "form-check-label" %>
-                <%= f.radio_button :comorbidity, false, checked: true, class: "form-check-input" %>
+                <%= f.radio_button :comorbidity, false, checked: !@user_profile.comorbidity, class: "form-check-input" %>
             </div>
         </div>
     </div>

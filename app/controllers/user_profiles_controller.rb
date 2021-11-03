@@ -9,6 +9,28 @@ class UserProfilesController < ApplicationController
         render layout: 'application'
     end
 
+    def edit
+        @user_profile = current_user
+        render layout: 'application'
+    end
+
+    def update
+        @user_profile = current_user
+        user_params = params.require(:user).permit(
+            :first_name,
+            :last_name,
+            :document_number,
+            :birthdate,
+            :comorbidity
+        )
+        if @user_profile.update(user_params)
+            redirect_to me_path
+        else
+            puts "Error: #{@user_profile.errors.inspect}"
+            redirect_to edit_profile_path
+        end
+    end
+
     def new
         # An instance of UserProfile is created just the
         # same as you would for any Active Record object.

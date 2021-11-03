@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<%= render "form", title: t('auth.sign_in.first_step.title'), button_text: t('base_text.continue') %>
+<%= render partial: "form", locals: {title: t('auth.sign_in.first_step.title'), button_text: t('base_text.continue'), path: create_user_profile_path }%>
 <div class="mb-3 mt-3 text-center invite-container">
     <p class="invite">
         <%= t 'auth.sign_in.account' %>
