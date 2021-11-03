@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    layout 'auth/base'
+    include SessionsHelper
     
     def show
       @user = User.find(params[:id])
