@@ -16,7 +16,7 @@ module SessionsHelper
             session[:user_id] = nil
             redirect_to auth_login_path
         else
-            session[:expires_at]= Time.now + 5.minutes
+            session[:expires_at]= Time.now + 3.hours
         end
     end
 end

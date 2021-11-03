@@ -19,15 +19,28 @@ module UsersHelper
     end
 
     def email_uniqueness?
-        if User.where('lower(email) = ?', email.downcase).exists?
-            errors.add(:email, I18n.t('validations.email.uniqueness'))
+        results = User.where('lower(email) = ?', email.downcase)
+        if self.try(:id).presence && self.try(:id).present?
+            results = results.where.not(id: id)
         end
+        puts "results: #{results.inspect}"
+        if results.exists?
+            errors.add(:email, I18n.t('validations.email.uniqueness'))
+            return false
+        end
+        return true
     end
 
     def document_number_uniqueness?
-        if User.where(document_number: document_number).exists?
+        results = User.where(document_number: document_number)
+        if self.try(:id).presence && self.try(:id).present?
+            results = results.where.not(id: id)
+        end
+        puts "results: #{results.inspect}"
+        if results.exists?
             errors.add(:document_number, I18n.t('validations.document_number.uniqueness'))
             return false
         end
+        return true
     end
 end
