@@ -3,7 +3,6 @@ class Campaign < ApplicationRecord
     validates :name, presence: true, length: { maximum: 80, minimum: 3 }
     validates :description, presence: true, length: { maximum: 500, minimum: 3 }
     validates :start_date, presence: true
-    validates :end_date, allow_blank: true
     validate :validate_end_date?
 
     def validate_end_date?
@@ -22,5 +21,4 @@ class Campaign < ApplicationRecord
         errors.add(:end_date, I18n.t('validations.date.after', date: start_date.strftime("%d/%m/%Y"))) if end_date < start_date
     end
             
-        end
 end
