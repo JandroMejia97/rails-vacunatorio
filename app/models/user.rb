@@ -5,12 +5,12 @@ class User < ApplicationRecord
 
     validates :email, :presence => true, uniqueness: { case_sensitive: false }
     validates :document_number, :presence => true, uniqueness: true, numericality: { only_integer: true, greater_than_or_equal_to: 10000 }
-    validates :password, length: { minimum: 8 }
+    validates :password, length: { minimum: 8 }, allow_blank: true
     validates :first_name, :presence => true, length: { minimum: 2 }
     validates :last_name, :presence => true, length: { minimum: 2 }
     validates :birthdate, :presence => true
     validates :comorbidity, :inclusion => { :in => [true, false] }
-    validates_presence_of :password, :on => [:create, :update]
+    validates_presence_of :password, :on => [:create]
     validate :validate_birthdate?, :document_number_uniqueness?, :email_uniqueness?
 
     def User.digest(string)
