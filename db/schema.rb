@@ -10,13 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_034313) do
+ActiveRecord::Schema.define(version: 2021_11_03_135306) do
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
+  end
+
+  create_table "turns", force: :cascade do |t|
+    t.date "date"
+    t.integer "status", default: 0
+    t.integer "user_id", null: false
+    t.integer "campaign_id", null: false
+    t.integer "vaccination_center_id", null: false
+    t.integer "vaccine_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campaign_id"], name: "index_turns_on_campaign_id"
+    t.index ["user_id"], name: "index_turns_on_user_id"
+    t.index ["vaccination_center_id"], name: "index_turns_on_vaccination_center_id"
+    t.index ["vaccine_id"], name: "index_turns_on_vaccine_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,4 +65,24 @@ ActiveRecord::Schema.define(version: 2021_11_03_034313) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "vaccination_centers", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "vaccines", force: :cascade do |t|
+    t.string "name"
+    t.string "lot_number"
+    t.integer "doses_number"
+    t.integer "applied_dose"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "turns", "campaigns"
+  add_foreign_key "turns", "users"
+  add_foreign_key "turns", "vaccination_centers"
+  add_foreign_key "turns", "vaccines"
 end
