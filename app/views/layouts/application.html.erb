@@ -3,13 +3,41 @@
   <head>
     <title>Vacunatorio</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;700;900&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    </head>
+  </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 sidebar">
+          <!-- SIDEBAR START -->
+          <%= render 'sidebar' %>
+          <!-- SIDEBAR START -->
+        </div>
+        <main class="col">
+          <div class="row">
+            <%= render 'header' %>
+          </div>
+          <div class="row content">
+            <div class="page-header pt-3">
+              <% content_for :title %>
+            </div>
+            <div class="row ps-md-2 pt-2">
+              <div class="col-12">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
   </body>
 </html>

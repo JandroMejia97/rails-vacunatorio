@@ -54,6 +54,9 @@ es:
     'yes': 'Sí'
     no: 'No'
     continue: "Continuar"
+    years: "Años"
+    dni: "DNI"
+    save: "Guardar"
   auth:
     title: "Sistema de turnos"
     description: "Anotáte a las distintas campañas de vacunación desde un solo lugar."
@@ -80,3 +83,13 @@ es:
       second_step:
         title: "Registráte para continuar"
         button: "Regístrarme"
+  sidebar:
+    my_profile: "Mi perfil"
+    my_shifts: "Mis turnos"
+  profile:
+    title: "Tus datos personales"
+    comorbidity: "Padeces alguna conmorbilidad"
+    no_comorbidity: "No padeces ninguna comorbilidad"
+    edit_button: "Modificá tus datos"
+    edit_title: "Modificá tus datos"
+

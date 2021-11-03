@@ -14,10 +14,88 @@
  *= require_self
  */
 
-
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
   --green-base-color: #00b887;
   --blue-base-color: #17a2b8;
+  --dim-base-color: #3c5b66;
+}
+
+#sidebar-nav {
+  width: 160px;
+}
+
+.bg-green {
+  background: var(--blue-base-color);
+  color: white;
+}
+
+.sidebar {
+  box-shadow: 0.995225px 0px 9.95225px rgba(0, 0, 0, 0.15);
+
+  .nav-item {
+    margin-bottom: .75rem;
+
+    .nav-link {
+      color: var(--dim-base-color);
+    }
+  }
+
+  .bi {
+    color: white;
+    padding: 0.5rem;
+    height: 25px;
+    width: auto;
+    border-radius: 25px;
+    box-sizing: border-box;
+    background-color: var(--dim-base-color);
+  }
+}
+
+.navbar {
+  height: 56px;
+  filter: drop-shadow(0px 0.995225px 2.98567px rgba(0, 0, 0, 0.15));
+  z-index: 100;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 64px;
+  box-sizing: border-box;
+  height: 100%;
+  background: #f4f4f4;
+  box-shadow: 0px 0px 3.9809px rgba(0, 0, 0, 0.1),
+    0px 0.995225px 4.97612px rgba(0, 0, 0, 0.25);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+
+  box-shadow: 0px 11.7976px 14.747px rgba(0, 0, 0, 0.05),
+    0px 0px 3.53929px rgba(0, 0, 0, 0.15),
+    0px 2.35952px 2.35952px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+
+  .card-header {
+    /* Auto Layout */
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    width: 100%;
+
+    /* Global/06. Info */
+    background: var(--green-base-color);
+
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+  }
 }
