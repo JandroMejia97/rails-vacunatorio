@@ -28,7 +28,7 @@ class UserProfilesController < ApplicationController
         else
             puts "Error: #{@user_profile.errors.inspect}"
             flash[:danger] = I18n.t('base_text.error')
-            redirect_to edit_profile_path
+            render layout: 'application', :action => :edit
         end
     end
 
@@ -61,7 +61,7 @@ class UserProfilesController < ApplicationController
 
             redirect_to new_user_account_path
         else
-            redirect_to new_user_profile_path
+            render :new
         end
     end
   
