@@ -50,6 +50,8 @@ es:
       uniqueness: "El número de documento ingresado ya se encuentra registrado. Por favor, ingrese un númere diferente."
     email:
       uniqueness: "El email ingresado ya se encuentra registrado. Por favor, ingrese un email distinto."
+    turn:
+      has_turn_in_campaign: "Ya tienes un turno en esta campaña."
   base_text:
     'yes': 'Sí'
     no: 'No'
@@ -57,6 +59,10 @@ es:
     years: "Años"
     dni: "DNI"
     save: "Guardar"
+    back: "ATRÁS"
+    success: "¡Los cambios se guardaron exitosamente!"
+    success_saved: "¡El registro se guardó exitosamente!"
+    error: "¡Ocurrió un error! Vuelve a intentarlo."
   auth:
     title: "Sistema de turnos"
     description: "Anotáte a las distintas campañas de vacunación desde un solo lugar."
@@ -92,4 +98,16 @@ es:
     no_comorbidity: "No padeces ninguna comorbilidad"
     edit_button: "Modificá tus datos"
     edit_title: "Modificá tus datos"
+  turn:
+    campaign: "Campaña"
+    vaccination_center: "Vacunatorio"
+    request_a_turn: "Solicitá un turno"
+    request_button: "SOLICITAR"
+    assigned: "Proximos turnos"
+    no_assigned: "Aún no tienes turnos asignados."
+    pendding: "Turnos en espera"
+    no_pedding: "Aún no tienes turnos pendientes por ser asignados."
+    finished: "Turnos realizados"
+    no_finished: "Aún no te has presantado a un turno."
+    
 

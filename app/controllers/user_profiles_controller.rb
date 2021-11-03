@@ -4,8 +4,7 @@ class UserProfilesController < ApplicationController
     layout 'auth'
 
     def me
-        puts "UserProfile: #{current_user.inspect}"
-        @user = @current_user
+        @user = current_user
         render layout: 'application'
     end
 
@@ -24,10 +23,12 @@ class UserProfilesController < ApplicationController
             :comorbidity
         )
         if @user_profile.update(user_params)
+            flash[:success] = I18n.t('base_text.success')
             redirect_to me_path
         else
             puts "Error: #{@user_profile.errors.inspect}"
-            redirect_to edit_profile_path
+            flash[:danger] = I18n.t('base_text.error')
+            render layout: 'application', :action => :edit
         end
     end
 
@@ -60,7 +61,7 @@ class UserProfilesController < ApplicationController
 
             redirect_to new_user_account_path
         else
-            redirect_to new_user_profile_path
+            render :new
         end
     end
   

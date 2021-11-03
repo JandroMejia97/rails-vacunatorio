@@ -36,3 +36,33 @@ Role.find_or_create_by!(name: 'DIRECTIVO') do |rol|
     rol.name = 'DIRECTIVO'
     rol.description = 'Médico'
 end
+
+VaccinationCenter.find_or_create_by!(name: 'Centro de Vacunación 1') do |center|
+    center.address = 'Calle 1'
+end
+
+VaccinationCenter.find_or_create_by!(name: 'Centro de Vacunación 2') do |center|
+    center.address = 'Calle 2'
+end
+
+VaccinationCenter.find_or_create_by!(name: 'Centro de Vacunación 3') do |center|
+    center.address = 'Calle 3'
+end
+
+Campaign.find_or_create_by!(name: 'Campaña 1') do |campaign|
+    campaign.description = 'Campaña 1 de prueba'
+    campaign.start_date = "2020-01-01"
+    campaign.end_date = "2020-12-31"
+end
+
+Campaign.find_or_create_by!(name: 'Campaña 2') do |campaign|
+    campaign.description = 'Campaña 2 de prueba'
+    campaign.start_date = "2020-01-01"
+    campaign.end_date = "2020-12-31"
+end
+
+Campaign.find_or_create_by!(name: 'Campaña 3') do |campaign|
+    campaign.description = 'Campaña 3 de prueba'
+    campaign.start_date = "2020-01-01"
+    campaign.end_date = "2020-12-31"
+end

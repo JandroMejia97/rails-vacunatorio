@@ -1,0 +1,112 @@
+
+
+<div class="row mb-4">
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <h1>
+      <%= t 'sidebar.my_shifts' %>
+    </h1>
+    <%= link_to t('turn.request_a_turn'), new_turn_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <h2>
+          <%= t 'turn.assigned' %>
+        </h2>
+      </div>
+      <div class="card-body <%= 'empty' unless @assigned_turns.length > 0 %>">
+        <% if @assigned_turns.length > 0 %>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <%= t 'turn.campaign' %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @assigned_turns.each do |turn| %>
+              <tr>
+                <td><%= Campaign.find_by(id: turn.campaign_id).name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% else %>
+          <p>
+            <%= t 'turn.no_assigned' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <h2>
+          <%= t 'turn.finished' %>
+        </h2>
+      </div>
+      <div class="card-body <%= 'empty' unless @finished_turns.length > 0 %>">
+        <% if @finished_turns.length > 0 %>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <%= t 'turn.campaign' %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @finished_turns.each do |turn| %>
+              <tr>
+                <td><%= Campaign.find_by(id: turn.campaign_id).name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% else %>
+          <p>
+            <%= t 'turn.no_finished' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+  <div class="card">
+      <div class="card-header">
+        <h2>
+          <%= t 'turn.pendding' %>
+        </h2>
+      </div>
+      <div class="card-body <%= 'empty' unless @pedding_turns.length > 0 %>">
+       <% if @pedding_turns.length > 0 %>
+       <table>
+        <thead>
+          <tr>
+            <th>
+                <%= t 'turn.campaign' %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @pedding_turns.each do |turn| %>
+              <tr>
+                <td><%= Campaign.find_by(id: turn.campaign_id).name %></td>
+              </tr>
+            <% end %>
+        </tbody>
+       </table>
+        <% else %>
+          <p>
+              <%= t 'turn.no_pedding' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
