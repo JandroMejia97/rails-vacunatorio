@@ -30,7 +30,7 @@ class Turn < ApplicationRecord
 
     def has_turn_in_campaign?
         return unless campaign_id
-        if Turn.where("campaign_id = ? AND (status = ? OR status = ?)", campaign_id, Turn.statuses[:pedding], Turn.statuses[:assigned]).exists?
+        if Turn.where("user_id = ? AND campaign_id = ? AND (status = ? OR status = ?)", user_id, campaign_id, Turn.statuses[:pedding], Turn.statuses[:assigned]).exists?
             errors.add(:campaign_id, I18n.t('validations.turn.has_turn_in_campaign'))
             return false
         else
