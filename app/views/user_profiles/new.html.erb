@@ -1,9 +1,16 @@
-<%= stylesheet_link_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% if !logged_in? %>
+    <%= stylesheet_link_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% title = t('auth.sign_in.first_step.title') %>
+<% else %>
+    <% title = t('add_user.first_step.title') %>
+<% end %>
 
-<%= render partial: "form", locals: {title: t('auth.sign_in.first_step.title'), button_text: t('base_text.continue'), path: create_user_profile_path }%>
-<div class="mb-3 mt-3 text-center invite-container">
-    <p class="invite">
-        <%= t 'auth.sign_in.account' %>
-        <%= link_to t('auth.sign_in.login_invite'), auth_login_path%>
-    </p>
-</div>
+<%= render partial: "form", locals: {title: title, button_text: t('base_text.continue'), path: create_user_profile_path }%>
+<% if !logged_in? %>
+    <div class="mb-3 mt-3 text-center invite-container">
+        <p class="invite">
+            <%= t 'auth.sign_in.account' %>
+            <%= link_to t('auth.sign_in.login_invite'), auth_login_path%>
+        </p>
+    </div>
+<% end %>
