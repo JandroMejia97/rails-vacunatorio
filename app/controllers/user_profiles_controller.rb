@@ -1,5 +1,5 @@
 class UserProfilesController < ApplicationController
-    include SessionsHelper
+    include SessionsHelper, RolsHelper
     skip_before_action :require_login, only: [:new, :create]
     layout 'auth'
 
@@ -36,6 +36,14 @@ class UserProfilesController < ApplicationController
         # An instance of UserProfile is created just the
         # same as you would for any Active Record object.
         @user_profile = UserProfile.new
+
+        if logged_in?
+            if is_organization_member?
+                render layout: 'application'
+            else
+                redirect_to root_path
+            end
+        end
     end
   
     def create
@@ -61,7 +69,15 @@ class UserProfilesController < ApplicationController
 
             redirect_to new_user_account_path
         else
-            render :new
+            if logged_in?
+                if is_organization_member?
+                    render layout: 'application', template: 'user_profiles/new'
+                else
+                    redirect_to root_path
+                end
+            else
+                render :new
+            end
         end
     end
   
