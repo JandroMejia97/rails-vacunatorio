@@ -1,10 +1,18 @@
 class UserAccountsController < ApplicationController
-    include SessionsHelper
+    include SessionsHelper, RolsHelper
     skip_before_action :require_login, only: [:new, :create]
     layout 'auth'
 
     def new
         @user_account = UserAccount.new
+        
+        if logged_in?
+            if is_organization_member?
+                render layout: 'application'
+            else
+                redirect_to root_path
+            end
+        end
     end
 
     def create
@@ -24,16 +32,30 @@ class UserAccountsController < ApplicationController
             # Here we finally carry out the ultimate objective:
             # creating a User record in the database.
             @user = User.create!(full_params)
-            session[:user_id] = @user.id
-            session[:expires_at] = Time.now + 3.hours
-    
             # Upon successful completion of the form we need to
             # clean up the session.
             session.delete('user_profile')
-            flash[:success] = I18n.t('auth.sign_in.success')
-            redirect_to root_path
+
+            if !logged_in?
+                session[:user_id] = @user.id
+                session[:expires_at] = Time.now + 3.hours
+                flash[:success] = I18n.t('auth.sign_in.success')
+                redirect_to root_path
+            else
+                flash[:success] = I18n.t('add_user.second_step.success')
+                redirect_to turns_url
+            end
+    
         else
-            render :new
+            if logged_in?
+                if is_organization_member?
+                    render layout: 'application', template: 'user_accounts/new'
+                else
+                    redirect_to root_path
+                end
+            else
+                render :new
+            end
         end
     end
 

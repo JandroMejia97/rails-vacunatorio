@@ -1,4 +1,6 @@
 <%= stylesheet_link_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% adjective = logged_in? ? t('adjective.third') :  t('adjective.second') %>
+
 <% flash.each do |name, message| %>
   <div class="alert alert-<%= name %> alert-dismissible fade show" role="alert">
     <%= message %>
@@ -12,7 +14,7 @@
 
   <div class="mb-3">
     <%= label_tag t(:email),nil,class:"form-label" %>
-    <%= text_field_tag :email,nil, placeholder: t(:email_placeholder),class: "form-control" %>
+    <%= text_field_tag :email,nil, placeholder: t(:email_placeholder, adjective: adjective),class: "form-control" %>
   </div>
 
   <div class="mb-3">
