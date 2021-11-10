@@ -31,17 +31,20 @@
 
 es:
   first_name: "Nombre(s)"
-  first_name_placeholder: "Ingresa tu nombre(s)"
+  first_name_placeholder: "Ingresa %{adjective} nombre(s)"
   last_name: "Apellido(s)"
-  last_name_placeholder: "Ingresa tu apellido(s)"
+  last_name_placeholder: "Ingresa %{adjective} apellido(s)"
   document_number: "Número de documento"
-  document_number_placeholder: "Ingrese tu número de documento"
+  document_number_placeholder: "Ingrese %{adjective} número de documento"
   birthdate: "Fecha de nacimiento"
   comorbidity_question: "¿Padeces alguna conmorbilidad?"
   email: "Correo electrónico"
-  email_placeholder: "Ingresa tu correo electrónico"
+  email_placeholder: "Ingresa %{adjective} correo electrónico"
   password: "Contraseña"
   password_placeholder: "Ingresa una contraseña"
+  adjective:
+    second: 'tu'
+    third: 'su'
   validations:
     date:
       after: "Debe ser después del %{date}"
@@ -98,6 +101,13 @@ es:
     no_comorbidity: "No padeces ninguna comorbilidad"
     edit_button: "Modificá tus datos"
     edit_title: "Modificá tus datos"
+  add_user:
+    first_step:
+      title: "Ingresá los datos del ciudadano"
+    second_step:
+      title: "Regístralo para continuar"
+      button: "Finalizar"
+      success: "Se ha dado de alta al usuario. No olvides recordarle el correo y la contraseña con el que fue registrado."
   turn:
     campaign: "Campaña"
     vaccination_center: "Vacunatorio"

@@ -1,9 +1,14 @@
 module RolsHelper
-    def has_rol?(rol_name, user = current_user)
+    def has_rol?(role_name, user = current_user)
         return false if user.nil?
-        rol_name = rol_name.upcase
-        rol = Rol.where(name: rol_name).first
-        return UserRol.where(:user_id => user.id, :rol_id => rol.id).exists?
+        role_name = role_name.upcase
+        role = Role.where(name: role_name).first
+        return UserRole.where(:user_id => user.id, :role_id => role.id).exists?
+    end
+
+    def is_organization_member?(user = current_user)
+        return false if user.nil?
+        return has_rol?(:vacunador, user) || has_rol?(:directivo, user) || has_rol?(:administrador, user)
     end
     
 end

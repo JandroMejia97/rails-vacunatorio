@@ -1,3 +1,4 @@
+<% adjective = logged_in? ? t('adjective.third') :  t('adjective.second') %>
 <%= form_for @user_profile, url: path, html: {class: "auth-form row needs-validation", validate: "validate"} do |f| %>
     <h1>
         <%= title %>
@@ -6,7 +7,7 @@
     <% invalid = @user_profile.errors.include?(:first_name) %>
     <div class="form-group col-12 mb-3">
         <%= f.label :first_name, t(:first_name), class: "form-label" %>
-        <%= f.text_field :first_name, placeholder: t(:first_name_placeholder), class: "form-control #{'is-invalid' if invalid}" %>
+        <%= f.text_field :first_name, placeholder: t(:first_name_placeholder, adjective: adjective), class: "form-control #{'is-invalid' if invalid}" %>
         <% if invalid %>
             <div class="invalid-feedback">
                 <%= show_errors @user_profile, :first_name %>
@@ -17,7 +18,7 @@
     <% invalid = @user_profile.errors.include?(:last_name) %>
     <div class="form-group col-12 mb-3">
         <%= f.label :last_name, t(:last_name), class: "form-label" %>
-        <%= f.text_field :last_name, placeholder: t(:last_name_placeholder), class: "form-control #{'is-invalid' if invalid}" %>
+        <%= f.text_field :last_name, placeholder: t(:last_name_placeholder, adjective: adjective), class: "form-control #{'is-invalid' if invalid}" %>
         <% if invalid %>
             <div class="invalid-feedback">
                 <%= show_errors @user_profile, :last_name %>
@@ -28,7 +29,7 @@
     <% invalid = @user_profile.errors.include?(:document_number) %>
     <div class="form-group col-12 mb-3">
         <%= f.label :document_number, t(:document_number), class: "form-label" %>
-        <%= f.number_field :document_number, placeholder: t(:document_number_placeholder), class: "form-control #{'is-invalid' if invalid}" %>
+        <%= f.number_field :document_number, placeholder: t(:document_number_placeholder, adjective: adjective), class: "form-control #{'is-invalid' if invalid}" %>
         <% if invalid %>
             <div class="invalid-feedback">
                 <%= show_errors @user_profile, :document_number %>
