@@ -1,5 +1,5 @@
 class Turn < ApplicationRecord
-    enum status: { pedding: 0, assigned: 1, finished: 2, canceled: 3, lost: 4 }
+    enum status: { pendding: 0, assigned: 1, finished: 2, canceled: 3, lost: 4 }
     belongs_to :user
     belongs_to :campaign
     belongs_to :vaccination_center
@@ -37,4 +37,6 @@ class Turn < ApplicationRecord
             return true
         end
     end
+
+
 end

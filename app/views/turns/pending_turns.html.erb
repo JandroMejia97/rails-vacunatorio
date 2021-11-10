@@ -1,0 +1,82 @@
+<h1>Turnos del dia - <%= Date.today %></h1>
+
+<div class="row">
+  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <h2>
+          <%= t 'turn.covid' %>
+        </h2>
+      </div>
+      <div class="card-body <%= 'empty' unless @covid_turns.length > 0 %>">
+        <% if @covid_turns.length > 0 %>
+        <table>
+          <tbody>
+            <% @covid_turns.each do |turn| %>
+              <tr>
+                <td><%= User.find_by(id: turn.user_id).document_number %> - <%= User.find_by(id: turn.user_id).first_name %> <%= User.find_by(id: turn.user_id).last_name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% else %>
+          <p>
+            <%= t 'turn.no_covid' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <h2>
+          <%= t 'turn.yellow_fever' %>
+        </h2>
+      </div>
+      <div class="card-body <%= 'empty' unless @fever_turns.length > 0 %>">
+        <% if @fever_turns.length > 0 %>
+        <table>
+          <tbody>
+            <% @fever_turns.each do |turn| %>
+              <tr>
+              <td><%= User.find_by(id: turn.user_id).document_number %> - <%= User.find_by(id: turn.user_id).first_name %> <%= User.find_by(id: turn.user_id).last_name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% else %>
+          <p>
+            <%= t 'turn.no_fever' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+  <div class="card">
+      <div class="card-header">
+        <h2>
+          <%= t 'turn.common_flu' %>
+        </h2>
+      </div>
+      <div class="card-body <%= 'empty' unless @flu_turns.length > 0 %>">
+       <% if @flu_turns.length > 0 %>
+       <table>
+        <tbody>
+            <% @flu_turns.each do |turn| %>
+              <tr>
+              <td><%= User.find_by(id: turn.user_id).document_number %> - <%= User.find_by(id: turn.user_id).first_name %> <%= User.find_by(id: turn.user_id).last_name %></td>
+              </tr>
+            <% end %>
+        </tbody>
+       </table>
+        <% else %>
+          <p>
+              <%= t 'turn.no_flue' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
