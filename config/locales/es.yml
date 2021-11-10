@@ -109,5 +109,6 @@ es:
     no_pedding: "Aún no tienes turnos pendientes por ser asignados."
     finished: "Turnos realizados"
     no_finished: "Aún no te has presantado a un turno."
-    
+    no_dni: "El paciente no se encuentra registrado en el sistema."
+    no_turno: "El paciente está registrado, pero no posee turno para esta fecha, porfavor, de ser posible asignarle un turno de manera manual."
 

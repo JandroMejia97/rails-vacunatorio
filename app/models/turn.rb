@@ -37,4 +37,24 @@ class Turn < ApplicationRecord
             return true
         end
     end
+
+    def self.search(search)
+        if search
+          u= User.find_by(document_number: search)
+          if u #Si encuentra el usuario con DNI ingresado
+            t= Turn.find_by(user_id: u.id, status: "assigned", date: Date.today.strftime("%d/%m/%Y")  )
+            if t #Si encuentra un turno pedido por el usuario 
+              self.where(user_id: t)
+              return [@turns, { :success => true }]
+            else
+              return [nil, { :error => I18n.t('turn.no_turno') }]
+            end
+          else
+            return [nil, { :error => I18n.t('turn.no_dni') }]
+          end 
+        else
+          @turns= Turn.all
+        end
+        return [@turns, { :success => true }]
+      end
 end
