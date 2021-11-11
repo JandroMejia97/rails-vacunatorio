@@ -110,6 +110,9 @@ es:
       success: "Se ha dado de alta al usuario. No olvides recordarle el correo y la contraseña con el que fue registrado."
   turn:
     campaign: "Campaña"
+    covid: "SARS COV2"
+    fiebre: "FIEBRE AMARILLA"
+    gripe: "GRIPE COMÚN"
     vaccination_center: "Vacunatorio"
     request_a_turn: "Solicitá un turno"
     request_button: "SOLICITAR"

@@ -66,3 +66,11 @@ Campaign.find_or_create_by!(name: 'Campaña 3') do |campaign|
     campaign.start_date = "2020-01-01"
     campaign.end_date = "2020-12-31"
 end
+
+Turn.find_or_create_by!(status: 0) do |turn|
+    turn.date="2021-11-10"
+    turn.user_id=4
+    turn.campaign_id=1
+    turn.vaccination_center_id=1
+    turn.vaccine_id=1
+end
