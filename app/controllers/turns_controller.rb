@@ -16,6 +16,10 @@ class TurnsController < ApplicationController
     end
    end
 
+  def show_all
+    @turns=Turn.where(status: Turn.statuses[:finished])
+  end
+
   # GET /turns/1 or /turns/1.json
   def show
   end
@@ -61,6 +65,13 @@ class TurnsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to turns_url }
     end
+  end
+
+  def pending_turns
+    @covid_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 1)
+    @fever_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 3)
+    @flu_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 2)
+    @turn =Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today)
   end
 
   private

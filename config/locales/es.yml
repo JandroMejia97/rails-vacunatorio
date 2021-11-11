@@ -95,6 +95,7 @@ es:
   sidebar:
     my_profile: "Mi perfil"
     my_shifts: "Mis turnos"
+    turns: "Turnos"
   profile:
     title: "Tus datos personales"
     comorbidity: "Padeces alguna conmorbilidad"
@@ -109,10 +110,18 @@ es:
       button: "Finalizar"
       success: "Se ha dado de alta al usuario. No olvides recordarle el correo y la contraseña con el que fue registrado."
   turn:
+    covid: "SARS COV2"
+    yellow_fever: "FIEBRE AMARILLA"
+    common_flu: "GRIPE COMUN"
+    no_covid: "No hay turnos para covid19 hoy"
+    no_fever: "No hay turnos para fiebre amarilla hoy"
+    no_flue: "No hay turnos para gripe comun hoy"
+    filter: "Filtros disponibles"
     campaign: "Campaña"
     covid: "SARS COV2"
     fiebre: "FIEBRE AMARILLA"
     gripe: "GRIPE COMÚN"
+    information: "Datos usuario"
     vaccination_center: "Vacunatorio"
     request_a_turn: "Solicitá un turno"
     request_button: "SOLICITAR"
@@ -124,4 +133,7 @@ es:
     no_finished: "Aún no te has presantado a un turno."
     no_dni: "El paciente no se encuentra registrado en el sistema."
     no_turno: "El paciente está registrado, pero no posee turno para esta fecha, porfavor, de ser posible asignarle un turno de manera manual."
+    not_today: "No hay turnos asignados para esta fecha"
+    today: "Turnos del dia"
+    
 
