@@ -8,12 +8,6 @@ class TurnsController < ApplicationController
     @pedding_turns = @turns.where(status: Turn.statuses[:pedding])
     @assigned_turns = @turns.where(status: Turn.statuses[:assigned])
     @finished_turns = @turns.where(status: Turn.statuses[:finished])
-    @turns, @message = Turn.search(params[:search])
-    if @message[:error].present?
-      flash[:error] = @message[:error]
-    else
-      @turns
-    end
    end
 
   def show_all
@@ -72,6 +66,12 @@ class TurnsController < ApplicationController
     @fever_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 3)
     @flu_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 2)
     @turn =Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today)
+    @turns, @message = Turn.search(params[:search])
+    if @message[:notice].present?
+      flash[:notice] = @message[:notice]
+    else
+      @turns
+    end
   end
 
   private

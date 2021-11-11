@@ -47,10 +47,10 @@ class Turn < ApplicationRecord
               @turns=self.where(user_id: t.user_id)
               return [@turns, { :success => true }]
             else #encuentra el dni, pero no tiene turno
-              return [Turn.all, { :error => I18n.t('turn.no_turno') }]
+              return [Turn.all, { :notice => I18n.t('turn.no_turno') }]
             end
           else #no hay dni en el sistema
-            return [Turn.all, { :error => I18n.t('turn.no_dni') }]
+            return [Turn.all, { :notice => I18n.t('turn.no_dni') }]
           end 
         else
           @turns= Turn.all
