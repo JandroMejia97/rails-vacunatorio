@@ -10,6 +10,9 @@
   </div>
 </div>
 
+<% if @turns.length == 0 %>
+<%= t('turn.not_today') %>
+<%else%>
 <% @turns.each do |turn| %>
   <% if turn.campaign_id == 2 %>  
     <div class="row">
@@ -28,9 +31,9 @@
                 </tr>
              </tbody>
            </table>
+           <%= link_to "Cargar datos de la vacuna",class: "btn btn-primary" %>
           </div>
         </div>
-             <%= link_to "Cargar datos de la vacuna", class: "btn btn-primary" %>
       </div>
   <% else %>
     <% if turn.campaign_id == 3 %>
@@ -49,9 +52,9 @@
                 </tr>
              </tbody>
             </table>
+            <%= link_to "Cargar datos de la vacuna",class: "btn btn-primary" %>
           </div>
         </div>
-        <%= link_to "Cargar datos de la vacuna", class: "btn btn-primary" %>
       </div>
     <% else %>
       <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
@@ -69,11 +72,12 @@
                     </tr>
                 </tbody>
               </table>
+              <%= link_to "Cargar datos de la vacuna",class: "btn btn-primary" %>
           </div>
         </div>
-        <%= link_to "Cargar datos de la vacuna", class: "btn btn-primary" %>
       </div>
     <%end%>
     </div>
   <%end%>
+<%end%>
 <%end%>

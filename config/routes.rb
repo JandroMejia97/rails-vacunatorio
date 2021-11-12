@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Turns routes
   get '/show_all', to: 'turns#show_all'
   get '/pending_turns', to: 'turns#pending_turns'
+
   # Profiles routes
   get '/profile/me', to: 'user_profiles#me', as: 'me'
   get '/profile/me/edit', to: 'user_profiles#edit', as: 'edit_profile'

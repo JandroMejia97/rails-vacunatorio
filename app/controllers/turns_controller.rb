@@ -67,8 +67,8 @@ class TurnsController < ApplicationController
     @flu_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 2)
     @turn =Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today)
     @turns, @message = Turn.search(params[:search])
-    if @message[:notice].present?
-      flash[:notice] = @message[:notice]
+    if @message[:error].present?
+      flash[:error] = @message[:error]
     else
       @turns
     end
