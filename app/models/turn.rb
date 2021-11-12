@@ -3,7 +3,7 @@ class Turn < ApplicationRecord
     belongs_to :user
     belongs_to :campaign
     belongs_to :vaccination_center
-    has_one :applied_vaccine, optional: true
+    has_one :applied_vaccine
     has_one :vaccine, :through => :applied_vaccine
 
     validates :user_id, presence: true

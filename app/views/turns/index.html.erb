@@ -30,7 +30,7 @@
           <tbody>
             <% @assigned_turns.each do |turn| %>
               <tr>
-                <td><%= Campaign.find_by(id: turn.campaign_id).name %></td>
+                <td><%= turn.campaign.name %></td>
               </tr>
             <% end %>
           </tbody>
@@ -63,7 +63,7 @@
           <tbody>
             <% @finished_turns.each do |turn| %>
               <tr>
-                <td><%= Campaign.find_by(id: turn.campaign_id).name %></td>
+                <td><%= turn.campaign.name %></td>
               </tr>
             <% end %>
           </tbody>
@@ -96,7 +96,7 @@
         <tbody>
             <% @pedding_turns.each do |turn| %>
               <tr>
-                <td><%= Campaign.find_by(id: turn.campaign_id).name %></td>
+                <td><%= turn.campaign.name %></td>
               </tr>
             <% end %>
         </tbody>
