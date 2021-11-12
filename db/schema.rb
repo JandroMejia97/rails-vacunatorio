@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_135306) do
+ActiveRecord::Schema.define(version: 2021_11_12_125850) do
+
+  create_table "applied_vaccines", force: :cascade do |t|
+    t.string "lot_number"
+    t.integer "applied_dose"
+    t.integer "vaccine_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["vaccine_id"], name: "index_applied_vaccines_on_vaccine_id"
+  end
 
   create_table "campaigns", force: :cascade do |t|
     t.string "name"
@@ -34,13 +43,13 @@ ActiveRecord::Schema.define(version: 2021_11_03_135306) do
     t.integer "user_id", null: false
     t.integer "campaign_id", null: false
     t.integer "vaccination_center_id", null: false
-    t.integer "vaccine_id"
+    t.integer "applied_vaccine_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["applied_vaccine_id"], name: "index_turns_on_applied_vaccine_id", unique: true
     t.index ["campaign_id"], name: "index_turns_on_campaign_id"
     t.index ["user_id"], name: "index_turns_on_user_id"
     t.index ["vaccination_center_id"], name: "index_turns_on_vaccination_center_id"
-    t.index ["vaccine_id"], name: "index_turns_on_vaccine_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +63,8 @@ ActiveRecord::Schema.define(version: 2021_11_03_135306) do
     t.boolean "comorbidity", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "vaccination_center_id"
+    t.index ["vaccination_center_id"], name: "index_users_on_vaccination_center_id"
   end
 
   create_table "users_roles", primary_key: ["user_id", "role_id"], force: :cascade do |t|
@@ -73,16 +84,19 @@ ActiveRecord::Schema.define(version: 2021_11_03_135306) do
   end
 
   create_table "vaccines", force: :cascade do |t|
-    t.string "name"
-    t.string "lot_number"
-    t.integer "doses_number"
-    t.integer "applied_dose"
+    t.string "name", null: false
+    t.integer "number_of_doses", default: 1
+    t.integer "stock", default: 0
+    t.integer "campaign_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["campaign_id"], name: "index_vaccines_on_campaign_id"
   end
 
+  add_foreign_key "applied_vaccines", "vaccines"
+  add_foreign_key "turns", "applied_vaccines"
   add_foreign_key "turns", "campaigns"
   add_foreign_key "turns", "users"
   add_foreign_key "turns", "vaccination_centers"
-  add_foreign_key "turns", "vaccines"
+  add_foreign_key "vaccines", "campaigns"
 end

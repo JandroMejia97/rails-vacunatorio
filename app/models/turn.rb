@@ -3,11 +3,13 @@ class Turn < ApplicationRecord
     belongs_to :user
     belongs_to :campaign
     belongs_to :vaccination_center
-    belongs_to :vaccine, optional: true
+    has_one :applied_vaccine, optional: true
+    has_one :vaccine, :through => :applied_vaccine
+
     validates :user_id, presence: true
     validates :campaign_id, presence: true
     validates :vaccination_center_id, presence: true
-    validates_presence_of :vaccine, :on => :update
+    validates_presence_of :applied_vaccine, :on => :update
     validates :status, inclusion: { in: Turn.statuses.keys }
     validate :validate_date?, :has_turn_in_campaign?
 

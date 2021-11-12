@@ -6,7 +6,7 @@ class CreateTurns < ActiveRecord::Migration[6.1]
       t.belongs_to :user, foreign_key: true, null: false
       t.belongs_to :campaign, foreign_key: true, null: false
       t.belongs_to :vaccination_center, foreign_key: true, null: false
-      t.belongs_to :vaccine, foreign_key: true
+      t.belongs_to :applied_vaccine, index: { unique: true }, foreign_key: true, null: true
 
       t.timestamps
     end
