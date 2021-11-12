@@ -82,7 +82,7 @@ Turn.find_or_create_by!(status: 0) do |turn|
 end
 
 Turn.find_or_create_by!(status: 1) do |turn|
-    turn.date=Date.today+1.day
+    turn.date=Date.today
     turn.user_id=1
     turn.campaign_id=2
     turn.vaccination_center_id=1
@@ -90,7 +90,7 @@ Turn.find_or_create_by!(status: 1) do |turn|
 end
 
 Turn.find_or_create_by!(status: 1) do |turn|
-    turn.date=Date.today+1.day
+    turn.date=Date.today
     turn.user_id=1
     turn.campaign_id=3
     turn.vaccination_center_id=1

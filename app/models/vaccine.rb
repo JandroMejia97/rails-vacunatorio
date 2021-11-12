@@ -1,6 +1,9 @@
 class Vaccine < ApplicationRecord
+    belongs_to :campaign
+    has_many :applied_vaccines
+
     validates :name, presence: true, length: { maximum: 50, minimum: 3 }
-    validates :lot_number, presence: true, length: { maximum: 50, minimum: 3 }
-    validates :doses_number, presence: true, numericality: { only_integer: true, greater_than: 0 }
-    validates :applied_dose, presence: true, numericality: { only_integer: true, greater_than: 0 }
+    validates :number_of_doses, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+    validates :stock, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :campaign_id, presence: true, blank: false
 end
