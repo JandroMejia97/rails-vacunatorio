@@ -2,6 +2,9 @@ class User < ApplicationRecord
     include UsersHelper
     include ActiveModel::Validations
     has_secure_password
+    has_many :users_roles
+    has_many :roles, :through => :users_roles
+    belongs_to :vaccination_center, optional: true
 
     validates :email, :presence => true, uniqueness: { case_sensitive: false }
     validates :document_number, :presence => true, uniqueness: true, numericality: { only_integer: true, greater_than_or_equal_to: 10000 }
