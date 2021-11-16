@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :vaccines
   resources :turns
   root 'user_profiles#me'
 
