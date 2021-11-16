@@ -147,3 +147,4 @@ es:
     vaccines_available: "Vacunas disponibles"
     assign_shifts: "Asignar turnos"
     load_batch: "Cargar lote"
+    no_vaccines_available: "No hay vacunas disponibles"
