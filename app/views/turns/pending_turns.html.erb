@@ -1,7 +1,7 @@
 <h1>Turnos del dia  <%= Date.today %></h1>
 
 <div class="col-12">
-  <%= form_tag turns_path, method: :get, class: "row mb-4 needs-validation d-flex flex-row justify-content-start align-items-center", validate: "validate" do %>
+  <%= form_tag pending_turns_path, method: :get, class: "row mb-4 needs-validation d-flex flex-row justify-content-start align-items-center", validate: "validate" do %>
     <%= number_field_tag :search, params[:search], placeholder: "Ingresá un número de DNI para buscar un paciente", class: "form-control ms-3 col-10", required: true, min: 10000, style: "width: auto" %>
     <%= submit_tag("Buscar",:name => nil, class: "ms-2 col-1 btn btn-primary")%>
   <% end %>
@@ -9,7 +9,7 @@
 
 
 <% if @turns.length==0 %>
-<%= t('turn.not_today') %>
+  <%= t('turn.not_today') %>
 <%else%>
 <% @turns.each do |t| %>
   <% if t.campaign_id == 2 %>  
