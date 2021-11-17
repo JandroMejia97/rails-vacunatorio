@@ -1,16 +1,16 @@
 <%= form_for (@applied_vaccine) do |f| %>
     <div class="form-group col-12 mb-3">
-        <%= f.label :lot_number, t("vaccine.lot_number"), class: "form-label" %>
-        <%= f.text_field :lot_number, placeholder: t('vaccine.lot_number_ph'), class: "form-control" %>
+        <%= f.label :lot_number, t("vaccines.lot_number"), class: "form-label" %>
+        <%= f.text_field :lot_number, placeholder: t('vaccines.lot_number_ph'), class: "form-control" %>
     </div>
 
     <div class="form-group col-12 mb-3">
-        <%= f.label :applied_dose, t("vaccine.applied_dose"), class: "form-label" %>
-        <%= f.number_field :applied_dose, placeholder: t('vaccine.applied_dose_ph'), class: "form-control" %>
+        <%= f.label :applied_dose, t("vaccines.applied_dose"), class: "form-label" %>
+        <%= f.number_field :applied_dose, placeholder: t('vaccines.applied_dose_ph'), class: "form-control" %>
     </div>
 
     <div class="form-group col-12 mb-3">
-      <%= f.label :vaccine_id, t("vaccine.vaccine"), class: "form-label" %>
+      <%= f.label :vaccine_id, t("vaccines.vaccine"), class: "form-label" %>
       <%= f.collection_select :vaccine_id, Vaccine.all, :id, :name, prompt: true, html_options: { class: "form-select" } %>
     </div>
     <%= f.submit button_text, class: "btn btn-primary mx-3", formvalidate: true %>

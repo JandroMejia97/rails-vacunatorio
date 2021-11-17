@@ -14,8 +14,10 @@
     </li>
     
     <% userid= current_user.id %>
-    <% role= UserRole.find_by(user_id: userid, role_id: 1)%>
-    <% if role %>
+    <% admin= UserRole.find_by(user_id: userid, role_id: 1)%>
+    <% vac= UserRole.find_by(user_id: userid, role_id: 2)%>
+    <% direc= UserRole.find_by(user_id: userid, role_id: 4)%>
+    <% if admin || vac || direc %>
     <li class="nav-item">
       <a href="/show_all" class="nav-link align-middle px-0">
         <i class="fs-4 bi bi-ticket-detailed"></i>

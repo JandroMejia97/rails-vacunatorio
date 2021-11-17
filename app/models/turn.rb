@@ -9,7 +9,7 @@ class Turn < ApplicationRecord
     validates :user_id, presence: true
     validates :campaign_id, presence: true
     validates :vaccination_center_id, presence: true
-    validates_presence_of :applied_vaccine, :on => :update
+    validates_presence_of :applied_vaccine_id, :on => :update
     validates :status, inclusion: { in: Turn.statuses.keys }
     validate :validate_date?, :has_turn_in_campaign?
 
