@@ -6,6 +6,7 @@ class User < ApplicationRecord
     has_many :roles, :through => :users_roles
     belongs_to :vaccination_center, optional: true
 
+    validates :vaccination_center_id, presence: false, allow_nil: true
     validates :email, :presence => true, uniqueness: { case_sensitive: false }
     validates :document_number, :presence => true, uniqueness: true, numericality: { only_integer: true, greater_than_or_equal_to: 10000 }
     validates :password, length: { minimum: 8 }, allow_blank: true

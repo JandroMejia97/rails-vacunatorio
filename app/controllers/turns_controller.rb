@@ -5,7 +5,7 @@ class TurnsController < ApplicationController
   # GET /turns or /turns.json
   def index
     @turns = Turn.where(user_id: current_user.id)
-    @pedding_turns = @turns.where(status: Turn.statuses[:pedding])
+    @pedding_turns = @turns.where(status: Turn.statuses[:pendding])
     @assigned_turns = @turns.where(status: Turn.statuses[:assigned])
     @finished_turns = @turns.where(status: Turn.statuses[:finished])
   end

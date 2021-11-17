@@ -66,6 +66,11 @@ es:
     success: "¡Los cambios se guardaron exitosamente!"
     success_saved: "¡El registro se guardó exitosamente!"
     error: "¡Ocurrió un error! Vuelve a intentarlo."
+    name: "Nombre"
+    actions: "Acciones"
+    show: "Ver"
+    edit: "Editar"
+    destroy: "Eliminar"
   auth:
     title: "Sistema de turnos"
     description: "Anotáte a las distintas campañas de vacunación desde un solo lugar."
@@ -130,5 +135,16 @@ es:
     no_finished: "Aún no te has presantado a un turno."
     not_today: "No hay turnos asignados para esta fecha"
     today: "Turnos del dia"
-    
-
+  vaccines:
+    title: "Vacunas"
+    empty: "Aún no se han cargado vacunas para esta campaña." 
+    add_vaccine: "Agregar vacuna"
+    name_placeholder: "Ingresa el nombre de la vacuna"
+    number_of_doses: "Dosis"
+    number_of_doses_placeholder: "Ingrese el número de dosis de la vacuna"
+    stock: "Existencias"
+    stock_placeholder: "Ingrese la cantidad existente"
+    vaccines_available: "Vacunas disponibles"
+    assign_shifts: "Asignar turnos"
+    load_batch: "Cargar lote"
+    no_vaccines_available: "No hay vacunas disponibles"
