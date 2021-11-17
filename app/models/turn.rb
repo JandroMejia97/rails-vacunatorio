@@ -50,8 +50,6 @@ class Turn < ApplicationRecord
               return [turn, { :success => true }]
             else #encuentra el dni, pero no tiene turno
               @turns=Turn.where(date: Date.today,status: Turn.statuses[:assigned])
-              puts @turns.length
-              puts "AAAAAAAAAAAAAAAAAAAAAAAA"
               return [@turns, { :error => I18n.t('turn.no_turno') }]
             end
           else #no hay dni en el sistema
