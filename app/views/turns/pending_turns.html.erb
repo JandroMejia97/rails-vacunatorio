@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<% if @turns.length==0 %>
+<% if @turns==nil %>
 <%= t('turn.not_today') %>
 <%else%>
 <% @turns.each do |t| %>
