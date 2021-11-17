@@ -1,7 +1,7 @@
 <%= form_for (@applied_vaccine) do |f| %>
     <div class="form-group col-12 mb-3">
       <%= f.label :vaccine_id, t("vaccines.vaccine"), class: "form-label" %>
-      <%= f.collection_select :vaccine_id, Vaccine.where(campaign_id: params[campaign]), :id, :name, { prompt: true }, { class: "form-select" } %>
+      <%= f.collection_select :vaccine_id, Vaccine.where(campaign_id: params[:campaign]), :id, :name, { prompt: true }, { class: "form-select" } %>
     </div>
 
     <div class="form-group col-12 mb-3">
