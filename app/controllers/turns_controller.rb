@@ -74,7 +74,7 @@ class TurnsController < ApplicationController
     @turn =Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today)
     @turns, @message = Turn.search(params[:search])
     if @message[:error].present?
-      flash[:error] = @message[:error]
+      flash[:danger] = @message[:error]
     else
       @turns
     end
