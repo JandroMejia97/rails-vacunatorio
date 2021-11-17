@@ -7,6 +7,11 @@
   <% end %>
 </div>
 
+<div class="row">
+  <div class="col-12 mb-4">
+    <%= link_to t('turn.add_user'), {:controller => "user_profiles", :action => "new" } ,class: "btn btn-outline-secondary" %>
+  </div>
+</div>
 
 <% if @turns.length==0 %>
   <%= t('turn.not_today') %>
