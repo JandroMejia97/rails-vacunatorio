@@ -32,7 +32,7 @@ class Turn < ApplicationRecord
 
     def has_turn_in_campaign?
         return unless campaign_id
-        if Turn.where("user_id = ? AND campaign_id = ? AND (status = ? OR status = ?)", user_id, campaign_id, Turn.statuses[:pedding], Turn.statuses[:assigned]).exists?
+        if Turn.where("user_id = ? AND campaign_id = ? AND (status = ? OR status = ?)", user_id, campaign_id, Turn.statuses[:pedding], Turn.statuses[:assigned]).where.not(id: id).exists?
             errors.add(:campaign_id, I18n.t('validations.turn.has_turn_in_campaign'))
             return false
         else
@@ -44,7 +44,7 @@ class Turn < ApplicationRecord
         if search
           user= User.find_by(document_number: search)
           if user #Si encuentra el usuario con DNI ingresado
-            turn= Turn.find_by(user_id: user.id, date: Date.today, status: Turn.statuses[:assigned])
+            turn= Turn.where(user_id: user.id, date: Date.today, status: Turn.statuses[:assigned])
             if turn #Si encuentra un turno pedido por el usuario 
               return [turn, { :success => true }]
             else #encuentra el dni, pero no tiene turno

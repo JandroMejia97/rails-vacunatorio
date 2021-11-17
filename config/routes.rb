@@ -15,8 +15,8 @@ Rails.application.routes.draw do
 
 
   # Vaccines routes
-  get '/auth/applied_vaccines/new', to: 'applied_vaccines#new', as: 'new_applied_vaccines'
-  post '/auth/applied_vaccines/new', to: 'turns#pending_turns'
+  get '/applied_vaccines/new', to: 'applied_vaccines#new', as: 'new_applied_vaccines'
+  post '/applied_vaccines/new', to: 'turns#pending_turns'
 
 
 

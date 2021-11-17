@@ -157,3 +157,4 @@ es:
     assign_shifts: "Asignar turnos"
     load_batch: "Cargar lote"
     no_vaccines_available: "No hay vacunas disponibles"
+    cargar: "Cargar datos de la vacuna"

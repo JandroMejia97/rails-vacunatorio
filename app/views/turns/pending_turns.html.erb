@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<% if @turns.length == 0 %>
+<% if @turns.length==0 %>
 <%= t('turn.not_today') %>
 <%else%>
 <% @turns.each do |t| %>
@@ -31,7 +31,7 @@
                 </tr>
              </tbody>
            </table>
-           <%= link_to "Cargar datos de la vacuna",{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
+           <%= link_to t('vaccines.cargar'),{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@
                 </tr>
              </tbody>
             </table>
-            <%= link_to "Cargar datos de la vacuna",{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
+            <%= link_to  t('vaccines.cargar'),{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@
                     </tr>
                 </tbody>
               </table>
-              <%= link_to "Cargar datos de la vacuna",{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
+              <%= link_to  t('vaccines.cargar'),{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
           </div>
         </div>
       </div>

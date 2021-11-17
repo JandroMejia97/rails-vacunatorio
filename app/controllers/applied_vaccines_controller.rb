@@ -10,10 +10,9 @@ class AppliedVaccinesController < ApplicationController
       if @applied_vaccine.save
         turn= Turn.find_by(id: $turn)
         id=@applied_vaccine.id
-        puts id
-        puts $turn
         turn.applied_vaccine_id=id
         turn.status=Turn.statuses[:finished]
+        turn.save
         redirect_to pending_turns_path
       else
         render :new
