@@ -13,8 +13,8 @@
 <% if @turns.length == 0 %>
 <%= t('turn.not_today') %>
 <%else%>
-<% @turns.each do |turn| %>
-  <% if turn.campaign_id == 2 %>  
+<% @turns.each do |t| %>
+  <% if t.campaign_id == 2 %>  
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
         <div class="card">
@@ -27,16 +27,16 @@
            <table>
               <tbody>
                  <tr>
-                    <td><%= User.find_by(id: turn.user_id).document_number %> - <%= User.find_by(id: turn.user_id).first_name %> <%= User.find_by(id: turn.user_id).last_name %></td>
+                    <td><%= User.find_by(id: t.user_id).document_number %> - <%= User.find_by(id: t.user_id).first_name %> <%= User.find_by(id: t.user_id).last_name %></td>
                 </tr>
              </tbody>
            </table>
-           <%= link_to "Cargar datos de la vacuna",class: "btn btn-primary" %>
+           <%= link_to "Cargar datos de la vacuna",{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
           </div>
         </div>
       </div>
   <% else %>
-    <% if turn.campaign_id == 3 %>
+    <% if t.campaign_id == 3 %>
       <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
         <div class="card">
           <div class="card-header">
@@ -48,11 +48,11 @@
             <table>
              <tbody>
                 <tr>
-                <td><%= User.find_by(id: turn.user_id).document_number %> - <%= User.find_by(id: turn.user_id).first_name %> <%= User.find_by(id: turn.user_id).last_name %></td>
+                <td><%= User.find_by(id: t.user_id).document_number %> - <%= User.find_by(id: t.user_id).first_name %> <%= User.find_by(id: t.user_id).last_name %></td>
                 </tr>
              </tbody>
             </table>
-            <%= link_to "Cargar datos de la vacuna",class: "btn btn-primary" %>
+            <%= link_to "Cargar datos de la vacuna",{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
           </div>
         </div>
       </div>
@@ -68,11 +68,11 @@
               <table>
                 <tbody>
                     <tr>
-                    <td><%= User.find_by(id: turn.user_id).document_number %> - <%= User.find_by(id: turn.user_id).first_name %> <%= User.find_by(id: turn.user_id).last_name %></td>
+                    <td><%= User.find_by(id: t.user_id).document_number %> - <%= User.find_by(id: t.user_id).first_name %> <%= User.find_by(id: t.user_id).last_name %></td>
                     </tr>
                 </tbody>
               </table>
-              <%= link_to "Cargar datos de la vacuna",class: "btn btn-primary" %>
+              <%= link_to "Cargar datos de la vacuna",{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
           </div>
         </div>
       </div>

@@ -12,6 +12,10 @@
         </span>
       </a>
     </li>
+    
+    <% userid= current_user.id %>
+    <% role= UserRole.find_by(user_id: userid, role_id: 1)%>
+    <% if role %>
     <li class="nav-item">
       <a href="/show_all" class="nav-link align-middle px-0">
         <i class="fs-4 bi bi-ticket-detailed"></i>
@@ -20,6 +24,9 @@
         </span>
       </a>
     </li>
+    <% end %>
+    
+    
     <li class="nav-item">
       <a href="/profile/me" class="nav-link align-middle px-0">
         <i class="fs-4 bi bi-person"></i>

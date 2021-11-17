@@ -44,19 +44,36 @@ class Turn < ApplicationRecord
         if search
           user= User.find_by(document_number: search)
           if user #Si encuentra el usuario con DNI ingresado
-            turn= Turn.find_by(user_id: u.id, date: Date.today, status: "assigned" )
+            turn= Turn.find_by(user_id: user.id, date: Date.today, status: Turn.statuses[:assigned])
             if turn #Si encuentra un turno pedido por el usuario 
               return [turn, { :success => true }]
             else #encuentra el dni, pero no tiene turno
-              @turns=Turn.where(date: Date.today, status: "assigned")
+              @turns=Turn.where(date: Date.today, status: Turn.statuses[:assigned])
               return [@turns, { :error => I18n.t('turn.no_turno') }]
             end
           else #no hay dni en el sistema
-            @turns=Turn.where(date: Date.today, status: "assigned")
+            @turns=Turn.where(date: Date.today, status: Turn.statuses[:assigned])
             return [@turns, { :error => I18n.t('turn.no_dni') }]
           end 
         else
-          @turns=Turn.where(date: Date.today, status: "assigned")
+          @turns=Turn.where(date: Date.today, status: Turn.statuses[:assigned])
+        end
+        return [@turns, { :success => true }]
+      end
+
+
+      def self.search_date(search_date)
+        if search_date
+          @turns= Turn.where(date: search_date, status: Turn.statuses[:finished])
+          if @turns #Si encuentra turnos con esa fecha
+            return [@turns, { :success => true }]
+          else #si no encuentra turnos
+            @turns=Turn.where(status: Turn.statuses[:finished])
+            return [@turns, { :error => I18n.t('turn.no_date') }]
+          end
+        else
+          @turns=Turn.where(status: Turn.statuses[:finished])
+          return [@turns, {:success => true}]
         end
         return [@turns, { :success => true }]
       end

@@ -12,6 +12,12 @@ class TurnsController < ApplicationController
 
   def show_all
     @turns=Turn.where(status: Turn.statuses[:finished])
+    @turns, @message = Turn.search_date(params[:search_date])
+    if @message[:error].present?
+      flash[:error] = @message[:error]
+    else
+      @turns
+    end
   end
 
   # GET /turns/1 or /turns/1.json
