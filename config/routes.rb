@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :vaccines
   resources :turns
+  resources :applied_vaccines, :path => 'applied_vaccine'
   root 'user_profiles#me'
 
   # Sessions routes
@@ -11,6 +12,14 @@ Rails.application.routes.draw do
   # Turns routes
   get '/show_all', to: 'turns#show_all'
   get '/pending_turns', to: 'turns#pending_turns'
+
+
+  # Vaccines routes
+  get '/applied_vaccines/new', to: 'applied_vaccines#new', as: 'new_applied_vaccines'
+  post '/applied_vaccines/new', to: 'turns#pending_turns'
+
+
+
   # Profiles routes
   get '/profile/me', to: 'user_profiles#me', as: 'me'
   get '/profile/me/edit', to: 'user_profiles#edit', as: 'edit_profile'
