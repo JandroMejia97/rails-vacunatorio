@@ -1,0 +1,55 @@
+  
+<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+  <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
+    <span class="fs-5 d-none d-sm-inline">Menu</span>
+  </a>
+  <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+    <li class="nav-item">
+      <a href="/turns" class="nav-link align-middle px-0">
+        <i class="fs-4 bi bi-ticket-detailed"></i>
+        <span class="ms-1 d-none d-sm-inline">
+          <%= t 'sidebar.my_shifts' %>
+        </span>
+      </a>
+    </li>
+    
+    <% if is_organization_member? %>
+    <li class="nav-item">
+      <a href="/show_all" class="nav-link align-middle px-0">
+        <i class="fs-4 bi bi-ticket-detailed"></i>
+        <span class="ms-1 d-none d-sm-inline">
+          <%= t 'sidebar.turns' %>
+        </span>
+      </a>
+    </li>
+    <% end %>
+    
+    
+    <li class="nav-item">
+      <a href="/profile/me" class="nav-link align-middle px-0">
+        <i class="fs-4 bi bi-person"></i>
+        <span class="ms-1 d-none d-sm-inline">
+          <%= t 'sidebar.my_profile' %>
+        </span>
+      </a>
+    </li>
+    <% if is_organization_member? %>
+      <li class="nav-item">
+        <a href="/vaccines" class="nav-link align-middle px-0">
+          <i class="fs-4 bi bi-eyedropper"></i>
+          <span class="ms-1 d-none d-sm-inline">
+            <%= t 'vaccines.title' %>
+          </span>
+        </a>
+      </li>
+    <% end %>
+    <li class="nav-item">
+     <a href="/auth/logout" class="nav-link align-middle px-0">
+        <i class="fs-4 bi bi-x"></i>
+        <span class="ms-1 d-none d-sm-inline">
+          <%= t 'auth.logout.logout' %>
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>

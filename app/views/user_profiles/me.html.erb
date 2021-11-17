@@ -1,0 +1,35 @@
+<%= content_for :page_title do %>
+    <%= t 'sidebar.my_profile' %>
+<% end %>
+<h1>Bienvenido</h1>
+<div class="card">
+    <div clas="card-header">
+        <h2>
+            <%= t 'profile.title' %>
+        </h2>
+    </div>
+
+    <% age = ((Time.zone.now - @user.birthdate.to_time) / 1.year.seconds).floor %>
+
+    <div class="card-body">
+        <h5 class="card-title">
+            <%= @user.first_name %> (<%= age %> <%= t 'base_text.years' %>)
+        </h5>
+        <p class="card-text">
+            <%= @user.email %>
+        </p>
+        <p class="card-text">
+            <%= t 'base_text.dni' %> <%= @user.document_number %> <%=  %>
+        </p>
+        <% if @user.comorbidity %>
+            <p class="card-text"> 
+                <%= t 'profile.comorbidity' %>
+            </p>
+        <% else %>
+            <p class="card-text"> 
+                <%= t 'profile.no_comorbidity' %>
+            </p>
+        <% end %>
+        <%= link_to t('profile.edit_button'), edit_profile_path, class: "btn btn-primary" %>
+    </div>
+</div>

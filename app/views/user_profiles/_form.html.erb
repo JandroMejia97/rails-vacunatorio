@@ -1,0 +1,70 @@
+<% adjective = logged_in? ? t('adjective.third') :  t('adjective.second') %>
+<%= form_for @user_profile, url: path, html: {class: "auth-form row needs-validation", validate: "validate"} do |f| %>
+    <h1>
+        <%= title %>
+    </h1>
+
+    <% invalid = @user_profile.errors.include?(:first_name) %>
+    <div class="form-group col-12 mb-3">
+        <%= f.label :first_name, t(:first_name), class: "form-label" %>
+        <%= f.text_field :first_name, placeholder: t(:first_name_placeholder, adjective: adjective), class: "form-control #{'is-invalid' if invalid}" %>
+        <% if invalid %>
+            <div class="invalid-feedback">
+                <%= show_errors @user_profile, :first_name %>
+            </div>  
+        <% end %>
+    </div>
+
+    <% invalid = @user_profile.errors.include?(:last_name) %>
+    <div class="form-group col-12 mb-3">
+        <%= f.label :last_name, t(:last_name), class: "form-label" %>
+        <%= f.text_field :last_name, placeholder: t(:last_name_placeholder, adjective: adjective), class: "form-control #{'is-invalid' if invalid}" %>
+        <% if invalid %>
+            <div class="invalid-feedback">
+                <%= show_errors @user_profile, :last_name %>
+            </div>
+        <% end %>
+    </div>
+
+    <% invalid = @user_profile.errors.include?(:document_number) %>
+    <div class="form-group col-12 mb-3">
+        <%= f.label :document_number, t(:document_number), class: "form-label" %>
+        <%= f.number_field :document_number, placeholder: t(:document_number_placeholder, adjective: adjective), class: "form-control #{'is-invalid' if invalid}" %>
+        <% if invalid %>
+            <div class="invalid-feedback">
+                <%= show_errors @user_profile, :document_number %>
+            </div>
+        <% end %>
+    </div>
+
+    <% invalid = @user_profile.errors.include?(:birthdate) %>
+    <div class="form-group col-12 mb-3">
+        <%= f.label :birthdate, t(:birthdate), class: "form-label" %>
+        <% if @user_profile.birthdate.to_s.strip.length > 0 %>
+            <%= f.date_field :birthdate, as: :date, value: f.object.try(:to_time).try(:strftime,"%Y %m %d"), :max => (Date.today - 6.years), min: "1900-01-01", placeholder: 'dd/MM/AAAA', class: "form-control #{'is-invalid' if invalid}" %>
+        <% else %>
+            <%= f.date_field :birthdate, as: :date, :value => (Date.today - 6.years), :max => (Date.today - 6.years), min: "1900-01-01", placeholder: 'dd/MM/AAAA', class: "form-control #{'is-invalid' if invalid}" %>
+        <% end %>
+        
+        <% if invalid %>
+            <div class="invalid-feedback">
+                <%= show_errors @user_profile, :birthdate %>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="form-group col-12 mb-3">
+        <%= f.label :comorbidity, t(:comorbidity_question), class: "form-label" %>
+        <div class="d-flex justify-content-around">
+            <div class="form-check form-check-inline">
+                <%= f.label :comorbidity, t('base_text.yes'), :value => "true", class: "form-check-label" %>
+                <%= f.radio_button :comorbidity, true, checked: @user_profile.comorbidity, class: "form-check-input" %>
+            </div>
+            <div class="form-check form-check-inline">
+                <%= f.label :comorbidity, t('base_text.no'), :value => "false", class: "form-check-label" %>
+                <%= f.radio_button :comorbidity, false, checked: !@user_profile.comorbidity, class: "form-check-input" %>
+            </div>
+        </div>
+    </div>
+    <%= f.submit button_text, class: "btn btn-primary", formvalidate: true %>
+<% end %>

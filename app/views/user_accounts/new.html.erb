@@ -1,0 +1,41 @@
+<% adjective = logged_in? ? t('adjective.third') :  t('adjective.second') %>
+
+<%= stylesheet_link_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= form_for @user_account, url: create_user_account_path, html: {class: "auth-form row needs-validation", validate: "validate"} do |f| %>
+    <h1>
+        <%= logged_in? ? t('add_user.second_step.title') : t('auth.sign_in.second_step.title') %>
+    </h1>
+    <% invalid = @user_account.errors.include?(:email) %>
+    <div class="form-group col-12 mb-3">
+        <%= f.label :email, t(:email), class: "form-label" %>
+        <%= f.email_field :email, placeholder: t(:email_placeholder, adjective: adjective), class: "form-control #{'is-invalid' if invalid}", :required => true %>
+        <% if invalid %>
+            <div class="invalid-feedback">
+                <%= show_errors @user_account, :email %>
+            </div>  
+        <% end %>
+    </div>
+    <% invalid = @user_account.errors.include?(:password) %>
+    <div class="form-group col-12 mb-3">
+        <%= f.label :password, t(:password), class: "form-label" %>
+        <%= f.password_field :password, placeholder: t(:password_placeholder), class: "form-control #{'is-invalid' if invalid}", :required => true %>
+        <% if invalid %>
+            <div class="invalid-feedback">
+                <%= show_errors @user_account, :password %>
+            </div>  
+        <% end %>
+    </div>
+    <% if logged_in? %>
+        <%= f.submit t('add_user.second_step.button'), class: "btn btn-primary", formnovalidate: true %>
+    <% else %>
+        <%= f.submit t('auth.sign_in.second_step.button'), class: "btn btn-primary", formnovalidate: true %>
+    <% end %>
+    <% if !logged_in? %>
+        <div class="mb-3 mt-3 text-center invite-container">
+            <p class="invite">
+                <%= t 'auth.sign_in.account' %>
+                <%= link_to t('auth.sign_in.login_invite'), auth_login_path%>
+            </p>
+        </div>
+    <% end %>
+<% end %>

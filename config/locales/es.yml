@@ -1,0 +1,160 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+es:
+  first_name: "Nombre(s)"
+  first_name_placeholder: "Ingresa %{adjective} nombre(s)"
+  last_name: "Apellido(s)"
+  last_name_placeholder: "Ingresa %{adjective} apellido(s)"
+  document_number: "Número de documento"
+  document_number_placeholder: "Ingrese %{adjective} número de documento"
+  birthdate: "Fecha de nacimiento"
+  comorbidity_question: "¿Padeces alguna conmorbilidad?"
+  email: "Correo electrónico"
+  email_placeholder: "Ingresa %{adjective} correo electrónico"
+  password: "Contraseña"
+  password_placeholder: "Ingresa una contraseña"
+  adjective:
+    second: 'tu'
+    third: 'su'
+  validations:
+    date:
+      after: "Debe ser después del %{date}"
+      before: "Debe ser antes del %{date}"
+    document_number:
+      uniqueness: "El número de documento ingresado ya se encuentra registrado. Por favor, ingrese un númere diferente."
+    email:
+      uniqueness: "El email ingresado ya se encuentra registrado. Por favor, ingrese un email distinto."
+    turn:
+      has_turn_in_campaign: "Ya tienes un turno en esta campaña."
+  base_text:
+    'yes': 'Sí'
+    no: 'No'
+    continue: "Continuar"
+    years: "Años"
+    dni: "DNI"
+    save: "Guardar"
+    back: "ATRÁS"
+    success: "¡Los cambios se guardaron exitosamente!"
+    success_saved: "¡El registro se guardó exitosamente!"
+    error: "¡Ocurrió un error! Vuelve a intentarlo."
+    name: "Nombre"
+    actions: "Acciones"
+    show: "Ver"
+    edit: "Editar"
+    destroy: "Eliminar"
+  auth:
+    title: "Sistema de turnos"
+    description: "Anotáte a las distintas campañas de vacunación desde un solo lugar."
+    btn_read_more: "Lee más..."
+    session_expired: "Su sesión ha expirado. Por favor ingrese nuevamente."
+    logout:
+      logout: "Cerrar sesión"
+      success: "¡Cerraste la sesión!"
+    login:
+      login: "Iniciar sesión"
+      account: "¿No tienes cuenta?"
+      sign_in_invite: "Regístrate"
+      forgot_password: "¿Olvidaste tu contraseña?"
+      recover_password: "Recuperar mi contraseña"
+      wrong_email: "El correo ingresado no es válido, por favor ingrese un correo previamente registrado."
+      wrong_password: "La contraseña es incorrecta, vuelva a intentarlo."
+      too_many_attempts: "Su cuenta ha sido bloqueada luego de 10 intentos fallidos de inicio de sesión. Se reactivará dentro de 2 horas."
+    sign_in:
+      login_invite: "Iniciá sesión"
+      account: "¿Ya tienes una cuenta?"
+      success: "Se ha creado tu cuenta."
+      first_step:
+        title: "Ingresá tus datos personales"
+      second_step:
+        title: "Registráte para continuar"
+        button: "Regístrarme"
+  sidebar:
+    my_profile: "Mi perfil"
+    my_shifts: "Mis turnos"
+    turns: "Turnos"
+  profile:
+    title: "Tus datos personales"
+    comorbidity: "Padeces alguna conmorbilidad"
+    no_comorbidity: "No padeces ninguna comorbilidad"
+    edit_button: "Modificá tus datos"
+    edit_title: "Modificá tus datos"
+  add_user:
+    first_step:
+      title: "Ingresá los datos del ciudadano"
+    second_step:
+      title: "Regístralo para continuar"
+      button: "Finalizar"
+      success: "Se ha dado de alta al usuario. No olvides recordarle el correo y la contraseña con el que fue registrado."
+  turn:
+    covid: "SARS COV2"
+    yellow_fever: "FIEBRE AMARILLA"
+    common_flu: "GRIPE COMUN"
+    no_covid: "No hay turnos para covid19 hoy"
+    no_fever: "No hay turnos para fiebre amarilla hoy"
+    no_flue: "No hay turnos para gripe comun hoy"
+    filter: "Filtros disponibles"
+    campaign: "Campaña"
+    information: "Datos usuario"
+    vaccination_center: "Vacunatorio"
+    request_a_turn: "Solicitá un turno"
+    request_button: "SOLICITAR"
+    assigned: "Proximos turnos"
+    no_assigned: "Aún no tienes turnos asignados."
+    pendding: "Turnos en espera"
+    no_pedding: "Aún no tienes turnos pendientes por ser asignados."
+    finished: "Turnos realizados"
+    no_finished: "No hay turnos realizados."
+    no_dni: "El paciente no se encuentra registrado en el sistema."
+    no_turno: "El paciente está registrado, pero no posee turno para esta fecha, porfavor, de ser posible asignarle un turno de manera manual."
+    not_today: "No hay turnos asignados para esta fecha"
+    not_date: "No hay turnos realizados en esta fecha"
+    today: "Turnos del dia"
+  vaccines:
+    applied_vaccine: "Vacuna Aplicada"
+    lot_number: "Numero de lote"
+    lot_number_ph: "Ingrese numero de lote de la vacuna aplicada."
+    applied_dose: "Numero de dosis aplicada"
+    applied_dose_ph: "Ingrese numero de dosis aplicada."
+    vaccine: "Vacuna aplicada"
+    title: "Vacunas"
+    empty: "Aún no se han cargado vacunas para esta campaña." 
+    add_vaccine: "Agregar vacuna"
+    name_placeholder: "Ingresa el nombre de la vacuna"
+    number_of_doses: "Dosis"
+    number_of_doses_placeholder: "Ingrese el número de dosis de la vacuna"
+    stock: "Existencias"
+    stock_placeholder: "Ingrese la cantidad existente"
+    vaccines_available: "Vacunas disponibles"
+    assign_shifts: "Asignar turnos"
+    load_batch: "Cargar lote"
+    no_vaccines_available: "No hay vacunas disponibles"
+    cargar: "Cargar datos de la vacuna"

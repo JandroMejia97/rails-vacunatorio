@@ -1,0 +1,75 @@
+<%= form_for vaccine do |form| %>
+  <% if vaccine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vaccine.errors.count, "error") %> prohibited this vaccine from being saved:</h2>
+
+      <ul>
+        <% vaccine.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% invalid = vaccine.errors.include?(:campaign_id) %>
+  <div class="form-group col-12 mb-3">
+    <%= form.label :campaign_id, t('turn.campaign'), class: "form-label" %>
+    <%= form.collection_select :campaign_id, Campaign.all, :id, :name, { prompt: true }, { class: "form-select #{'is-invalid' if invalid}", disabled: !!vaccine.campaign_id } %>
+    <% if invalid %>
+      <div class="invalid-feedback">
+        <%= show_errors vaccine, :campaign %>
+      </div>
+    <% end %>
+  </div>
+
+  <% invalid = vaccine.errors.include?(:name) %>
+  <div class="form-group col-12 mb-3">
+      <%= form.label :name, t("base_text.name"), class: "form-label" %>
+      <%= form.text_field :name, placeholder: t("vaccines.name_placeholder"), class: "form-control #{'is-invalid' if invalid}" %>
+      <% if invalid %>
+          <div class="invalid-feedback">
+              <%= show_errors vaccine, :name %>
+          </div>  
+      <% end %>
+  </div>
+
+  <% invalid = vaccine.errors.include?(:number_of_doses) %>
+  <div class="form-group col-12 mb-3">
+      <%= form.label :number_of_doses, t("vaccines.number_of_doses"), class: "form-label" %>
+      <%= form.number_field :number_of_doses, placeholder: t("vaccines.number_of_doses_placeholder"), class: "form-control #{'is-invalid' if invalid}", min: 1 %>
+      <% if invalid %>
+          <div class="invalid-feedback">
+              <%= show_errors vaccine, :number_of_doses %>
+          </div>  
+      <% end %>
+  </div>
+
+  <% invalid = vaccine.errors.include?(:stock) %>
+  <div class="form-group col-12 mb-3">
+      <%= form.label :stock, t("vaccines.stock"), class: "form-label" %>
+      <%= form.number_field :stock, disabled: !!vaccine.id, placeholder: t("vaccines.stock_placeholder"), class: "form-control #{'is-invalid' if invalid}", min: 0 %>
+      <% if invalid %>
+          <div class="invalid-feedback">
+              <%= show_errors vaccine, :stock %>
+          </div>  
+      <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<!--
+<select class="form-select " disabled="disabled" name="vaccine[campaign_id]" id="vaccine_campaign_id">
+  <option selected="selected" value="1">SARS-COV2</option>
+  <option value="2">Fiebre amarilla</option>
+  <option value="3">Gripe común</option>
+</select>
+<select class="form-select " disabled="disabled" name="vaccine[campaign_id]" id="vaccine_campaign_id">
+  <option selected="selected" value="1">SARS-COV2</option>
+  <option value="2">Fiebre amarilla</option>
+  <option value="3">Gripe común</option>
+</select>
+-->
