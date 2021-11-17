@@ -1,5 +1,5 @@
 class TurnsController < ApplicationController
-  include SessionsHelper
+  include SessionsHelper, RolesHelper
   before_action :set_turn, only: %i[ show edit update destroy ]
 
   # GET /turns or /turns.json
