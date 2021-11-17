@@ -138,6 +138,7 @@ es:
     not_today: "No hay turnos asignados para esta fecha"
     not_date: "No hay turnos realizados en esta fecha"
     today: "Turnos del dia"
+    add_user: "Agregar un ciudadano"
   vaccines:
     applied_vaccine: "Vacuna Aplicada"
     lot_number: "Numero de lote"
