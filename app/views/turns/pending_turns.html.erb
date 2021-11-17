@@ -75,7 +75,7 @@
                     </tr>
                 </tbody>
               </table>
-              <%= link_to  t('vaccines.cargar'),{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
+              <%= link_to  t('vaccines.cargar'),{:controller => "applied_vaccines", :action => "new", :turn => t, :campaign: t.campaign_id},class: "btn btn-primary" %>
           </div>
         </div>
       </div>
