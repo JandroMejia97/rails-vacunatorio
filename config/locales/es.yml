@@ -124,6 +124,7 @@ es:
     filter: "Filtros disponibles"
     campaign: "Campaña"
     information: "Datos usuario"
+    estado: "Estado del turno"
     vaccination_center: "Vacunatorio"
     request_a_turn: "Solicitá un turno"
     request_button: "SOLICITAR"
