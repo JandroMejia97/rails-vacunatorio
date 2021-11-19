@@ -3,6 +3,11 @@ class UserProfilesController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
     layout 'auth'
 
+    def all_users
+        @users = User.where.not(id: current_user.id)
+        render layout: 'application'
+    end
+
     def me
         @user = current_user
         render layout: 'application'

@@ -55,6 +55,11 @@ es:
       uniqueness: "El email ingresado ya se encuentra registrado. Por favor, ingrese un email distinto."
     turn:
       has_turn_in_campaign: "Ya tienes un turno en esta campaña."
+  user:
+    modify: "Modificar"
+    users: "Usuarios del sistema"
+    no_users: "No hay usuarios registrados en el sistema"
+  
   base_text:
     'yes': 'Sí'
     no: 'No'
@@ -101,6 +106,7 @@ es:
     my_profile: "Mi perfil"
     my_shifts: "Mis turnos"
     turns: "Turnos"
+    users: "Usuarios"
   profile:
     title: "Tus datos personales"
     comorbidity: "Padeces alguna conmorbilidad"

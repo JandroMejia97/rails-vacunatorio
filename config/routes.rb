@@ -19,9 +19,8 @@ Rails.application.routes.draw do
   get '/applied_vaccines/new', to: 'applied_vaccines#new', as: 'new_applied_vaccines'
   post '/applied_vaccines/new', to: 'turns#pending_turns'
 
-
-
   # Profiles routes
+  get '/profile/all_users', to: 'user_profiles#all_users', as: 'all_users'
   get '/profile/me', to: 'user_profiles#me', as: 'me'
   get '/profile/me/edit', to: 'user_profiles#edit', as: 'edit_profile'
   patch '/profile/me/edit', to: 'user_profiles#update', as: 'update_profile'
