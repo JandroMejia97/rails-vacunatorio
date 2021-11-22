@@ -35,7 +35,7 @@
                 <td><%= user.first_name %></td>
                 <td><%= user.last_name %></td>
                 <td><%= user.document_number %></td>
-                <td><%= user.comorbidity %></td> 
+                <td><%= user.comorbidity ? t('base_text.yes') : t('base_text.no') %></td> 
                 <td> <%= link_to t('user.modify'),class: "btn btn-primary" %></td>
               </tr>
             <% end %>

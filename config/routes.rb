@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post '/applied_vaccines/new', to: 'turns#pending_turns'
 
   # Profiles routes
-  get '/users/all_users', to: 'users#all_users', as: 'all_users'
+  get '/users/index', to: 'users#index', as: 'index'
   get '/profile/me', to: 'user_profiles#me', as: 'me'
   get '/profile/me/edit', to: 'user_profiles#edit', as: 'edit_profile'
   patch '/profile/me/edit', to: 'user_profiles#update', as: 'update_profile'
