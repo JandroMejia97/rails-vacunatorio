@@ -1,5 +1,5 @@
 class UserProfilesController < ApplicationController
-    include SessionsHelper, RolsHelper
+    include SessionsHelper, RolesHelper
     skip_before_action :require_login, only: [:new, :create]
     layout 'auth'
 

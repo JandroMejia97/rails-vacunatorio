@@ -14,7 +14,7 @@
   <% invalid = turn.errors.include?(:campaign_id) %>
   <div class="form-group col-12 mb-3">
     <%= form.label :campaign, t('turn.campaign'), class: "form-label" %>
-    <%= form.collection_select :campaign_id, Campaign.all, :id, :name, prompt: true, html_options: { class: "form-select #{'is-invalid' if invalid}" } %>
+    <%= form.collection_select :campaign_id, Campaign.all, :id, :name, { prompt: true }, { class: "form-select #{'is-invalid' if invalid}" } %>
     <% if invalid %>
       <div class="invalid-feedback">
         <%= show_errors turn, :campaign %>
@@ -25,7 +25,7 @@
   <% invalid = turn.errors.include?(:vaccination_center) %>
   <div class="form-group col-12 mb-3">
     <%= form.label :vaccination_center, t('turn.vaccination_center'), class: "form-label" %>
-    <%= form.collection_select :vaccination_center_id, VaccinationCenter.all, :id, :name, prompt: true, html_options: { class: "form-select #{'is-invalid' if invalid}" } %>
+    <%= form.collection_select :vaccination_center_id, VaccinationCenter.all, :id, :name, { prompt: true }, { class: "form-select #{'is-invalid' if invalid}" } %>
     <% if invalid %>
       <div class="invalid-feedback">
         <%= show_errors turn, :vaccination_center %>

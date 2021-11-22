@@ -108,10 +108,13 @@ class TurnsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def turn_params
       params.require(:turn).permit(:campaign_id, :vaccination_center_id, :user_id)
+<<<<<<< HEAD
     end
 
     def turn_params_manual
       params.require(:turn).permit(:campaign_id, :vaccination_center_id, :user_id)
+=======
+>>>>>>> 26074bdd8478f342f1d688ed99a4a53962960f51
     end
 
 end
