@@ -12,11 +12,8 @@ Rails.application.routes.draw do
   # Turns routes
   get '/show_all', to: 'turns#show_all', as: 'show_all'
   get '/pending_turns', to: 'turns#pending_turns'
-<<<<<<< HEAD
   get '/new_manual', to: 'turns#new_manual', as: 'new_manual'
   post '/new_manual', to: 'turns#create_manual'
-=======
->>>>>>> 26074bdd8478f342f1d688ed99a4a53962960f51
 
 
   # Vaccines routes
