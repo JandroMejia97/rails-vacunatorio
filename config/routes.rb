@@ -21,10 +21,10 @@ Rails.application.routes.draw do
 
   
   # Profiles routes
-  get '/profile/modify', to: 'user_profiles#modify', as: 'modify'
-  post '/profile/modify', to: 'user_profiles#all_users'
-  patch '/profile/modify', to: 'user_profiles#update2', as:'update2'
-  get '/profile/all_users', to: 'user_profiles#all_users', as: 'all_users'
+  get '/users/modify', to: 'users#modify', as: 'modify'
+  post '/users/modify', to: 'users#all_users'
+  patch '/users/modify', to: 'users#update', as:'update'
+  get '/users/index', to: 'users#index', as: 'index'
   get '/profile/me', to: 'user_profiles#me', as: 'me'
   get '/profile/me/edit', to: 'user_profiles#edit', as: 'edit_profile'
   patch '/profile/me/edit', to: 'user_profiles#update', as: 'update_profile'

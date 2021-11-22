@@ -37,6 +37,7 @@ es:
   document_number: "Número de documento"
   document_number_placeholder: "Ingrese %{adjective} número de documento"
   birthdate: "Fecha de nacimiento"
+  comorbidity: "Tiene conmorbilidad"
   comorbidity_question: "¿Padeces alguna conmorbilidad?"
   email: "Correo electrónico"
   email_placeholder: "Ingresa %{adjective} correo electrónico"
