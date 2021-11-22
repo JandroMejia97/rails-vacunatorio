@@ -5,13 +5,19 @@ class TurnsController < ApplicationController
   # GET /turns or /turns.json
   def index
     @turns = Turn.where(user_id: current_user.id)
-    @pedding_turns = @turns.where(status: Turn.statuses[:pedding])
+    @pedding_turns = @turns.where(status: Turn.statuses[:pendding])
     @assigned_turns = @turns.where(status: Turn.statuses[:assigned])
     @finished_turns = @turns.where(status: Turn.statuses[:finished])
-  end
+   end
 
-  def show_all
+   def show_all
     @turns=Turn.where(status: Turn.statuses[:finished])
+    @turns, @message = Turn.search_date(params[:search_date])
+    if @message[:error].present?
+      flash[:error] = @message[:error]
+    else
+      @turns
+    end
   end
 
   # GET /turns/1 or /turns/1.json
@@ -42,6 +48,25 @@ class TurnsController < ApplicationController
     end
   end
 
+  # GET /turns/new_manual
+  def new_manual
+    @turn = Turn.new
+  end
+
+  # POST /show_all
+  def create_manual
+    @turn = Turn.new(turn_params)
+
+    respond_to do |format|
+      if @turn.save
+        flash[:success] = I18n.t('base_text.success_saved_t')
+        format.html { redirect_to '/show_all' }
+      else
+        format.html { render :new_manual, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /turns/1 or /turns/1.json
   def update
     respond_to do |format|
@@ -66,6 +91,12 @@ class TurnsController < ApplicationController
     @fever_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 3)
     @flu_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 2)
     @turn =Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today)
+    @turns, @message = Turn.search(params[:search])
+    if @message[:error].present?
+      flash[:danger] = @message[:error]
+    else
+      @turns
+    end
   end
 
   private
@@ -76,6 +107,11 @@ class TurnsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def turn_params
-      params.require(:turn).permit(:campaign_id, :vaccination_center_id)
+      params.require(:turn).permit(:campaign_id, :vaccination_center_id, :user_id)
     end
+
+    def turn_params_manual
+      params.require(:turn).permit(:campaign_id, :vaccination_center_id, :user_id)
+    end
+
 end
