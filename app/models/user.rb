@@ -17,6 +17,10 @@ class User < ApplicationRecord
     validates_presence_of :password, :on => [:create]
     validate :validate_birthdate?, :document_number_uniqueness?, :email_uniqueness?
 
+    def name_with_initial
+        "#{first_name} #{last_name}"
+    end
+
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                       BCrypt::Engine.cost
