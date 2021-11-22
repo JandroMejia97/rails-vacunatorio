@@ -12,6 +12,8 @@
         </span>
       </a>
     </li>
+    
+    <% if is_organization_member? %>
     <li class="nav-item">
       <a href="/show_all" class="nav-link align-middle px-0">
         <i class="fs-4 bi bi-ticket-detailed"></i>
@@ -20,6 +22,9 @@
         </span>
       </a>
     </li>
+    <% end %>
+    
+    
     <li class="nav-item">
       <a href="/profile/me" class="nav-link align-middle px-0">
         <i class="fs-4 bi bi-person"></i>
@@ -28,6 +33,16 @@
         </span>
       </a>
     </li>
+    <% if is_organization_member? %>
+      <li class="nav-item">
+        <a href="/vaccines" class="nav-link align-middle px-0">
+          <i class="fs-4 bi bi-eyedropper"></i>
+          <span class="ms-1 d-none d-sm-inline">
+            <%= t 'vaccines.title' %>
+          </span>
+        </a>
+      </li>
+    <% end %>
     <li class="nav-item">
      <a href="/auth/logout" class="nav-link align-middle px-0">
         <i class="fs-4 bi bi-x"></i>

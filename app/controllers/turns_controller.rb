@@ -8,10 +8,16 @@ class TurnsController < ApplicationController
     @pedding_turns = @turns.where(status: Turn.statuses[:pendding])
     @assigned_turns = @turns.where(status: Turn.statuses[:assigned])
     @finished_turns = @turns.where(status: Turn.statuses[:finished])
-  end
+   end
 
   def show_all
     @turns=Turn.where(status: Turn.statuses[:finished])
+    @turns, @message = Turn.search_date(params[:search_date])
+    if @message[:error].present?
+      flash[:error] = @message[:error]
+    else
+      @turns
+    end
   end
 
   # GET /turns/1 or /turns/1.json
@@ -66,6 +72,12 @@ class TurnsController < ApplicationController
     @fever_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 3)
     @flu_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 2)
     @turn =Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today)
+    @turns, @message = Turn.search(params[:search])
+    if @message[:error].present?
+      flash[:danger] = @message[:error]
+    else
+      @turns
+    end
   end
 
   private
@@ -76,6 +88,6 @@ class TurnsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def turn_params
-      params.require(:turn).permit(:campaign_id, :vaccination_center_id)
+      params.require(:turn).permit(:campaign_id, :vaccination_center_id, :user_id)
     end
 end
