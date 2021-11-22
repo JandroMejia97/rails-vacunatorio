@@ -64,9 +64,9 @@ class Turn < ApplicationRecord
 
       def self.search_date(search_date, turns)
         if search_date
-          turnos= turns.where(date: search_date)
-          if turnos #Si encuentra turnos con esa fecha
-            return [turnos, { :success => true }]
+          turns= turns.where(date: search_date)
+          if turns #Si encuentra turnos con esa fecha
+            return [turns, { :success => true }]
           else #si no encuentra turnos
             return [turns, { :error => I18n.t('turn.no_date') }]
           end

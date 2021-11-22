@@ -4,7 +4,7 @@
     Turnos del dia  <%= Date.today %>
     </h1>
     <%= form_tag mark_turns_as_lost_path, method: :post do %>
-      <%= submit_tag("Cerrar dia", class: "btn btn-danger")%>
+      <%= submit_tag(t("turn.end_day"), class: "btn btn-danger")%>
       <% end%>
   </div>
 </div>

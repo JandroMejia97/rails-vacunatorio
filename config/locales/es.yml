@@ -121,6 +121,7 @@ es:
       button: "Finalizar"
       success: "Se ha dado de alta al usuario. No olvides recordarle el correo y la contraseña con el que fue registrado."
   turn:
+    end_day: "Cerrar dia"
     covid: "SARS COV2"
     yellow_fever: "FIEBRE AMARILLA"
     common_flu: "GRIPE COMUN"
