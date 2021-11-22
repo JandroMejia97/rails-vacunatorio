@@ -13,6 +13,9 @@ class AppliedVaccinesController < ApplicationController
         turn.applied_vaccine_id=id
         turn.status=Turn.statuses[:finished]
         turn.save
+        vaccine=Vaccine.find_by(id: @applied_vaccine.vaccine_id)
+        vaccine.stock= vaccine.stock - 1
+        vaccine.save
         redirect_to pending_turns_path
       else
         render :new
