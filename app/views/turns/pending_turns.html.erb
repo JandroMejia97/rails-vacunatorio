@@ -1,5 +1,13 @@
-<h1>Turnos del dia  <%= Date.today %></h1>
-
+<div class="row mb-4">
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <h1>
+    Turnos del dia  <%= Date.today %>
+    </h1>
+    <%= form_tag mark_turns_as_lost_path, method: :post do %>
+      <%= submit_tag(t("turn.end_day"), class: "btn btn-danger")%>
+      <% end%>
+  </div>
+</div>
 <div class="col-12">
   <%= form_tag pending_turns_path, method: :get, class: "row mb-4 needs-validation d-flex flex-row justify-content-start align-items-center", validate: "validate" do %>
     <%= number_field_tag :search, params[:search], placeholder: "Ingresá un número de DNI para buscar un paciente", class: "form-control ms-3 col-10", required: true, min: 10000, style: "width: auto" %>

@@ -32,6 +32,9 @@
               <th>
                 <%= t 'turn.information' %>
               </th>
+              <th>
+              <%= t 'turn.estado' %>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -39,6 +42,8 @@
               <tr>
                 <td><%= Campaign.find_by(id: turn.campaign_id).name %></td>
                 <td><%= User.find_by(id: turn.user_id).document_number %></td>
+                <td><%= turn.status %> </td>
+
               </tr>
             <% end %>
           </tbody>
