@@ -11,13 +11,15 @@ class TurnsController < ApplicationController
    end
 
   def show_all
-    @turns=Turn.where(status: Turn.statuses[:finished])
-    @turns, @message = Turn.search_date(params[:search_date])
+    @turns=Turn.where(status: Turn.statuses[:finished]).or(Turn.where(status: Turn.statuses[:canceled])).or(Turn.where(status: Turn.statuses[:lost]))
+    if params[:search_date]
+    @turns, @message = @turns.search_date(params[:search_date], @turns)
     if @message[:error].present?
       flash[:error] = @message[:error]
     else
       @turns
     end
+  end
   end
 
   # GET /turns/1 or /turns/1.json
@@ -65,6 +67,11 @@ class TurnsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to turns_url }
     end
+  end
+
+  def mark_turns_as_lost
+   @turns=Turn.where(status: Turn.statuses[:assigned],date: Date.today,vaccination_center_id: current_user.vaccination_center_id)
+   @turns.update_all(status: Turn.statuses[:lost])
   end
 
   def pending_turns
