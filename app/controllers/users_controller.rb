@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
     include SessionsHelper
     
-    def show
-      @user = User.find(params[:id])
+    def index
+      @users = User.where.not(id: current_user.id)
     end
+    
   
     def new
       @user = User.new
