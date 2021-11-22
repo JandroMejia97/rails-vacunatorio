@@ -46,7 +46,6 @@ class Turn < ApplicationRecord
           if user #Si encuentra el usuario con DNI ingresado
             turn= Turn.where(user_id: user.id, date: Date.today, status: Turn.statuses[:assigned])
             if turn.length >0 #Si encuentra un turno pedido por el usuario 
-              puts "si entra"
               return [turn, { :success => true }]
             else #encuentra el dni, pero no tiene turno
               turns=Turn.where(date: Date.today,status: Turn.statuses[:assigned])
