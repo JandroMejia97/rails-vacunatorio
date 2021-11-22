@@ -24,6 +24,9 @@
               <th>
                 <%= t 'document_number' %>
               </th>
+              <th>
+              <%= t 'comorbidity' %>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +35,7 @@
                 <td><%= user.first_name %></td>
                 <td><%= user.last_name %></td>
                 <td><%= user.document_number %></td>
+                <td><%= user.comorbidity %></td> 
                 <td> <%= link_to t('user.modify'),class: "btn btn-primary" %></td>
               </tr>
             <% end %>

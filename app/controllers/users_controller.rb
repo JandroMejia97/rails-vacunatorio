@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
     include SessionsHelper
     
+    def all_users
+      @users = User.where.not(id: current_user.id)
+      render layout: 'application'
+    end
+    
     def show
       @user = User.find(params[:id])
     end
