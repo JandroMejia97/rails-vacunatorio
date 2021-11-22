@@ -3,7 +3,7 @@
 </h1>
 <p>
 </p>
-<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+<div class="col-lg-10 col-md-6 col-sm-12 col-xs-12 mb-3">
     <div class="card">
       <div class="card-header">
         <h2>
@@ -24,6 +24,9 @@
               <th>
                 <%= t 'document_number' %>
               </th>
+              <th>
+              <%= t 'email' %>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +35,8 @@
                 <td><%= user.first_name %></td>
                 <td><%= user.last_name %></td>
                 <td><%= user.document_number %></td>
-                <td> <%= link_to t('user.modify'),class: "btn btn-primary" %></td>
+                <td><%= user.email %></td>
+                <td><%= link_to t('user.modify'),{:controller => "user_profiles", :action => "modify", :user => user},class: "btn btn-primary" %></td>
               </tr>
             <% end %>
           </tbody>

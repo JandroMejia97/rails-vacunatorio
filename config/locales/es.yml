@@ -59,7 +59,9 @@ es:
     modify: "Modificar"
     users: "Usuarios del sistema"
     no_users: "No hay usuarios registrados en el sistema"
-  
+    info: "Datos del usuario"
+    comorbidity: "¿Padece alguna conmorbilidad?"
+    centro_vacunacion: "Seleccione centro de vacunación"
   base_text:
     'yes': 'Sí'
     no: 'No'
