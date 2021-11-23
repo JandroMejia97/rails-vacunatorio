@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   post '/auth/signin/account', to: 'user_accounts#create', as: 'create_user_account'
 
   # Vaccination Center routes
-
+ 
 
   resources :users, only: [:edit, :update, :show, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
