@@ -83,5 +83,14 @@
       <%= f.collection_select :vaccination_center_id, VaccinationCenter.all, :id, :name, { prompt: true }, { class: "form-select" } %>
     </div>
 
+
+    <div class="form-group col-12 mb-3">
+      <%= f.label :roles, t("user.role") %>
+      <%= f.collection_select :roles, Role.all, :id, :name,{ :selected => @user.roles.map(&:id) }, { class: "form-select" } %>
+    </div>
+
+
+
+
     <%= f.submit button_text, class: "btn btn-primary", formvalidate: true %>
 <% end %>

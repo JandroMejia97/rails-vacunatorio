@@ -3,29 +3,26 @@ class UsersController < ApplicationController
 
     def index
       @users = User.where.not(id: current_user.id)
-      render layout: 'application'
+    end
+
+  def edit
+    @user = User.find_by(id: params[:id])
   end
 
-  def modify
-    $u = params[:user]
-    @user = User.find_by(id: $u)
-    render layout: 'application'
-end
 
 def update
-    @user = User.find_by(id: $u)
-    user_params = params.require(:user).permit(
-        :first_name,
-        :last_name,
-        :document_number,
-        :email,
-        :birthdate,
-        :comorbidity,
-        :vaccination_center_id
-    )
+    @user = User.find_by(id: params[:id])
+    user_role= UserRole.find_by(user_id: @user.id)
+    role= Role.find_by(id: params[:user][:roles])
+    if user_role
+      user_role.update(role_id: role.id)
+    else
+      user_role= UserRole.new(user_id: @user.id, role_id: role.id)
+      user_role.save
+    end
     if @user.update(user_params)
         flash[:success] = I18n.t('base_text.success')
-        redirect_to index_path
+        redirect_to users_path
     else
         puts "Error: #{@user.errors.inspect}"
         flash[:danger] = I18n.t('base_text.error')
@@ -50,7 +47,7 @@ end
   
     private 
     def user_params
-      params.require(:user).permit(:email, :password, :document_number)
+      params.require(:user).permit(:first_name, :last_name, :document_number,:email, :birthdate,:comorbidity,:vaccination_center_id)
     end
 
 end

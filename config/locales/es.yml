@@ -63,6 +63,7 @@ es:
     info: "Datos del usuario"
     comorbidity: "¿Padece alguna conmorbilidad?"
     centro_vacunacion: "Seleccione centro de vacunación"
+    role: "Seleccione rol correspondiente"
   base_text:
     'yes': 'Sí'
     no: 'No'
