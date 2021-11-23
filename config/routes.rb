@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :vaccines
   resources :turns
+  resources :vaccination_centers
   resources :applied_vaccines, :path => 'applied_vaccine'
   root 'user_profiles#me'
 
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
   # Accounts routes
   get '/auth/signin/account', to: 'user_accounts#new', as: 'new_user_account'
   post '/auth/signin/account', to: 'user_accounts#create', as: 'create_user_account'
+
+  # Vaccination Center routes
+
 
   resources :users, only: [:edit, :update, :show, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

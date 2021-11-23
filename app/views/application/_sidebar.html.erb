@@ -55,6 +55,17 @@
       </li>
     <% end %>
 
+    <% if has_role? :directivo %>
+      <li class="nav-item">
+        <a href="/vaccination_center/index" class="nav-link align-middle px-0">
+          <i class="fs-4 bi bi-person"></i>
+          <span class="ms-1 d-none d-sm-inline">
+            <%= t 'sidebar.vaccination_center' %>
+          </span>
+        </a>
+      </li>
+    <% end %>
+
     
     <li class="nav-item">
      <a href="/auth/logout" class="nav-link align-middle px-0">

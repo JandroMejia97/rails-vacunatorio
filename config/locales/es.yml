@@ -110,6 +110,7 @@ es:
         button: "Regístrarme"
   sidebar:
     my_profile: "Mi perfil"
+    vaccination_center: "Centros de vacunacion"
     my_shifts: "Mis turnos"
     turns: "Turnos"
     users: "Usuarios"
@@ -177,3 +178,7 @@ es:
     load_batch: "Cargar lote"
     no_vaccines_available: "No hay vacunas disponibles"
     cargar: "Cargar datos de la vacuna"
+  vaccination_center:
+    title: "Centros de vacunacion"
+    empy: "No hay centros de vacunacion."
+    address: "Direccion"
