@@ -11,12 +11,6 @@
     </div>
   <% end %>
 
-  <% if get_quantity_of_vaccines_available(vaccines)==0 %>
-          <div id="error_explanation2">
-            <h6> No hay stock disponible. </h6>
-          </div>
-  <% end %>
-
   <% invalid = turn.errors.include?(:campaign_id) %>
 <div class="form-group col-12 mb-3">
   <%= form.label :campaign, t('turn.campaign'), class: "form-label" %>

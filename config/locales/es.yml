@@ -68,6 +68,7 @@ es:
     success: "¡Los cambios se guardaron exitosamente!"
     success_saved: "¡El registro se guardó exitosamente!"
     success_saved_t: "¡El turno se guardó exitosamente!"
+    error_vaccines: 'No hay stock disponible'
     manual_assign: "Asignar turno"
     error: "¡Ocurrió un error! Vuelve a intentarlo."
     name: "Nombre"
