@@ -60,7 +60,7 @@ class TurnsController < ApplicationController
   def create_manual
     @turn = Turn.new(turn_params)
     respond_to do |format|
-      if vaccines_available_campaign(Vaccine.where(campaign_id: @turn.campaign_id), @turn.campaign_id,@turn.vaccination_center_id)==0
+      if vaccines_available_campaign(Vaccine.where(campaign_id: @turn.campaign_id),@turn.vaccination_center_id)==0
         flash[:error] = I18n.t('base_text.error_vaccines')
         format.html { redirect_to '/show_all'}
       else
