@@ -1,0 +1,52 @@
+<h1>
+<%= t('user.users') %>
+</h1>
+<p>
+</p>
+<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <h2>
+        <%= t 'turn.information' %>
+        </h2>
+      </div>
+      <div class="card-body <%= 'empty' unless @users.length > 0 %>">
+        <% if @users.length > 0 %>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <%= t 'first_name' %>
+              </th>
+              <th>
+                <%= t 'last_name' %>
+              </th>
+              <th>
+                <%= t 'document_number' %>
+              </th>
+              <th>
+              <%= t 'comorbidity' %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.document_number %></td>
+                <td><%= user.comorbidity ? t('base_text.yes') : t('base_text.no') %></td> 
+                <td> <%= link_to t('user.modify'),class: "btn btn-primary" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+          
+        </table>
+        <% else %>
+          <p>
+            <%= t 'user.no_users' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>

@@ -5,7 +5,7 @@ module VaccinesHelper
         turns = Turn.where(:campaign => vaccines).where.not(status: [Turn.statuses[:pendding], Turn.statuses[:finished]])
         if has_role? :vacunador
             assigned = 0
-            assigned = turns.where(vaccination_center_id: current_user.vaccination_center_id, :status => Turn.statuses[:assigned]).count
+            assigned = Turn.where(vaccination_center_id: current_user.vaccination_center_id, :status => Turn.statuses[:assigned]).count
             return turns.count - assigned
         else
             total = 0

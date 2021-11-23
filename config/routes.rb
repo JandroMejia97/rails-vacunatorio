@@ -14,15 +14,15 @@ Rails.application.routes.draw do
   get '/pending_turns', to: 'turns#pending_turns'
   get '/new_manual', to: 'turns#new_manual', as: 'new_manual'
   post '/new_manual', to: 'turns#create_manual'
+  post '/mark_turns_as_lost', to: 'turns#mark_turns_as_lost'
 
 
   # Vaccines routes
   get '/applied_vaccines/new', to: 'applied_vaccines#new', as: 'new_applied_vaccines'
   post '/applied_vaccines/new', to: 'turns#pending_turns'
 
-
-
   # Profiles routes
+  get '/users/index', to: 'users#index', as: 'index'
   get '/profile/me', to: 'user_profiles#me', as: 'me'
   get '/profile/me/edit', to: 'user_profiles#edit', as: 'edit_profile'
   patch '/profile/me/edit', to: 'user_profiles#update', as: 'update_profile'
