@@ -2,8 +2,8 @@ class User < ApplicationRecord
     include UsersHelper
     include ActiveModel::Validations
     has_secure_password
-    has_many :users_roles
-    has_many :roles, :through => :users_roles
+    has_many :user_roles
+    has_many :roles, :through => :user_roles
     belongs_to :vaccination_center, optional: true
 
     validates :vaccination_center_id, presence: false, allow_nil: true
