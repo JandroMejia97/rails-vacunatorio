@@ -62,6 +62,21 @@ class Turn < ApplicationRecord
       end
 
 
+      def self.search_status(search_status,turns)
+        if search_status
+          turns= turns.where(status: search_status)
+          if turns #encuentra turnos con ese status
+            return [turns, {:succes => true }]
+          else #no encuentra turnos
+            eturn [turns, { :error => I18n.t('turn.no_date') }]
+          end
+        else
+          return [turns, {:success => true}]
+        end
+        return [turns, { :success => true }]
+      end
+
+
       def self.search_date(search_date, turns)
         if search_date
           turns= turns.where(date: search_date)

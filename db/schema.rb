@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_125850) do
+ActiveRecord::Schema.define(version: 2021_11_24_214917) do
 
   create_table "applied_vaccines", force: :cascade do |t|
     t.string "lot_number"
     t.integer "applied_dose"
-    t.integer "vaccine_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["vaccine_id"], name: "index_applied_vaccines_on_vaccine_id"
+    t.string "marca"
+    t.integer "campaign_id"
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_125850) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
+    t.integer "stock"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -93,7 +94,6 @@ ActiveRecord::Schema.define(version: 2021_11_12_125850) do
     t.index ["campaign_id"], name: "index_vaccines_on_campaign_id"
   end
 
-  add_foreign_key "applied_vaccines", "vaccines"
   add_foreign_key "turns", "applied_vaccines"
   add_foreign_key "turns", "campaigns"
   add_foreign_key "turns", "users"
