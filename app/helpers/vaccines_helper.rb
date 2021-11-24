@@ -16,23 +16,4 @@ module VaccinesHelper
         end
     end
 
-    def vaccines_available_campaign(vaccines, camp_id,vac_id)
-        turns = Turn.where(:campaign => vaccines).where.not(status: [Turn.statuses[:pendding], Turn.statuses[:finished]])
-        total = 0
-        for vaccine in vaccines do
-           total += vaccine.stock
-        end
-        return total - turns.count
-       
-    end
-
-end
-
-
-
-def has_role?(role_name, user = current_user)
-    return false if user.nil?
-    role_name = role_name.upcase
-    role = Role.where(name: role_name).first
-    return UserRole.where(:user_id => user.id, :role_id => role.id).exists?
 end
