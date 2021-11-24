@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   get '/applied_vaccines/new', to: 'applied_vaccines#new', as: 'new_applied_vaccines'
   post '/applied_vaccines/new', to: 'turns#pending_turns'
 
+  
   # Profiles routes
-  get '/users/index', to: 'users#index', as: 'index'
+  
   get '/profile/me', to: 'user_profiles#me', as: 'me'
   get '/profile/me/edit', to: 'user_profiles#edit', as: 'edit_profile'
   patch '/profile/me/edit', to: 'user_profiles#update', as: 'update_profile'
@@ -33,11 +34,7 @@ Rails.application.routes.draw do
   get '/auth/signin/account', to: 'user_accounts#new', as: 'new_user_account'
   post '/auth/signin/account', to: 'user_accounts#create', as: 'create_user_account'
 
-  # Vaccination Center routes
-
- 
-
-  resources :users, only: [:edit, :update, :show, :destroy]
+  resources :users, :except =>[:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 
