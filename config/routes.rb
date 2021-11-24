@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   get '/auth/logout', to: 'sessions#destroy'
 
   # Turns routes
-  get '/show_all', to: 'turns#show_all'
+  get '/show_all', to: 'turns#show_all', as: 'show_all'
   get '/pending_turns', to: 'turns#pending_turns'
+  get '/new_manual', to: 'turns#new_manual', as: 'new_manual'
+  post '/new_manual', to: 'turns#create_manual'
   post '/mark_turns_as_lost', to: 'turns#mark_turns_as_lost'
 
 
@@ -34,3 +36,4 @@ Rails.application.routes.draw do
   resources :users, :except =>[:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+

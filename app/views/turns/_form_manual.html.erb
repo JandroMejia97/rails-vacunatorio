@@ -1,0 +1,42 @@
+<%= form_with(model: turn,url: path, html: {class: "auth-form row needs-validation", validate: "validate"}) do |form| %>
+  <% if turn.errors.any? %>
+    <div id="error_explanation">
+      <h2>Se encontraron <%= pluralize(turn.errors.count, "error") %> </h2>
+
+      <ul>
+        <% turn.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% invalid = turn.errors.include?(:campaign_id) %>
+<div class="form-group col-12 mb-3">
+  <%= form.label :campaign, t('turn.campaign'), class: "form-label" %>
+  <%= form.collection_select :campaign_id, Campaign.all, :id, :name, { prompt: true }, { class: "form-select #{'is-invalid' if invalid}" } %>
+  <% if invalid %>
+    <div class="invalid-feedback">
+      <%= show_errors turn, :campaign %>
+    </div>
+  <% end %>
+</div>
+
+  <div class="form-group col-12 mb-3">
+    <%= form.label :last_name, t('turn.patient'), class: "form-label" %>
+    <%= form.collection_select :user_id, User.all, :id, :name_with_initial, { prompt: true }, { class: "form-select #{'is-invalid' if invalid}" } %>
+    <% if invalid %>
+      <div class="invalid-feedback">
+        <%= show_errors turn, :campaign %>
+      </div>
+    <% end %>
+  </div>
+
+  
+  <div class="actions row">
+    <div class="col-12 d-flex justify-content-lef">
+
+      <%= form.submit "Confirmar", class: "btn btn-primary mx-3", formvalidate: true %>
+    </div>
+  </div>
+<% end %>

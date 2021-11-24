@@ -1,5 +1,5 @@
 class TurnsController < ApplicationController
-  include SessionsHelper
+  include SessionsHelper, VaccinesHelper, RolesHelper
   before_action :set_turn, only: %i[ show edit update destroy ]
 
   # GET /turns or /turns.json
@@ -50,6 +50,33 @@ class TurnsController < ApplicationController
     end
   end
 
+  # GET /turns/new_manual
+  def new_manual
+    @turn = Turn.new
+  end
+
+  # POST /show_all
+  def create_manual
+    @turn = Turn.new(turn_params)
+    @turn.vaccination_center_id = current_user.vaccination_center_id
+    @turn.status = Turn.statuses[:assigned]
+    @turn.date = Date.today
+    respond_to do |format|
+      if get_quantity_of_vaccines_available(Vaccine.where(campaign_id: @turn.campaign_id)) == 0
+        flash[:danger] = I18n.t('base_text.error_vaccines')
+        format.html { redirect_to pending_turns_url}
+      else
+        if @turn.save
+          flash[:success] = I18n.t('base_text.success_saved_t')
+          format.html { redirect_to pending_turns_url }
+       else
+          format.html { render :new_manual, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+ 
+
   # PATCH/PUT /turns/1 or /turns/1.json
   def update
     respond_to do |format|
@@ -97,4 +124,6 @@ class TurnsController < ApplicationController
     def turn_params
       params.require(:turn).permit(:campaign_id, :vaccination_center_id, :user_id)
     end
+
+
 end

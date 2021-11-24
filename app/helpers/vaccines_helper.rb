@@ -15,4 +15,5 @@ module VaccinesHelper
             return total - turns.count
         end
     end
+
 end

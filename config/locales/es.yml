@@ -41,6 +41,8 @@ es:
   comorbidity_question: "¿Padeces alguna conmorbilidad?"
   email: "Correo electrónico"
   email_placeholder: "Ingresa %{adjective} correo electrónico"
+  email_manual: "Ingresa el correo electrónico del usuario al cual solicitar un turno"
+  email_manual_ph: "correo electrónico"
   password: "Contraseña"
   password_placeholder: "Ingresa una contraseña"
   adjective:
@@ -74,6 +76,8 @@ es:
     back: "ATRÁS"
     success: "¡Los cambios se guardaron exitosamente!"
     success_saved: "¡El registro se guardó exitosamente!"
+    success_saved_t: "¡El turno se guardó exitosamente!"
+    error_vaccines: 'No hay stock disponible'
     error: "¡Ocurrió un error! Vuelve a intentarlo."
     name: "Nombre"
     actions: "Acciones"
@@ -125,6 +129,8 @@ es:
       button: "Finalizar"
       success: "Se ha dado de alta al usuario. No olvides recordarle el correo y la contraseña con el que fue registrado."
   turn:
+    manual_assign: "Asignar un turno"
+    confirm: "Confirmar"
     end_day: "Cerrar dia"
     covid: "SARS COV2"
     yellow_fever: "FIEBRE AMARILLA"
@@ -137,8 +143,10 @@ es:
     information: "Datos usuario"
     estado: "Estado del turno"
     vaccination_center: "Vacunatorio"
+    patient: "Paciente"
     request_a_turn: "Solicitá un turno"
     request_button: "SOLICITAR"
+    
     assigned: "Proximos turnos"
     no_assigned: "Aún no tienes turnos asignados."
     pendding: "Turnos en espera"
