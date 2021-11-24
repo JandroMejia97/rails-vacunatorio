@@ -78,7 +78,6 @@ es:
     success_saved: "¡El registro se guardó exitosamente!"
     success_saved_t: "¡El turno se guardó exitosamente!"
     error_vaccines: 'No hay stock disponible'
-    manual_assign: "Asignar turno"
     error: "¡Ocurrió un error! Vuelve a intentarlo."
     name: "Nombre"
     actions: "Acciones"
@@ -144,7 +143,7 @@ es:
     information: "Datos usuario"
     estado: "Estado del turno"
     vaccination_center: "Vacunatorio"
-    fname_and_lname: "Nombre y apellido"
+    patient: "Paciente"
     request_a_turn: "Solicitá un turno"
     request_button: "SOLICITAR"
     

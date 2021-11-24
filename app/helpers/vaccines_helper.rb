@@ -16,7 +16,4 @@ module VaccinesHelper
         end
     end
 
-
-
 end
-
