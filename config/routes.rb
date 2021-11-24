@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  resources :vaccination_centers
   resources :vaccines
   resources :turns
-  resources :vaccination_centers
   resources :applied_vaccines, :path => 'applied_vaccine'
   root 'user_profiles#me'
 
@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   post '/auth/signin/account', to: 'user_accounts#create', as: 'create_user_account'
 
   # Vaccination Center routes
+
  
 
   resources :users, only: [:edit, :update, :show, :destroy]

@@ -182,3 +182,5 @@ es:
     title: "Centros de vacunacion"
     empy: "No hay centros de vacunacion."
     address: "Direccion"
+    header: "Centros de vacunacion"
+    editing: "Editando centro de vacunacion"
