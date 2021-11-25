@@ -16,11 +16,14 @@
       </div>
       <div class="card-body <%= 'empty' unless @assigned_turns.length > 0 %>">
         <% if @assigned_turns.length > 0 %>
-        <table>
+        <table class="table">
           <thead>
             <tr>
               <th>
                 <%= t 'turn.campaign' %>
+              </th>
+              <th>
+                <%= t 'turn.date' %>
               </th>
             </tr>
           </thead>
@@ -28,6 +31,7 @@
             <% @assigned_turns.each do |turn| %>
               <tr>
                 <td><%= turn.campaign.name %></td>
+                <td><%= turn.date %></td>
               </tr>
             <% end %>
           </tbody>
@@ -49,18 +53,22 @@
       </div>
       <div class="card-body <%= 'empty' unless @finished_turns.length > 0 %>">
         <% if @finished_turns.length > 0 %>
-        <table>
+        <table class="table">
           <thead>
             <tr>
               <th>
                 <%= t 'turn.campaign' %>
               </th>
+              <th>
+                <%= t 'turn.date' %>
+              </th>
             </tr>
           </thead>
           <tbody>
-            <% @finished_turns.each do |turn| %>
+            <% @assigned_turns.each do |turn| %>
               <tr>
                 <td><%= turn.campaign.name %></td>
+                <td><%= turn.date %></td>
               </tr>
             <% end %>
           </tbody>
@@ -82,22 +90,26 @@
       </div>
       <div class="card-body <%= 'empty' unless @pedding_turns.length > 0 %>">
        <% if @pedding_turns.length > 0 %>
-       <table>
-        <thead>
-          <tr>
-            <th>
+       <table class="table">
+          <thead>
+            <tr>
+              <th>
                 <%= t 'turn.campaign' %>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-            <% @pedding_turns.each do |turn| %>
+              </th>
+              <th>
+                <%= t 'turn.date' %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @assigned_turns.each do |turn| %>
               <tr>
                 <td><%= turn.campaign.name %></td>
+                <td><%= turn.date %></td>
               </tr>
             <% end %>
-        </tbody>
-       </table>
+          </tbody>
+        </table>
         <% else %>
           <p>
               <%= t 'turn.no_pedding' %>
