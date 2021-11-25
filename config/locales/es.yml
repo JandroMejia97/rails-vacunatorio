@@ -78,6 +78,8 @@ es:
     success: "¡Los cambios se guardaron exitosamente!"
     success_saved: "¡El registro se guardó exitosamente!"
     success_saved_t: "¡El turno se guardó exitosamente!"
+    vaccination_center_name: "Nombre del centro de vacunacion"
+    vaccination_center_address: "Direccion"
     error_vaccines: 'No hay stock disponible'
     error: "¡Ocurrió un error! Vuelve a intentarlo."
     name: "Nombre"
@@ -145,6 +147,7 @@ es:
     information: "Datos usuario"
     estado: "Estado del turno"
     vaccination_center: "Vacunatorio"
+    vaccination_center_name: "Nombre del centro de vacunacion"
     patient: "Paciente"
     request_a_turn: "Solicitá un turno"
     request_button: "SOLICITAR"
@@ -188,3 +191,5 @@ es:
     address: "Direccion"
     header: "Centros de vacunacion"
     editing: "Editando centro de vacunacion"
+    name_placeholder: "Ingrese el nombre del vacunatorio"
+    address_placeholder: "Ingrese la direccion del vacunatorio"
