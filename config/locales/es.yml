@@ -136,10 +136,6 @@ es:
       button: "Finalizar"
       success: "Se ha dado de alta al usuario. No olvides recordarle el correo y la contraseña con el que fue registrado."
   turn:
-    lost: "Perdido"
-    asignado: "Asignado"
-    pendingg: "Pendiente"
-    fin: "Finalizado"
     manual_assign: "Asignar un turno"
     confirm: "Confirmar"
     covid: "SARS COV2"
