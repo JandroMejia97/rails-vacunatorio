@@ -7,8 +7,7 @@ class AppliedVaccinesController < ApplicationController
 
     def create
       @applied_vaccine= AppliedVaccine.new(applied_vaccine_params)
-      turn= Turn.find_by(id: $turn) 
-      @applied_vaccine.campaign_id = Campaign.find_by(id: turn.campaign_id).id
+      @applied_vaccine.campaign_id = turn.campaign_id
       if @applied_vaccine.save
         turn.applied_vaccine_id=@applied_vaccine.id
         turn.status=Turn.statuses[:finished]
@@ -17,22 +16,22 @@ class AppliedVaccinesController < ApplicationController
         campaign.stock= campaign.stock - 1
         campaign.save
         if campaign.id == 1
-          turno= Turn.new
-          turno.status = Turn.statuses[:assigned]
-          turno.user_id = turn.user_id
-          turno.campaign_id = campaign.id
-          turno.vaccination_center_id = turn.vaccination_center_id
-          turno.date= Date.today + 15.days
-          turno.save
+          next_turn= Turn.new
+          next_turn.status = Turn.statuses[:assigned]
+          next_turn.user_id = turn.user_id
+          next_turn.campaign_id = campaign.id
+          next_turn.vaccination_center_id = turn.vaccination_center_id
+          next_turn.date= Date.today + 15.days
+          next_turn.save
         else
           if campaign.id == 3
-            turno= Turn.new
-            turno.status = Turn.statuses[:assigned]
-            turno.user_id = turn.user_id
-            turno.campaign_id = campaign.id
-            turno.vaccination_center_id = turn.vaccination_center_id
-            turno.date= Date.today + 1.year
-            turno.save
+            next_turn= Turn.new
+            next_turn.status = Turn.statuses[:assigned]
+            next_turn.user_id = turn.user_id
+            next_turn.campaign_id = campaign.id
+            next_turn.vaccination_center_id = turn.vaccination_center_id
+            next_turn.date= Date.today + 1.year
+            next_turn.save
           end
         end
         redirect_to pending_turns_path

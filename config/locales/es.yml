@@ -168,8 +168,8 @@ es:
     today: "Turnos del dia"
     add_user: "Agregar un ciudadano"
   vaccines:
-    marca: "Marca de la vacuna"
-    marca_ph: "Ingrese la marca de la vacuna aplicada."
+    mark: "Marca de la vacuna"
+    mark_ph: "Ingrese la marca de la vacuna aplicada."
     applied_vaccine: "Vacuna Aplicada"
     lot_number: "Numero de lote"
     lot_number_ph: "Ingrese numero de lote de la vacuna aplicada."

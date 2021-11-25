@@ -41,15 +41,7 @@
                 <%= t 'turn.campaign' %>
               </th>
               <th>
-              <p>
-              </p>
-              </th>
-              <th>
                 <%= t 'turn.information' %>
-              </th>
-              <th>
-              <p>
-              </p>
               </th>
               <th>
               <%= t 'turn.estado' %>
@@ -60,9 +52,7 @@
             <% @turns.each do |turn| %>
               <tr>
                 <td><%= turn.campaign.name %></td>
-                <td><p></p></td>
                 <td><%= turn.user.document_number %></td>
-                <td><p></p></td>
                 <td><%= t turn.status %> </td>
               </tr>
             <% end %>
