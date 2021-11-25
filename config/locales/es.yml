@@ -34,6 +34,7 @@ es:
   first_name_placeholder: "Ingresa %{adjective} nombre(s)"
   last_name: "Apellido(s)"
   last_name_placeholder: "Ingresa %{adjective} apellido(s)"
+  document: "Documento"
   document_number: "Número de documento"
   document_number_placeholder: "Ingrese %{adjective} número de documento"
   birthdate: "Fecha de nacimiento"
@@ -41,8 +42,13 @@ es:
   comorbidity_question: "¿Padeces alguna conmorbilidad?"
   email: "Correo electrónico"
   email_placeholder: "Ingresa %{adjective} correo electrónico"
+  email_manual: "Ingresa el correo electrónico del usuario al cual solicitar un turno"
+  email_manual_ph: "correo electrónico"
   password: "Contraseña"
   password_placeholder: "Ingresa una contraseña"
+  assigned: "Asignado"
+  pendding: "Pendiente"
+  finished: "Finalizado"
   adjective:
     second: 'tu'
     third: 'su'
@@ -60,7 +66,10 @@ es:
     modify: "Modificar"
     users: "Usuarios del sistema"
     no_users: "No hay usuarios registrados en el sistema"
-  
+    info: "Datos del usuario"
+    comorbidity: "¿Padece alguna conmorbilidad?"
+    centro_vacunacion: "Seleccione centro de vacunación"
+    role: "Seleccione rol correspondiente"
   base_text:
     'yes': 'Sí'
     no: 'No'
@@ -71,6 +80,10 @@ es:
     back: "ATRÁS"
     success: "¡Los cambios se guardaron exitosamente!"
     success_saved: "¡El registro se guardó exitosamente!"
+    success_saved_t: "¡El turno se guardó exitosamente!"
+    vaccination_center_name: "Nombre del centro de vacunacion"
+    vaccination_center_address: "Direccion"
+    error_vaccines: 'No hay stock disponible'
     error: "¡Ocurrió un error! Vuelve a intentarlo."
     name: "Nombre"
     actions: "Acciones"
@@ -105,6 +118,7 @@ es:
         button: "Regístrarme"
   sidebar:
     my_profile: "Mi perfil"
+    vaccination_center: "Centros de vacunacion"
     my_shifts: "Mis turnos"
     turns: "Turnos"
     users: "Usuarios"
@@ -122,7 +136,8 @@ es:
       button: "Finalizar"
       success: "Se ha dado de alta al usuario. No olvides recordarle el correo y la contraseña con el que fue registrado."
   turn:
-    end_day: "Cerrar dia"
+    manual_assign: "Asignar un turno"
+    confirm: "Confirmar"
     covid: "SARS COV2"
     yellow_fever: "FIEBRE AMARILLA"
     common_flu: "GRIPE COMUN"
@@ -134,8 +149,12 @@ es:
     information: "Datos usuario"
     estado: "Estado del turno"
     vaccination_center: "Vacunatorio"
+    vaccination_center_name: "Nombre del centro de vacunacion"
+    patient: "Paciente"
     request_a_turn: "Solicitá un turno"
     request_button: "SOLICITAR"
+    empty: "No hay turnos asignados a esta campaña."
+    
     assigned: "Proximos turnos"
     no_assigned: "Aún no tienes turnos asignados."
     pendding: "Turnos en espera"
@@ -149,6 +168,8 @@ es:
     today: "Turnos del dia"
     add_user: "Agregar un ciudadano"
   vaccines:
+    mark: "Marca de la vacuna"
+    mark_ph: "Ingrese la marca de la vacuna aplicada."
     applied_vaccine: "Vacuna Aplicada"
     lot_number: "Numero de lote"
     lot_number_ph: "Ingrese numero de lote de la vacuna aplicada."
@@ -167,4 +188,12 @@ es:
     assign_shifts: "Asignar turnos"
     load_batch: "Cargar lote"
     no_vaccines_available: "No hay vacunas disponibles"
-    cargar: "Cargar datos de la vacuna"
+    load_vaccine: "Cargar vacuna"
+  vaccination_center:
+    title: "Centros de vacunacion"
+    empy: "No hay centros de vacunacion."
+    address: "Direccion"
+    header: "Centros de vacunacion"
+    editing: "Editando centro de vacunacion"
+    name_placeholder: "Ingrese el nombre del vacunatorio"
+    address_placeholder: "Ingrese la direccion del vacunatorio"

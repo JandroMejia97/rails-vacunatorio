@@ -1,0 +1,64 @@
+<div class="row mb-4">
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <h1>
+      <%= t 'vaccination_center.title' %>
+    </h1>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+         <h2>
+           <%= t 'vaccination_center.header' %>
+        </h2>
+      </div>
+
+      <div class="card-body text-center <%= 'empty' unless @vaccination_center.length > 0 %>">
+        
+        <% if @vaccination_center.length > 0 %>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                 <th scope="col">
+                     <%= t 'base_text.name' %>
+                  </th>
+                 <th scope="col">
+                     <%= t 'vaccination_center.address' %>
+                 </th>
+                 <th scope="col">
+                     <%= t 'base_text.actions' %>
+                 </th>
+              </tr>
+              </thead>
+                <% @vaccination_center.each do |vaccination_center| %>
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <%= vaccination_center.name %>
+                    </th>
+                    <td>
+                      <%= vaccination_center.address %>
+                    </td>
+                    <td>
+                      <%# link_to t('base_text.show'), vaccination_center, class: "btn btn-outline-secondary btn-sm" %>
+                      <%= link_to t('base_text.edit'), edit_vaccination_center_path(vaccination_center), class: "btn btn-outline-primary btn-sm" %>
+                      <%# link_to t('base_text.destroy'), vaccination_center, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %>
+                    </td>
+                  </tr>
+                 <% end %>
+                    
+                </tbody>
+              </table>
+
+
+            
+
+    
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
