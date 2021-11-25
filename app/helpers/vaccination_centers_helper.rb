@@ -1,4 +1,4 @@
-module VaccinationCenterHelper
+module VaccinationCentersHelper
 
     def name_uniqueness?(namevac)
         result= VaccinationCenter.all.where(name: namevac).length

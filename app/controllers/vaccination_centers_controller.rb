@@ -1,5 +1,5 @@
 class VaccinationCentersController < ApplicationController
-include VaccinationCenterHelper
+    include VaccinationCentersHelper
 
     def index
         @vaccination_center=VaccinationCenter.all
