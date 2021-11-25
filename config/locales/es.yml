@@ -46,6 +46,9 @@ es:
   email_manual_ph: "correo electrónico"
   password: "Contraseña"
   password_placeholder: "Ingresa una contraseña"
+  assigned: "Asignado"
+  pendding: "Pendiente"
+  finished: "Finalizado"
   adjective:
     second: 'tu'
     third: 'su'
@@ -135,7 +138,6 @@ es:
   turn:
     manual_assign: "Asignar un turno"
     confirm: "Confirmar"
-    end_day: "Cerrar dia"
     covid: "SARS COV2"
     yellow_fever: "FIEBRE AMARILLA"
     common_flu: "GRIPE COMUN"
@@ -166,6 +168,8 @@ es:
     today: "Turnos del dia"
     add_user: "Agregar un ciudadano"
   vaccines:
+    mark: "Marca de la vacuna"
+    mark_ph: "Ingrese la marca de la vacuna aplicada."
     applied_vaccine: "Vacuna Aplicada"
     lot_number: "Numero de lote"
     lot_number_ph: "Ingrese numero de lote de la vacuna aplicada."

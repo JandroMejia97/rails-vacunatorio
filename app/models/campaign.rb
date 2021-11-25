@@ -1,6 +1,6 @@
 class Campaign < ApplicationRecord
     has_many :turns
-    has_many :vaccines
+    has_many :applied_vaccines
     validates :name, presence: true, length: { maximum: 80, minimum: 3 }
     validates :description, presence: true, length: { maximum: 500, minimum: 3 }
     validates :start_date, presence: true

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get '/pending_turns', to: 'turns#pending_turns'
   get '/new_manual', to: 'turns#new_manual', as: 'new_manual'
   post '/new_manual', to: 'turns#create_manual'
-  post '/mark_turns_as_lost', to: 'turns#mark_turns_as_lost'
+
 
 
   # Vaccines routes

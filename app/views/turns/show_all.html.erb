@@ -4,17 +4,28 @@
   </div>
 </div>
 
-<div class="row mb-4">
-  <div class="col-12 d-flex justify-content-between align-items-center">
+<div class="container">
+<div class="row">
+<div class="col">
 <%= form_tag @turnos, :method => "get" do %>
   <h4><%= label_tag(:search_date, "Filtrar por fecha") %></h4>
   <%= date_field_tag :search_date, params[:search] %>
   <%= submit_tag("Filtrar",:date => nil, class: "btn btn-primary")%>
   <% end %>
   </div>
-</div>
 
-<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+<div class="col">
+<%= form_tag @turnos, :method => "get" do %>
+  <h4><%= label_tag(:search_status, "Filtrar por estado") %></h4>
+  <%= select_tag :search_status, options_for_select(Turn.statuses.map { |key,value| [t(key), value] }) %>
+  <%= submit_tag("Filtrar", class: "btn btn-primary")%>
+  <% end %>
+  </div>
+  </div>
+  </div>
+  <p>
+  </p>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
     <div class="card">
       <div class="card-header">
         <h2>
@@ -40,10 +51,9 @@
           <tbody>
             <% @turns.each do |turn| %>
               <tr>
-                <td><%= Campaign.find_by(id: turn.campaign_id).name %></td>
-                <td><%= User.find_by(id: turn.user_id).document_number %></td>
-                <td><%= turn.status %> </td>
-
+                <td><%= turn.campaign.name %></td>
+                <td><%= turn.user.document_number %></td>
+                <td><%= t turn.status %> </td>
               </tr>
             <% end %>
           </tbody>
