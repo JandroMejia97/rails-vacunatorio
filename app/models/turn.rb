@@ -40,26 +40,24 @@ class Turn < ApplicationRecord
       end
   end
 
-    def self.search(search)
-        if search
-          user= User.find_by(document_number: search)
-          if user #Si encuentra el usuario con DNI ingresado
-            turn= Turn.where(user_id: user.id, date: Date.today, status: Turn.statuses[:assigned])
-            if turn.length >0 #Si encuentra un turno pedido por el usuario 
-              return [turn, { :success => true }]
-            else #encuentra el dni, pero no tiene turno
-              turns=Turn.where(date: Date.today,status: Turn.statuses[:assigned])
-              return [turns, { :error => I18n.t('turn.no_turno') }]
-            end
-          else #no hay dni en el sistema
-            turns=Turn.where(date: Date.today, status: Turn.statuses[:assigned])
-            return [turns, { :error => I18n.t('turn.no_dni') }]
-          end 
-        else
-          turns=Turn.where(date: Date.today, status: Turn.statuses[:assigned])
-        end
+    def self.search(search, current_user)
+      turns = Turn.joins(:user, :campaign).where(date: Date.today, status: Turn.statuses[:assigned], vaccination_center_id: current_user.vaccination_center_id)
+      if search
+        user = User.find_by(document_number: search)
+        if user #Si encuentra el usuario con DNI ingresado
+          temp_turns = turns.find_all { |turn| turn.user_id == user.id }
+          if temp_turns.length >0 #Si encuentra un turno pedido por el usuario 
+            return [temp_turns, { :success => true }]
+          else #encuentra el dni, pero no tiene turno
+            return [turns, { :error => I18n.t('turn.no_turno') }]
+          end
+        else #no hay dni en el sistema
+          return [turns, { :error => I18n.t('turn.no_dni') }]
+        end 
+      else
         return [turns, { :success => true }]
       end
+    end
 
 
       def self.search_date(search_date, turns)

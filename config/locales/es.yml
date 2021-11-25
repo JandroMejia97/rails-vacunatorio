@@ -34,6 +34,7 @@ es:
   first_name_placeholder: "Ingresa %{adjective} nombre(s)"
   last_name: "Apellido(s)"
   last_name_placeholder: "Ingresa %{adjective} apellido(s)"
+  document: "Documento"
   document_number: "Número de documento"
   document_number_placeholder: "Ingrese %{adjective} número de documento"
   birthdate: "Fecha de nacimiento"
@@ -147,6 +148,7 @@ es:
     patient: "Paciente"
     request_a_turn: "Solicitá un turno"
     request_button: "SOLICITAR"
+    empty: "No hay turnos asignados a esta campaña."
     
     assigned: "Proximos turnos"
     no_assigned: "Aún no tienes turnos asignados."
@@ -179,7 +181,7 @@ es:
     assign_shifts: "Asignar turnos"
     load_batch: "Cargar lote"
     no_vaccines_available: "No hay vacunas disponibles"
-    cargar: "Cargar datos de la vacuna"
+    load_vaccine: "Cargar vacuna"
   vaccination_center:
     title: "Centros de vacunacion"
     empy: "No hay centros de vacunacion."

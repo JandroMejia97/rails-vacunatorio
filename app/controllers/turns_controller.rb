@@ -1,5 +1,5 @@
 class TurnsController < ApplicationController
-  include SessionsHelper, VaccinesHelper, RolesHelper
+  include SessionsHelper, VaccinesHelper, RolesHelper, TurnsHelper
   before_action :set_turn, only: %i[ show edit update destroy ]
 
   # GET /turns or /turns.json
@@ -102,15 +102,11 @@ class TurnsController < ApplicationController
   end
 
   def pending_turns
-    @covid_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 1)
-    @fever_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 3)
-    @flu_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 2)
-    @turn =Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today)
-    @turns, @message = Turn.search(params[:search])
-    if @message[:error].present?
-      flash[:danger] = @message[:error]
-    else
-      @turns
+    @campaigns = Campaign.all
+    @turns, message = Turn.search(params[:search], current_user)
+    puts @turns.inspect
+    if message[:error].present?
+      flash[:danger] = message[:error]
     end
   end
 
