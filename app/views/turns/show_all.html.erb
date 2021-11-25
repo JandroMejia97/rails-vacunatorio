@@ -17,7 +17,7 @@
 <div class="col">
 <%= form_tag @turnos, :method => "get" do %>
   <h4><%= label_tag(:search_status, "Filtrar por estado") %></h4>
-  <%= select_tag(:search_status, options_for_select([Turn.statuses[:assigned], Turn.statuses[:pendding], Turn.statuses[:finished]], selected: params[:search_status])) %>
+  <%= select_tag :search_status, options_for_select(Turn.statuses.map { |key,value| [t(key), value] }) %>
   <%= submit_tag("Filtrar", class: "btn btn-primary")%>
   <% end %>
   </div>
@@ -59,25 +59,11 @@
           <tbody>
             <% @turns.each do |turn| %>
               <tr>
-                <td><%= Campaign.find_by(id: turn.campaign_id).name %></td>
+                <td><%= turn.campaign.name %></td>
                 <td><p></p></td>
-                <td><%= User.find_by(id: turn.user_id).document_number %></td>
+                <td><%= turn.user.document_number %></td>
                 <td><p></p></td>
-                <td>
-                <% if (turn.status == "finished") %>
-                  <%= t('turn.fin') %>
-                <% else %>
-                  <% if (turn.status == "pendding") %>
-                    <%= t('turn.pendingg') %>
-                  <% else %>
-                    <% if (turn.status == "assigned")&&(turn.date < Date.today) %>
-                      <%= t('turn.lost') %>
-                    <% else %>
-                    <%= t('turn.asignado') %>
-                    <% end %>
-                  <% end %>
-                <% end %>
-                </td>
+                <td><%= t turn.status %> </td>
               </tr>
             <% end %>
           </tbody>

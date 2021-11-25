@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_214917) do
+ActiveRecord::Schema.define(version: 2021_11_24_233325) do
 
   create_table "applied_vaccines", force: :cascade do |t|
     t.string "lot_number"
