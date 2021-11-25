@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :vaccination_centers
   resources :vaccines
   resources :turns
   resources :applied_vaccines, :path => 'applied_vaccine'
@@ -10,8 +11,11 @@ Rails.application.routes.draw do
   get '/auth/logout', to: 'sessions#destroy'
 
   # Turns routes
-  get '/show_all', to: 'turns#show_all'
+  get '/show_all', to: 'turns#show_all', as: 'show_all'
   get '/pending_turns', to: 'turns#pending_turns'
+  get '/new_manual', to: 'turns#new_manual', as: 'new_manual'
+  post '/new_manual', to: 'turns#create_manual'
+
 
 
   # Vaccines routes
@@ -30,6 +34,11 @@ Rails.application.routes.draw do
   get '/auth/signin/account', to: 'user_accounts#new', as: 'new_user_account'
   post '/auth/signin/account', to: 'user_accounts#create', as: 'create_user_account'
 
+  # VaccinationCenters routes
+ 
+  patch '/vaccination_centers/edit', to: 'vaccination_centers#update', as: 'update_vaccination_center'
+
   resources :users, :except =>[:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+

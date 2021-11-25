@@ -5,87 +5,67 @@
     </h1>
   </div>
 </div>
-<div class="col-12">
-  <%= form_tag pending_turns_path, method: :get, class: "row mb-4 needs-validation d-flex flex-row justify-content-start align-items-center", validate: "validate" do %>
-    <%= number_field_tag :search, params[:search], placeholder: "Ingresá un número de DNI para buscar un paciente", class: "form-control ms-3 col-10", required: true, min: 10000, style: "width: auto" %>
-    <%= submit_tag("Buscar",:name => nil, class: "ms-2 col-1 btn btn-primary")%>
-  <% end %>
-</div>
+<%= form_tag pending_turns_path, method: :get, class: "row mb-4 needs-validation d-flex flex-row justify-content-start align-items-center", validate: "validate" do %>
+  <%= number_field_tag :search, params[:search], placeholder: "Ingresá un número de DNI para buscar un paciente", class: "form-control ms-3 col-10", required: true, min: 10000, style: "width: auto" %>
+  <%= submit_tag("Buscar",:name => nil, class: "ms-2 col-2 btn btn-primary")%>
+<% end %>
 
 <div class="row">
   <div class="col-12 mb-4">
     <%= link_to t('turn.add_user'), {:controller => "user_profiles", :action => "new" } ,class: "btn btn-outline-secondary" %>
+    <%= link_to t('turn.manual_assign'), new_manual_path, class: "btn btn-outline-primary" %>
   </div>
 </div>
 
-<% if @turns.length==0 %>
-  <%= t('turn.not_today') %>
-<%else%>
-<% @turns.each do |t| %>
-  <% if t.campaign_id == 1 %>  
-    <div class="row">
-      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
-        <div class="card">
-          <div class="card-header">
-           <h2>
-             <%= t 'turn.covid' %>
-           </h2>
-         </div>
-         <div class="card-body <%= 'empty' unless @covid_turns.length > 0 %>">
-           <table>
-              <tbody>
-                 <tr>
-                    <td><%= t.user.document_number %> - <%= t.user.first_name %> <%= t.user.last_name %></td>
-                </tr>
-             </tbody>
-           </table>
-           <%= link_to t('vaccines.cargar'),{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
-          </div>
+<div class="row">
+  <% @campaigns.each do |campaign| %>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
+      <div class="card">
+        <div class="card-header">
+          <h2>
+            <%= campaign.name %>
+          </h2>
         </div>
-      </div>
-  <% else %>
-    <% if t.campaign_id == 2 %>
-      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
-        <div class="card">
-          <div class="card-header">
-            <h2>
-            <%= t 'turn.yellow_fever' %>
-            </h2>
-          </div>
-          <div class="card-body <%= 'empty' unless @fever_turns.length > 0 %>">
-            <table>
-             <tbody>
+        <% turns = @turns.find_all { |turn| turn.campaign_id == campaign.id } %>
+        <div class="card-body <%= 'empty' unless turns.length > 0 %>">
+          <% if turns.length > 0 %>
+            <table class="table">
+              <thead>
                 <tr>
-                  <td><%= t.user.document_number %> - <%= t.user.first_name %> <%= t.user.last_name %></td>
+                  <th scope="col">
+                    <%= t 'document' %>
+                  </th>
+                  <th scope="col">
+                    <%= t 'turn.patient' %>
+                  </th>
+                  <th scope="col">
+                    <%= t 'base_text.actions' %>
+                  </th>
                 </tr>
-             </tbody>
+              </thead>
+              <tbody>
+                <% turns.each do |turn| %>
+                  <tr>
+                    <td scope="row">
+                      <%= turn.user.document_number %>
+                    </td>
+                    <td>
+                      <%= turn.user.first_name %> <%= turn.user.last_name %>
+                    </td>
+                    <td>
+                      <%= link_to t('vaccines.load_vaccine'), { controller: "applied_vaccines", action: "new", turn: turn }, class: "btn btn-outline-primary btn-sm" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
             </table>
-            <%= link_to  t('vaccines.cargar'),{:controller => "applied_vaccines", :action => "new", :turn => t},class: "btn btn-primary" %>
-          </div>
+          <% else %>
+            <p>
+              <%= t 'turn.empty' %>
+            </p>
+          <% end %>
         </div>
       </div>
-    <% else %>
-      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-3">
-        <div class="card">
-          <div class="card-header">
-            <h2>
-              <%= t 'turn.common_flu' %>
-            </h2>
-          </div>
-          <div class="card-body <%= 'empty' unless @flu_turns.length > 0 %>">
-              <table>
-                <tbody>
-                    <tr>
-                      <td><%= t.user.document_number %> - <%= t.user.first_name %> <%= t.user.last_name %></td>
-                    </tr>
-                </tbody>
-              </table>
-              <%= link_to  t('vaccines.cargar'),{:controller => "applied_vaccines", :action => "new", :turn => t, campaign: t.campaign_id},class: "btn btn-primary" %>
-          </div>
-        </div>
-      </div>
-    <%end%>
     </div>
-  <%end%>
-<%end%>
-<%end%>
+  <% end %>
+</div>
