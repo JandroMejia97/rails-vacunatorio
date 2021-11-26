@@ -3,9 +3,6 @@
     <h1>
     Turnos del dia  <%= Date.today %>
     </h1>
-    <%= form_tag mark_turns_as_lost_path, method: :post do %>
-      <%= submit_tag(t("turn.end_day"), class: "btn btn-danger")%>
-    <% end%>
   </div>
 </div>
 <%= form_tag pending_turns_path, method: :get, class: "row mb-4 needs-validation d-flex flex-row justify-content-start align-items-center", validate: "validate" do %>

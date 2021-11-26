@@ -13,6 +13,9 @@ class Turn < ApplicationRecord
     validates :status, inclusion: { in: Turn.statuses.keys }
     validate :validate_date?, :has_turn_in_campaign?
 
+    scope :lost, -> { where("status = ? AND date < ?", Turn.statuses[:assigned], Date.today)}
+    scope :assigned, -> { where("status = ? AND date >= ?", Turn.statuses[:assigned], Date.today) }
+
     def validate_date?
         return unless date?
         begin
@@ -58,6 +61,21 @@ class Turn < ApplicationRecord
         return [turns, { :success => true }]
       end
     end
+
+
+      def self.search_status(search_status,turns)
+        if search_status
+          turns= turns.where(status: search_status)
+          if turns #encuentra turnos con ese status
+            return [turns, {:succes => true }]
+          else #no encuentra turnos
+            eturn [turns, { :error => I18n.t('turn.no_date') }]
+          end
+        else
+          return [turns, {:success => true}]
+        end
+        return [turns, { :success => true }]
+      end
 
 
       def self.search_date(search_date, turns)
