@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   post '/new_manual', to: 'turns#create_manual'
 
 
-
+  # Campaigns routes
+  get '/campaigns/:id/load_batch', to: 'campaigns#load_batch', as: 'load_batch'
+  patch 'campaigns/:id', to: 'campaigns#update', as: 'campaign'
+  get '/campaigns/:id/assign_turns', to: 'campaigns#assign_turns', as: 'assign_turns'
+  post '/campaigns/:id/assign_turns', to: 'campaigns#assign_turns_to_campaign', as: 'assign_turns_to_campaign'
   # Vaccines routes
   get '/applied_vaccines/new', to: 'applied_vaccines#new', as: 'new_applied_vaccines'
   post '/applied_vaccines/new', to: 'turns#pending_turns'
