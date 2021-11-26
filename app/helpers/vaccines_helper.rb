@@ -1,18 +1,13 @@
 module VaccinesHelper
 
-    def get_quantity_of_vaccines_available(vaccines)
+    def get_quantity_of_vaccines_available(campaign)
         
-        turns = Turn.where(:campaign => vaccines).where.not(status: [Turn.statuses[:pendding], Turn.statuses[:finished]])
         if has_role? :vacunador
-            assigned = 0
-            assigned = Turn.where(vaccination_center_id: current_user.vaccination_center_id, :status => Turn.statuses[:assigned]).count
-            return turns.count - assigned
+            lost_turns = Turn.lost.where(campaign_id: campaign.id, vaccination_center_id: current_user.vaccination_center_id).count
+            return lost_turns
         else
-            total = 0
-            for vaccine in vaccines do
-                total += vaccine.stock
-            end
-            return total - turns.count
+            assigned_turns = Turn.assigned.where(campaign_id: campaign.id).count
+            return campaign.stock - assigned_turns
         end
     end
 

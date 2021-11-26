@@ -13,6 +13,9 @@ class Turn < ApplicationRecord
     validates :status, inclusion: { in: Turn.statuses.keys }
     validate :validate_date?, :has_turn_in_campaign?
 
+    scope :lost, -> { where("status = ? AND date < ?", Turn.statuses[:assigned], Date.today)}
+    scope :assigned, -> { where("status = ? AND date >= ?", Turn.statuses[:assigned], Date.today) }
+
     def validate_date?
         return unless date?
         begin
