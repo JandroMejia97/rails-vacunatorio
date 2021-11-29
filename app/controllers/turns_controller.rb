@@ -28,6 +28,15 @@ class TurnsController < ApplicationController
         @turns
       end
     end
+    if params[:search_vaccination_center]
+      @turns, @message = @turns.search_vaccination_center(params[:search_vaccination_center],@turns)
+      if @message[:error].present?
+        flash[:error] = @message[:error]
+      else
+        @turns
+      end
+    end
+    
   end
 
   # GET /turns/1 or /turns/1.json

@@ -8,7 +8,7 @@
 </div>
 
 <div class="row mb-3">
-  <div class="col-6">
+  <div class="col-4">
     <%= form_tag @turnos, :method => "get" do %>
       <h4>
         <%= label_tag(:search_date, "Filtrar por fecha") %>
@@ -18,12 +18,22 @@
     <% end %>
   </div>
 
-  <div class="col-6">
+  <div class="col-4">
     <%= form_tag @turnos, :method => "get" do %>
       <h4>
         <%= label_tag(:search_status, "Filtrar por estado") %>
       </h4>
       <%= select_tag :search_status, options_for_select(Turn.statuses.map { |key,value| [t(key), value] }), class: 'form-select mb-3' %>
+      <%= submit_tag("Filtrar", class: "btn btn-outline-primary")%>
+    <% end %>
+  </div>
+
+  <div class="col-4">
+    <%= form_tag @turnos, :method => "get" do %>
+      <h4>
+        <%= label_tag(:search_status, "Filtrar por centro de vacunacion") %>
+      </h4>
+      <%= select_tag :search_vaccination_center, options_for_select(VaccinationCenter.all.map { |vaccination_center| [vaccination_center.name, vaccination_center.id] }), class: 'form-select mb-3' %>
       <%= submit_tag("Filtrar", class: "btn btn-outline-primary")%>
     <% end %>
   </div>
