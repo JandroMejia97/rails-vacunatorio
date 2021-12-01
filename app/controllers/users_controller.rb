@@ -24,7 +24,6 @@ def update
         flash[:success] = I18n.t('base_text.success')
         redirect_to users_path
     else
-        puts "Error: #{@user.errors.inspect}"
         flash[:danger] = I18n.t('base_text.error')
         render layout: 'application', :action => :modify
     end

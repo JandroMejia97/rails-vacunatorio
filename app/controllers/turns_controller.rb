@@ -107,7 +107,6 @@ class TurnsController < ApplicationController
   def pending_turns
     @campaigns = Campaign.all
     @turns, message = Turn.search(params[:search], current_user)
-    puts @turns.inspect
     if message[:error].present?
       flash[:danger] = message[:error]
     end
