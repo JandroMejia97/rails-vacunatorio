@@ -15,10 +15,11 @@ ActiveRecord::Schema.define(version: 2021_11_25_133933) do
   create_table "applied_vaccines", force: :cascade do |t|
     t.string "lot_number"
     t.integer "applied_dose"
+    t.integer "campaign_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "marca"
-    t.integer "campaign_id"
+    t.index ["campaign_id"], name: "index_applied_vaccines_on_campaign_id"
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 2021_11_25_133933) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "applied_vaccines", "vaccines", column: "campaign_id"
   add_foreign_key "turns", "applied_vaccines"
   add_foreign_key "turns", "campaigns"
   add_foreign_key "turns", "users"
