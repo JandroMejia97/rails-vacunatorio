@@ -1,0 +1,25 @@
+<h1>
+ <%= t 'campaign.campaign_to_assign', campaign: @campaign.name %>
+</h1>
+<% stock = get_quantity_of_vaccines_available(@campaign) %>
+<ul>
+  <li>
+    <%= t 'campaign.pendding_to_assign', quantity_to_assign: @turns_count %>
+  </li>
+  <li>
+    <%= stock %> <%= t 'vaccines.vaccines_available' %>
+  </li>
+</ul>
+<%= form_tag assign_turns_to_campaign_url do |form| %>
+  <div class="form-group col-12 mb-3">
+    <%= label_tag :turn_date, t('campaign.date_to_assign'), class: "form-label" %>
+    <%= date_field_tag :turn_date, 1, { class: "form-control", min: (Date.today + 1.day), required: true } %>
+  </div>
+  <div class="form-group col-12 mb-3">
+    <%= label_tag :quantity_to_assign, t('campaign.quantity_to_assign'), class: "form-label" %>
+    <%= number_field_tag :quantity_to_assign, 1, { class: "form-control", min: 1, max: (@turns_count > stock ? stock : @turns_count ), required: true } %>
+  </div>
+  <div class="form-group col-12 mb-3">
+    <%= submit_tag t('vaccines.assign_shifts'), class: "btn btn-primary" %>
+  </div>
+<% end %>
