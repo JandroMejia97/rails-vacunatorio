@@ -37,12 +37,14 @@ Rails.application.routes.draw do
   # Accounts routes
   get '/auth/signin/account', to: 'user_accounts#new', as: 'new_user_account'
   post '/auth/signin/account', to: 'user_accounts#create', as: 'create_user_account'
+  get '/accounts/set_password', to: 'user_accounts#set_password', as: 'set_password'
+  patch '/accounts/set_password', to: 'user_accounts#update_password', as: 'update_password'
 
   # VaccinationCenters routes
  
   patch '/vaccination_centers/edit', to: 'vaccination_centers#update', as: 'update_vaccination_center'
 
-  resources :users, :except =>[:show]
+  resources :users, :except => [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 

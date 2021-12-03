@@ -1,0 +1,20 @@
+<h1>
+  <%= t 'mailer.title' %>
+</h1>
+<p>
+  <%= t 'mailer.greeting', full_name: @full_name %>
+</p>
+<p>
+  <%= t 'user_mailer.register.notification_1' %>
+  <%= t 'user_mailer.register.notification_2' %>
+</p>
+<div class="d-flex justify-content-center align-items-center">
+  <%= link_to t('user_mailer.register.call_to_action'), set_password_url(token: @token), class: "btn btn-primary" %>
+<div>
+
+<p>
+  <%= t 'user_mailer.register.thanks' %>
+</p>
+<p>
+  <%= t 'mailer.signature', vaccination_center: t('mailer.title') %>
+</p>

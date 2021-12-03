@@ -70,6 +70,9 @@ es:
     comorbidity: "¿Padece alguna conmorbilidad?"
     centro_vacunacion: "Seleccione centro de vacunación"
     role: "Seleccione rol correspondiente"
+    create:
+      add_user: "Agregar usuario"
+      vaccinator_require_vaccination_center: "Un VACUNADOR debe tener un centro de vacunación asignado."
   base_text:
     'yes': 'Sí'
     no: 'No'
@@ -116,6 +119,10 @@ es:
       second_step:
         title: "Registráte para continuar"
         button: "Regístrarme"
+    set_password:
+      title: "Establecer contraseña"
+      invalid_token: "El token es inválido o ha expirado."
+      success: "¡Su contraseña se ha establecido exitosamente!"
   sidebar:
     my_profile: "Mi perfil"
     vaccination_center: "Centros de vacunacion"
@@ -211,10 +218,12 @@ es:
     turns_not_assigned: "Ocurrió un error al asignar los turnos a la campaña %{campaign}"
     not_enough_turns: "La cantidad de turnos ingresada supera la cantidad de turnos en espera."
     not_enough_vaccines: "La cantidad ingresada supera la existencia de vacunas."
-  turn_mailer:
-    subject: "NOTIFICACIÓN DE TURNO (%{date})"
+  mailer: 
     title: "SISTEMA DE RESERVA DE TURNOS"
     greeting: "Hola %{full_name},"
+    signature: "Atte: %{vaccination_center}"
+  turn_mailer:
+    subject: "NOTIFICACIÓN DE TURNO (%{date})"
     notification_1: "Te informamos que tienes asignado un turno de vacunación para la campaña de vacunación \"%{campaign}\"."
     notification_2: "Dicho turno es para el día %{date}, en el vacunatorio \"%{vaccination_center}\""
     your_data: "Tus datos:"
@@ -222,4 +231,10 @@ es:
     birthdate: "Fecha de nacimiento"
     warning: "En el caso que no puedas asistir al turno, te estaremos notificando cuando este se asigne nuevamente."
     thanks: "Muchas gracias por tu tiempo, ¡te esperamos!"
-    signature: "Atte: %{vaccination_center}"
+  user_mailer:
+    register:
+      subject: "¡%{name}, BIENVENIDO! - %{role} - REGISTRO EXITOSO"
+      notification_1: "Te informamos que fuiste registrado en nuestra plataforma de manera exitosa."
+      notification_2: "Para finalizar con este proceso es necesario que accedas al enlace adjunto y establezcas una contraseña de acceso."
+      call_to_action: "Establecer contraseña."
+      thanks: "¡Gracias por hacer uso de nuestro servicio!"
