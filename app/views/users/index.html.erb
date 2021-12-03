@@ -1,10 +1,14 @@
-<h1>
-<%= t('user.users') %>
-</h1>
-<p>
-</p>
-<div class="col-lg-10 col-md-6 col-sm-12 col-xs-12 mb-3">
-    <div class="card">
+<div class="row mb-3">
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <h1>
+      <%= t('user.users') %>
+    </h1>
+    <%= link_to t('user.create.add_user'), new_user_path, class: "btn btn-primary" %>
+
+  </div>
+</div>
+<div class="row mb-3">
+    <div class="card col-12">
       <div class="card-header">
         <h2>
         <%= t 'turn.information' %>
