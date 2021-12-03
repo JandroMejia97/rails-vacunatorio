@@ -78,19 +78,17 @@
         </div>
     </div>
 
-    <div class="form-group col-12 mb-3">
-      <%= f.label :vaccination_center_id, t("user.centro_vacunacion"), class: "form-label" %>
-      <%= f.collection_select :vaccination_center_id, VaccinationCenter.all, :id, :name, { prompt: true }, { class: "form-select" } %>
-    </div>
+    <% if has_role?([:administrador, :directivo]) %>
+        <div class="form-group col-12 mb-3">
+            <%= f.label :vaccination_center_id, t("user.centro_vacunacion"), class: "form-label" %>
+            <%= f.collection_select :vaccination_center_id, VaccinationCenter.all, :id, :name, { prompt: true }, { class: "form-select" } %>
+        </div>
 
-
-    <div class="form-group col-12 mb-3">
-      <%= f.label :roles, t("user.role") %>
-      <%= f.collection_select :roles, Role.all, :id, :name,{ :selected => @user.roles.map(&:id) }, { class: "form-select" } %>
-    </div>
-
-
-
+        <div class="form-group col-12 mb-3">
+            <%= f.label :roles, t("user.role") %>
+            <%= f.collection_select :roles, Role.all, :id, :name,{ :selected => @user.roles.map(&:id), prompt: true }, { class: "form-select" } %>
+        </div>
+    <% end %>
 
     <%= f.submit button_text, class: "btn btn-primary", formvalidate: true %>
 <% end %>

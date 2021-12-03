@@ -9,12 +9,12 @@ class Turn < ApplicationRecord
     validates :user_id, presence: true
     validates :campaign_id, presence: true
     validates :vaccination_center_id, presence: true
-    validates_presence_of :applied_vaccine_id, :on => :update
     validates :status, inclusion: { in: Turn.statuses.keys }
     validate :validate_date?, :has_turn_in_campaign?
 
     scope :lost, -> { where("status = ? AND date < ?", Turn.statuses[:assigned], Date.today)}
     scope :assigned, -> { where("status = ? AND date >= ?", Turn.statuses[:assigned], Date.today) }
+    scope :pendding, -> { where("status = ? OR (status = ? AND date < ?)", Turn.statuses[:pendding], Turn.statuses[:assigned], Date.today) }
 
     def validate_date?
         return unless date?
@@ -35,7 +35,7 @@ class Turn < ApplicationRecord
 
     def has_turn_in_campaign?
       return unless campaign_id
-      if Turn.where("user_id = ? AND campaign_id = ? AND (status = ? OR status = ?)", user_id, campaign_id, Turn.statuses[:pendding], Turn.statuses[:assigned]).where.not(id: id).exists?
+      if Turn.where("id != ? AND user_id = ? AND campaign_id = ? AND (status = ? OR status = ?)", id, user_id, campaign_id, Turn.statuses[:pendding], Turn.statuses[:assigned]).exists?
           errors.add(:campaign_id, I18n.t('validations.turn.has_turn_in_campaign'))
           return false
       else

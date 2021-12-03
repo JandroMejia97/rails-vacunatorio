@@ -1,0 +1,38 @@
+<h1>
+  <%= t 'mailer.title' %>
+</h1>
+<% full_name = "#{@turn.user.first_name} #{@turn.user.last_name}" %>
+<% date_format = "%d/%m/%Y" %>
+<p>
+  <%= t 'mailer.greeting', full_name: full_name %>
+</p>
+<p>
+  <%= t 'turn_mailer.notification_1', campaign: @turn.campaign.name %>
+  <%= t 'turn_mailer.notification_2', date: @turn.date.strftime(date_format), vaccination_center: @turn.vaccination_center.name %>
+</p>
+<p>
+  <%= t 'turn_mailer.your_data' %>
+</p>
+<ul>
+  <li>
+    <strong>
+      <%= t 'turn_mailer.document_number' %>:
+    </strong>
+    <%= @turn.user.document_number %>
+  </li>
+  <li>
+    <strong>
+      <%= t 'turn_mailer.birthdate' %>:
+    </strong>
+    <%= @turn.user.birthdate.strftime(date_format) %>
+  </li>
+</ul>
+<p>
+  <%= t 'turn_mailer.warning' %>
+</p>
+<p>
+  <%= t 'turn_mailer.thanks' %>
+</p>
+<p>
+  <%= t 'mailer.signature', vaccination_center: @turn.vaccination_center.name %>
+</p>

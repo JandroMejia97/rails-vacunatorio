@@ -1,0 +1,11 @@
+<%= t 'mailer.title' %>
+
+<%= t 'mailer.greeting', full_name: @full_name %>
+
+<%= t 'user_mailer.register.notification_1' %> <%= t 'user_mailer.register.notification_2' %>
+
+<%= set_password_url(token: @token) %>
+
+<%= t 'user_mailer.register.thanks' %>
+
+<%= t 'mailer.signature', vaccination_center: t('mailer.title') %>

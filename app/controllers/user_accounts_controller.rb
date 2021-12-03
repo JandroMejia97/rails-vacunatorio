@@ -59,6 +59,26 @@ class UserAccountsController < ApplicationController
         end
     end
 
+    def set_password
+        @user = User.find_signed!(params[:token], purpose: :set_password)
+    rescue ActiveSupport::MessageVerifier::InvalidSignature
+        redirect_to root_path, alert: I18n.t('auth.set_password.invalid_token')
+    end
+
+    def update_password
+        @user = User.find_signed!(params[:token], purpose: :set_password)
+        if @user.update(password: params[:user][:password])
+            session[:user_id] = @user.id
+            session[:expires_at] = Time.now + 3.hours
+            flash[:success] = I18n.t('auth.set_password.success')
+            redirect_to root_path
+        else
+            flash[:error] = I18n.t('base_text.error')
+            render :set_password
+        end 
+    end
+
+
     private
 
     def user_account_params
