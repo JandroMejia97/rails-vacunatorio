@@ -91,4 +91,19 @@ class Turn < ApplicationRecord
         end
         return [turns, { :success => true }]
       end
+
+
+      def self.search_vaccination_center(search_vaccination_center,turns)
+        if search_vaccination_center
+          turns= turns.where(vaccination_center_id: search_vaccination_center)
+          if turns #encuentra turnos con ese centro de vacunacion
+            return [turns, {:succes => true }]
+          else #no encuentra turnos
+            eturn [turns, { :error => I18n.t('turn.no_vaccination_center') }]
+          end
+        else
+          return [turns, {:success => true}]
+        end
+        return [turns, { :success => true }]
+      end
 end

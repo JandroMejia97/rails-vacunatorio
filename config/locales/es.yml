@@ -162,6 +162,8 @@ es:
     empty: "No hay turnos asignados a esta campaña."
     date: "Fecha"
     no_turns: "No hay turnos"
+    no_vaccination_center: "No hay turnos con este centro de vacunacion"
+
     
     assigned: "Proximos turnos"
     no_assigned: "Aún no tienes turnos asignados."
