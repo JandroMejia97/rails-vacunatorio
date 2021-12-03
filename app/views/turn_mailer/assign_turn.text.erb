@@ -1,0 +1,15 @@
+<%= t 'mailer.title' %>
+<% full_name = "#{@turn.user.first_name} #{@turn.user.last_name}" %>
+<% date_format = "%d/%m/%Y" %>
+<%= t 'mailer.greeting', full_name: full_name %>
+<%= t 'turn_mailer.notification_1', campaign: @turn.campaign.name %>
+<%= t 'turn_mailer.notification_2', date: @turn.date.strftime(date_format), vaccination_center: @turn.vaccination_center.name %>
+
+<%= t 'turn_mailer.your_data' %>
+<%= t 'turn_mailer.document_number' %>: <%= @turn.user.document_number %>
+<%= t 'turn_mailer.birthdate' %>: <%= @turn.user.birthdate.strftime(date_format) %>
+
+<%= t 'turn_mailer.warning' %>
+
+<%= t 'turn_mailer.thanks' %>
+<%= t 'mailer.signature', vaccination_center: @turn.vaccination_center.name %>

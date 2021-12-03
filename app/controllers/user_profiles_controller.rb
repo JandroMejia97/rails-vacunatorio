@@ -26,7 +26,6 @@ class UserProfilesController < ApplicationController
             flash[:success] = I18n.t('base_text.success')
             redirect_to me_path
         else
-            puts "Error: #{@user_profile.errors.inspect}"
             flash[:danger] = I18n.t('base_text.error')
             render layout: 'application', :action => :edit
         end

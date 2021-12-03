@@ -3,7 +3,6 @@
     <h1>
       <%= t 'vaccines.title' %>
     </h1>
-    <%# <%= link_to t('vaccines.add_vaccine'), new_vaccine_path, class: "btn btn-primary" %>
   </div>
 </div>
 
@@ -17,83 +16,18 @@
             <%= campaign.name %>
           </h2>
         </div>
-        <div class="card-body text-center <%= 'empty' unless campaign.vaccines.length > 0 %>">
-          <% stock = get_quantity_of_vaccines_available campaign.vaccines %>
-          <% if has_role? :vacunador %>
-            <% if stock > 0 %>
-              <div class="alert alert-primary">
-                <%= stock %> <%= t 'vaccines.vaccines_available' %>
-              </div>
-            <% else %>
-              <div class="alert alert-danger">
-                <%= t 'vaccines.no_vaccines_available' %>
-              </div>
-            <% end %>
+        <div class="card-body text-center">
+          <% if campaign.stock > 0 %>
+            <div class="alert alert-primary">
+              <%= get_quantity_of_vaccines_available campaign %> <%= t 'vaccines.vaccines_available' %>
+            </div>
           <% else %>
-            <% if campaign.vaccines.length > 0 %>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">
-                      <%= t 'base_text.name' %>
-                    </th>
-                    <th scope="col">
-                      <%= t 'vaccines.number_of_doses' %>
-                    </th>
-                    <th scope="col">
-                      <%= t 'vaccines.stock' %>
-                    </th>
-                    <th scope="col">
-                      <%= t 'base_text.actions' %>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% campaign.vaccines.each do |vaccine| %>
-                    <tr>
-                      <th scope="row">
-                        <%= vaccine.name %>
-                      </th>
-                      <td>
-                        <%= vaccine.number_of_doses %>
-                      </td>
-                      <td>
-                        <%= vaccine.stock %>
-                      </td>
-                      <td>
-                        <%= link_to t('base_text.show'), vaccine, class: "btn btn-outline-secondary btn-sm" %>
-                        <%= link_to t('base_text.edit'), edit_vaccine_path(vaccine), class: "btn btn-outline-primary btn-sm" %>
-                        <%= link_to t('base_text.destroy'), vaccine, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %>
-                      </td>
-                    </tr>
-                  <% end %>
-                    <tr>
-                      <% if stock > 0 %>
-                        <th scope="row" colspan="2">
-                          <%= t 'vaccines.vaccines_available' %>
-                        </th>
-                        <td>
-                          <%= stock %>
-                        </td>
-                        <td>
-                          <%= link_to t('vaccines.assign_shifts'), "", class: "btn btn-secondary btn-sm disabled" %>
-                          <%# <%= link_to t('vaccines.load_batch'), "", class: "btn btn-primary btn-sm disabled" %>
-                        </td>
-                    <% else %>
-                      <td colspan="4">
-                        <%= t 'vaccines.no_vaccines_available' %>
-                      </td>
-                    <% end %>
-                    </tr>
-                </tbody>
-              </table>
-            <% else %>
-              <p>
-                <%= t 'vaccines.empty' %>
-              </p>
-            <% end %>
+            <div class="alert alert-danger">
+              <%= t 'vaccines.no_vaccines_available' %>
+            </div>
           <% end %>
-          <%# <%= link_to t('vaccines.add_vaccine'), { action: "new", controller: "vaccines", campaign: campaign.id}, class: "btn btn-primary mt-3" %>
+          <%= link_to t('vaccines.load_batch'), load_batch_url(campaign), class: "btn btn-outline-primary btn-sm" %>
+          <%= link_to t('vaccines.assign_shifts'), assign_turns_url(campaign), class: "btn btn-outline-secondary btn-sm" %>
         </div>
       </div>
     </div>

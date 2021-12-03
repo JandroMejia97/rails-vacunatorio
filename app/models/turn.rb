@@ -9,9 +9,12 @@ class Turn < ApplicationRecord
     validates :user_id, presence: true
     validates :campaign_id, presence: true
     validates :vaccination_center_id, presence: true
-    validates_presence_of :applied_vaccine_id, :on => :update
     validates :status, inclusion: { in: Turn.statuses.keys }
     validate :validate_date?, :has_turn_in_campaign?
+
+    scope :lost, -> { where("status = ? AND date < ?", Turn.statuses[:assigned], Date.today)}
+    scope :assigned, -> { where("status = ? AND date >= ?", Turn.statuses[:assigned], Date.today) }
+    scope :pendding, -> { where("status = ? OR (status = ? AND date < ?)", Turn.statuses[:pendding], Turn.statuses[:assigned], Date.today) }
 
     def validate_date?
         return unless date?
@@ -31,50 +34,61 @@ class Turn < ApplicationRecord
     end
 
     def has_turn_in_campaign?
-        return unless campaign_id
-        if Turn.where("user_id = ? AND campaign_id = ? AND (status = ? OR status = ?)", user_id, campaign_id, Turn.statuses[:pedding], Turn.statuses[:assigned]).where.not(id: id).exists?
-            errors.add(:campaign_id, I18n.t('validations.turn.has_turn_in_campaign'))
-            return false
-        else
-            return true
-        end
+      return unless campaign_id
+      if Turn.where("id != ? AND user_id = ? AND campaign_id = ? AND (status = ? OR status = ?)", id, user_id, campaign_id, Turn.statuses[:pendding], Turn.statuses[:assigned]).exists?
+          errors.add(:campaign_id, I18n.t('validations.turn.has_turn_in_campaign'))
+          return false
+      else
+          return true
+      end
+  end
+
+    def self.search(search, current_user)
+      turns = Turn.joins(:user, :campaign).where(date: Date.today, status: Turn.statuses[:assigned], vaccination_center_id: current_user.vaccination_center_id)
+      if search
+        user = User.find_by(document_number: search)
+        if user #Si encuentra el usuario con DNI ingresado
+          temp_turns = turns.find_all { |turn| turn.user_id == user.id }
+          if temp_turns.length >0 #Si encuentra un turno pedido por el usuario 
+            return [temp_turns, { :success => true }]
+          else #encuentra el dni, pero no tiene turno
+            return [turns, { :error => I18n.t('turn.no_turno') }]
+          end
+        else #no hay dni en el sistema
+          return [turns, { :error => I18n.t('turn.no_dni') }]
+        end 
+      else
+        return [turns, { :success => true }]
+      end
     end
 
-    def self.search(search)
-        if search
-          user= User.find_by(document_number: search)
-          if user #Si encuentra el usuario con DNI ingresado
-            turn= Turn.where(user_id: user.id, date: Date.today, status: Turn.statuses[:assigned])
-            if turn #Si encuentra un turno pedido por el usuario 
-              return [turn, { :success => true }]
-            else #encuentra el dni, pero no tiene turno
-              @turns=Turn.where(date: Date.today, status: Turn.statuses[:assigned])
-              return [@turns, { :error => I18n.t('turn.no_turno') }]
-            end
-          else #no hay dni en el sistema
-            @turns=Turn.where(date: Date.today, status: Turn.statuses[:assigned])
-            return [@turns, { :error => I18n.t('turn.no_dni') }]
-          end 
+
+      def self.search_status(search_status,turns)
+        if search_status
+          turns= turns.where(status: search_status)
+          if turns #encuentra turnos con ese status
+            return [turns, {:succes => true }]
+          else #no encuentra turnos
+            eturn [turns, { :error => I18n.t('turn.no_date') }]
+          end
         else
-          @turns=Turn.where(date: Date.today, status: Turn.statuses[:assigned])
+          return [turns, {:success => true}]
         end
-        return [@turns, { :success => true }]
+        return [turns, { :success => true }]
       end
 
 
-      def self.search_date(search_date)
+      def self.search_date(search_date, turns)
         if search_date
-          @turns= Turn.where(date: search_date, status: Turn.statuses[:finished])
-          if @turns #Si encuentra turnos con esa fecha
-            return [@turns, { :success => true }]
+          turns= turns.where(date: search_date)
+          if turns #Si encuentra turnos con esa fecha
+            return [turns, { :success => true }]
           else #si no encuentra turnos
-            @turns=Turn.where(status: Turn.statuses[:finished])
-            return [@turns, { :error => I18n.t('turn.no_date') }]
+            return [turns, { :error => I18n.t('turn.no_date') }]
           end
         else
-          @turns=Turn.where(status: Turn.statuses[:finished])
-          return [@turns, {:success => true}]
+          return [turns, {:success => true}]
         end
-        return [@turns, { :success => true }]
+        return [turns, { :success => true }]
       end
 end

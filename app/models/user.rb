@@ -2,8 +2,8 @@ class User < ApplicationRecord
     include UsersHelper
     include ActiveModel::Validations
     has_secure_password
-    has_many :users_roles
-    has_many :roles, :through => :users_roles
+    has_many :user_roles
+    has_many :roles, :through => :user_roles
     belongs_to :vaccination_center, optional: true
 
     validates :vaccination_center_id, presence: false, allow_nil: true
@@ -16,6 +16,10 @@ class User < ApplicationRecord
     validates :comorbidity, :inclusion => { :in => [true, false] }
     validates_presence_of :password, :on => [:create]
     validate :validate_birthdate?, :document_number_uniqueness?, :email_uniqueness?
+
+    def name_with_initial
+        "#{first_name} #{last_name}"
+    end
 
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

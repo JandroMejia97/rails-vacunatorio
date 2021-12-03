@@ -23,7 +23,6 @@ module UsersHelper
         if self.try(:id).presence && self.try(:id).present?
             results = results.where.not(id: id)
         end
-        puts "results: #{results.inspect}"
         if results.exists?
             errors.add(:email, I18n.t('validations.email.uniqueness'))
             return false
@@ -36,7 +35,6 @@ module UsersHelper
         if self.try(:id).presence && self.try(:id).present?
             results = results.where.not(id: id)
         end
-        puts "results: #{results.inspect}"
         if results.exists?
             errors.add(:document_number, I18n.t('validations.document_number.uniqueness'))
             return false

@@ -1,5 +1,5 @@
 class TurnsController < ApplicationController
-  include SessionsHelper
+  include SessionsHelper, VaccinesHelper, RolesHelper, TurnsHelper
   before_action :set_turn, only: %i[ show edit update destroy ]
 
   # GET /turns or /turns.json
@@ -11,12 +11,22 @@ class TurnsController < ApplicationController
    end
 
   def show_all
-    @turns=Turn.where(status: Turn.statuses[:finished])
-    @turns, @message = Turn.search_date(params[:search_date])
-    if @message[:error].present?
-      flash[:error] = @message[:error]
-    else
-      @turns
+    @turns=Turn.all
+    if params[:search_date]
+      @turns, @message = @turns.search_date(params[:search_date], @turns)
+      if @message[:error].present?
+        flash[:error] = @message[:error]
+      else
+        @turns
+      end
+    end
+    if params[:search_status]
+      @turns, @message = @turns.search_status(params[:search_status],@turns)
+      if @message[:error].present?
+        flash[:error] = @message[:error]
+      else
+        @turns
+      end
     end
   end
 
@@ -48,6 +58,33 @@ class TurnsController < ApplicationController
     end
   end
 
+  # GET /turns/new_manual
+  def new_manual
+    @turn = Turn.new
+  end
+
+  # POST /show_all
+  def create_manual
+    @turn = Turn.new(turn_params)
+    @turn.vaccination_center_id = current_user.vaccination_center_id
+    @turn.status = Turn.statuses[:assigned]
+    @turn.date = Date.today
+    respond_to do |format|
+      if get_quantity_of_vaccines_available(Vaccine.where(campaign_id: @turn.campaign_id)) == 0
+        flash[:danger] = I18n.t('base_text.error_vaccines')
+        format.html { redirect_to pending_turns_url}
+      else
+        if @turn.save
+          flash[:success] = I18n.t('base_text.success_saved_t')
+          format.html { redirect_to pending_turns_url }
+       else
+          format.html { render :new_manual, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+ 
+
   # PATCH/PUT /turns/1 or /turns/1.json
   def update
     respond_to do |format|
@@ -68,15 +105,10 @@ class TurnsController < ApplicationController
   end
 
   def pending_turns
-    @covid_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 1)
-    @fever_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 3)
-    @flu_turns=Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today).where(campaign_id: 2)
-    @turn =Turn.where(status: Turn.statuses[:pendding]).where(date: Date.today)
-    @turns, @message = Turn.search(params[:search])
-    if @message[:error].present?
-      flash[:error] = @message[:error]
-    else
-      @turns
+    @campaigns = Campaign.all
+    @turns, message = Turn.search(params[:search], current_user)
+    if message[:error].present?
+      flash[:danger] = message[:error]
     end
   end
 
@@ -90,4 +122,5 @@ class TurnsController < ApplicationController
     def turn_params
       params.require(:turn).permit(:campaign_id, :vaccination_center_id, :user_id)
     end
+
 end
