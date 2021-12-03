@@ -26,8 +26,10 @@
               <%= t 'vaccines.no_vaccines_available' %>
             </div>
           <% end %>
-          <%= link_to t('vaccines.load_batch'), load_batch_url(campaign), class: "btn btn-outline-primary btn-sm" %>
+          <% if has_role?([:directivo, :administrador]) %>
+            <%= link_to t('vaccines.load_batch'), load_batch_url(campaign), class: "btn btn-outline-primary btn-sm" %>
           <%= link_to t('vaccines.assign_shifts'), assign_turns_url(campaign), class: "btn btn-outline-secondary btn-sm" %>
+          <% end %>
         </div>
       </div>
     </div>

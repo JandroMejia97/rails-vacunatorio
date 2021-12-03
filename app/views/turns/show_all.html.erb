@@ -61,7 +61,10 @@
                 <%= t 'turn.campaign' %>
               </th>
               <th scope="col">
-              <%= t 'turn.status' %>
+                <%= t 'turn.status' %>
+              </th>
+              <th scope="col">
+                <%= t 'turn.date' %>
               </th>
             </tr>
           </thead>
@@ -72,6 +75,7 @@
                 <td><%= turn.user.first_name + turn.user.last_name %></td>
                 <td><%= turn.campaign.name %></td>
                 <td><%= t turn.status %> </td>
+                <td><%= t turn.date.strftime("%d/%m/%Y") %> </td>
               </tr>
             <% end %>
           </tbody>

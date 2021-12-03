@@ -47,7 +47,7 @@
       </a>
     </li>
 
-    <% if has_role? :directivo %>
+    <% if has_role?([:directivo, :administrador]) %>
       <li class="nav-item">
         <a href="/users" class="nav-link align-middle px-0">
           <i class="fs-4 bi bi-people"></i>
